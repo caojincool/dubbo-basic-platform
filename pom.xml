@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.basic.framework</groupId>
+	<artifactId>dubbo-basic-platform</artifactId>
+	<version>3.0.1-SNAPSHOT</version>
+
+	<packaging>pom</packaging>
+	<name>Dubbo-Basic-Platform</name>
+
+	<modules>
+		<module>Basic-Cache</module>
+		<module>Basic-Common</module>
+		<module>Basic-DbPT</module>
+		<module>Basic-Election</module>
+		<module>Basic-FrameConsole</module>
+		<module>Basic-GidClient</module>
+		<module>Basic-GidServer</module>
+		<module>Basic-JettyServer</module>
+		<module>Basic-LogApi</module>
+		<module>Basic-LogClient</module>
+		<module>Basic-LogEngine</module>
+		<module>Basic-LogWeb</module>
+		<module>Basic-MessageQueueConsumer</module>
+		<module>Basic-MessageQueueProducer</module>
+		<module>Basic-MessageQueuePT</module>
+		<!-- <module>Basic-NoticeApi</module>
+		<module>Basic-NoticeImpl</module>
+		<module>Basic-NoticeWeb</module> -->
+		<module>Basic-OaasApi</module>
+		<module>Basic-OaasImpl</module>
+		<module>Basic-OaasWeb</module>
+		<module>Basic-OrderApi</module>
+		<module>Basic-OrderImpl</module>
+		<module>Basic-OrderWeb</module>
+		<module>Basic-ProcessFrame</module>
+		<!-- <module>Basic-Quartz</module> -->
+		<module>Basic-Start</module>
+		<module>Basic-StateEngine</module>
+		<module>Basic-SystemApi</module>
+		<module>Basic-SystemImpl</module>
+		<module>Basic-SystemWeb</module>
+		<module>Basic-ThreadFrame</module>
+		<module>Basic-Web</module>
+		<module>Basic-WebFrame</module>
+		<module>Basic-WebSecurity</module>
+		<module>Basic-WorkflowEngine</module>
+		<module>Basic-WorkflowEngineApi</module>
+		<module>Basic-WorkflowEngineClient</module>
+		<module>Basic-WorkflowEngineMonitor</module>
+	</modules>
+
+	<!-- properties start -->
+	<properties>
+		<maven-surefire-plugin.version>2.10</maven-surefire-plugin.version>
+		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+		<maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+		<maven-warpath-plugin.version>3.0.0</maven-warpath-plugin.version>
+		<maven-war-plugin.version>2.2</maven-war-plugin.version>
+		<maven-jar-plugin.version>2.6</maven-jar-plugin.version>
+	</properties>
+	<!-- properties end -->
+
+
+
+	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+
+
+	<!-- nexus repository start -->
+	<repositories>
+		<repository>
+			<id>Basic-Basic</id>
+			<name>Basic-Basic</name>
+			<url>http://119.145.165.118:8101/nexus/content/repositories/Basic-Basic/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>Basic-Basic</id>
+			<name>Basic-Basic</name>
+			<url>http://119.145.165.118:8101/nexus/content/repositories/Basic-Basic/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<distributionManagement>
+		<repository>
+			<id>Basic-Basic</id>
+			<name>Basic-Basic</name>
+			<url>http://119.145.165.118:8101/nexus/content/repositories/Basic-Basic/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>Basic-Basic</id>
+			<name>Basic-Basic</name>
+			<url>http://119.145.165.118:8101/nexus/content/repositories/Basic-Basic/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<!-- nexus repository end -->
+
+
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+			<!-- test -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<!-- compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<!-- resource -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven-resources-plugin.version}</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+
+</project>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+		">
+<!--公司服务 -->
+	<dubbo:service ref="companyService" interface="com.basic.oaas.service.CompanyService" group="platform"/>
+	
+	<!-- 区域服务 -->
+	<dubbo:service ref="areaService" interface="com.basic.oaas.service.AreaService" group="platform"/>
+	<!-- 部门服务 -->
+	<dubbo:service ref="orgService" interface="com.basic.oaas.service.OrgService" group="platform"/>
+	<!-- 用户服务-->
+	<dubbo:service ref="userService" interface="com.basic.oaas.service.UserService" group="platform"/>
+	<!-- 职位服务-->
+	<dubbo:service ref="jobService" interface="com.basic.oaas.service.JobService" group="platform"/>
+	<!-- 权限服务 -->
+	<dubbo:service ref="privateService" interface="com.basic.oaas.service.PrivateService" group="platform"/>
+	<!-- 权限目录服务 -->
+	<dubbo:service ref="privateCatalogService" interface="com.basic.oaas.service.PrivateCatalogService" group="platform"/>
+	<!--员工服务-->
+	<dubbo:service ref="staffService" interface="com.basic.oaas.service.StaffService" group="platform"/>
+	<!--员工职位服务-->
+	<dubbo:service ref="staffJobService" interface="com.basic.oaas.service.StaffJobService" group="platform"/>
+	<!--账号员工服务-->
+	<dubbo:service ref="userStaffService" interface="com.basic.oaas.service.UserStaffService" group="platform"/>
+	<!--菜单服务-->
+	<dubbo:service ref="privateMenuService" interface="com.basic.oaas.service.PrivateMenuService" group="platform"/>
+	<!--菜单目录服务-->
+	<dubbo:service ref="privateMenuCatalogService" interface="com.basic.oaas.service.PrivateMenuCatalogService" group="platform"/>
+	<!--功能按钮服务-->
+	<dubbo:service ref="privateFuncService" interface="com.basic.oaas.service.PrivateFuncService" group="platform"/>
+	<!--功能按钮目录服务-->
+	<dubbo:service ref="privateFuncCatalogService" interface="com.basic.oaas.service.PrivateFuncCatalogService" group="platform"/>
+	<!--字段权限服务-->
+	<dubbo:service ref="privateAttrService" interface="com.basic.oaas.service.PrivateAttrService"/>
+	<!--=角色服务-->
+	<dubbo:service ref="roleService" interface="com.basic.oaas.service.RoleService" group="platform"/>
+	<!--角色目录服务-->
+	<dubbo:service ref="roleCatalogService" interface="com.basic.oaas.service.RoleCatalogService" group="platform"/>
+	<!--角色权限服务-->
+	<dubbo:service ref="rolePrivateService" interface="com.basic.oaas.service.RolePrivateService" group="platform"/>
+	<!-- 账号权限服务 -->
+	<dubbo:service ref="userPrivateService" interface="com.basic.oaas.service.UserPrivateService" group="platform"/>
+	<!-- 账号角色服务 -->
+	<dubbo:service ref="userRoleService" interface="com.basic.oaas.service.UserRoleService" group="platform"/>
+	<!-- 数据权限服务 -->
+	<dubbo:service ref="privateDataService" interface="com.basic.oaas.service.PrivateDataService" group="platform"/>
+	<!-- 数据范围类型服务 -->
+	<dubbo:service ref="dataScopeTypeService" interface="com.basic.oaas.service.DataScopeTypeService" group="platform"/>
+	<!-- 数据权限实例服务 -->
+	<dubbo:service ref="privateDataInstService" interface="com.basic.oaas.service.PrivateDataInstService" group="platform"/>
+	<!-- 数据权限实例数据服务 -->
+	<dubbo:service ref="privateDataInstDataService" interface="com.basic.oaas.service.PrivateDataInstDataService" group="platform"/>
+	<!-- 数据权限数据服务 -->
+	<dubbo:service ref="privateDataDataService" interface="com.basic.oaas.service.PrivateDataDataService" group="platform"/>
+	<!-- 数据权限分组服务 -->
+	<dubbo:service ref="privateDataGroupService" interface="com.basic.oaas.service.PrivateDataGroupService" group="platform"/>
+	<!-- 数据权限分组实例服务 -->
+	<dubbo:service ref="privateDataGroupInstService" interface="com.basic.oaas.service.PrivateDataGroupInstService" group="platform"/>
+	<!-- 账号数据权限实例服务 -->
+	<dubbo:service ref="userDataInstService" interface="com.basic.oaas.service.UserDataInstService" group="platform"/>
+	<!-- 账号数据权限分组服务 -->
+	<dubbo:service ref="userDataGroupService" interface="com.basic.oaas.service.UserDataGroupService" group="platform"/>
+	
+	
+</beans>

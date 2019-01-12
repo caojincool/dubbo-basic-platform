@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.oaas.dao.AreaMapper">
+	<resultMap id="BaseResultMap" type="com.basic.oaas.model.Area">
+		<id column="AREA_ID" jdbcType="DECIMAL" property="areaId" />
+		<result column="PARENT_AREA_ID" jdbcType="DECIMAL" property="parentAreaId" />
+		<result column="AREA_CODE" jdbcType="VARCHAR" property="areaCode" />
+		<result column="AREA_ABS_NAME" jdbcType="VARCHAR" property="areaAbsName" />
+		<result column="AREA_NAME" jdbcType="VARCHAR" property="areaName" />
+		<result column="DISPLAY_INDEX" jdbcType="DECIMAL" property="displayIndex" />
+		<result column="ID_PATH" jdbcType="VARCHAR" property="idPath" />
+		<result column="NAME_PATH" jdbcType="VARCHAR" property="namePath" />
+		<result column="CODE_PATH" jdbcType="VARCHAR" property="codePath" />
+		<result column="STATE" jdbcType="VARCHAR" property="state" />
+		<result column="CREATE_USER_ID" jdbcType="DECIMAL" property="createUserId" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="MODIFY_USER_ID" jdbcType="DECIMAL" property="modifyUserId" />
+		<result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+		<result column="AREA_GRADE" jdbcType="VARCHAR" property="areaGrade" />
+		<result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+
+		<result column="ID" property="id" jdbcType="DECIMAL" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="P_ID" property="pId" jdbcType="DECIMAL" />
+		
+		<result column="CREATEUSERNAME" property="createUserName" jdbcType="VARCHAR" />
+		<result column="MODIFYUSERNAME" property="modifyUserName" jdbcType="VARCHAR" />
+		
+		<result property="openStatus" column="OPEN_STATUS" jdbcType="NUMERIC"/>
+		<result property="openDate" column="OPEN_DATE" jdbcType="TIMESTAMP"/>
+		<result property="endDate" column="END_DATE" jdbcType="TIMESTAMP"/>
+		<result property="county" column="COUNTY" jdbcType="VARCHAR"/>
+		<result property="district" column="DISTRICT" jdbcType="VARCHAR"/>
+		<result property="province" column="PROVINCE" jdbcType="VARCHAR"/>
+		<result property="city" column="CITY" jdbcType="VARCHAR"/>
+		<result property="contact" column="CONTACT" jdbcType="VARCHAR"/>
+		<result property="contactMobile" column="CONTACT_MOBILE" jdbcType="VARCHAR"/>
+		<result property="areaEngName" column="AREA_ENG_NAME" jdbcType="VARCHAR"/>
+		
+	</resultMap>
+	<sql id="Base_Column_List">
+		AREA_ID, PARENT_AREA_ID, AREA_CODE, AREA_NAME,
+		AREA_ABS_NAME,DISPLAY_INDEX, ID_PATH,
+		NAME_PATH,
+		CODE_PATH, STATE, CREATE_USER_ID,
+		CREATE_TIME, MODIFY_USER_ID, MODIFY_TIME,
+		AREA_GRADE,
+		REMARKS,OPEN_STATUS,OPEN_DATE,STOP_DATE,
+		COUNTY,DISTRICT,PROVINCE,CITY,
+		CONTACT,CONTACT_MOBILE,AREA_ENG_NAME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+		SELECT AREA.*,PAR.AREA_CODE 'parentAreaCode',PAR.AREA_ABS_NAME'parentAreaAbsName',
+		OU1.USER_TEXT 'createUserName',OU2.USER_TEXT 'modifyUserName'
+		FROM OAAS_AREA AREA
+		LEFT JOIN OAAS_AREA PAR ON PAR.AREA_ID = AREA.PARENT_AREA_ID
+		LEFT JOIN OAAS_USER OU1 ON OU1.USER_ID = AREA.CREATE_USER_ID
+		LEFT JOIN OAAS_USER OU2 ON OU2.USER_ID = AREA.MODIFY_USER_ID
+		WHERE AREA.AREA_ID = #{areaId,jdbcType=DECIMAL}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+		DELETE FROM
+		OAAS_AREA
+		WHERE AREA_ID = #{areaId,jdbcType=DECIMAL}
+	</delete>
+	<insert id="insert" parameterType="com.basic.oaas.model.Area">
+		INSERT INTO OAAS_AREA
+		(AREA_ID, PARENT_AREA_ID, AREA_CODE,
+		AREA_ABS_NAME,AREA_NAME, DISPLAY_INDEX, ID_PATH,
+		NAME_PATH, CODE_PATH, STATE,
+		CREATE_USER_ID, CREATE_TIME,
+		MODIFY_USER_ID,
+		MODIFY_TIME, AREA_GRADE, REMARKS,OPEN_STATUS,OPEN_DATE,STOP_DATE,
+		COUNTY,DISTRICT,PROVINCE,CITY,
+		CONTACT,CONTACT_MOBILE,AREA_ENG_NAME
+		)
+		VALUES
+		(#{areaId,jdbcType=DECIMAL}, #{parentAreaId,jdbcType=DECIMAL},
+		#{areaCode,jdbcType=VARCHAR},
+		#{areaAbsName,jdbcType=VARCHAR},
+		#{areaName,jdbcType=VARCHAR},
+		#{displayIndex,jdbcType=DECIMAL}, #{idPath,jdbcType=VARCHAR},
+		#{namePath,jdbcType=VARCHAR}, #{codePath,jdbcType=VARCHAR},
+		#{state,jdbcType=VARCHAR},
+		#{createUserId,jdbcType=DECIMAL},
+		#{createTime,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=DECIMAL},
+		#{modifyTime,jdbcType=TIMESTAMP}, #{areaGrade,jdbcType=VARCHAR},
+		#{remarks,jdbcType=VARCHAR}, #{openStatus,jdbcType=NUMERIC},
+		#{openDate,jdbcType=TIMESTAMP},#{stopDate,jdbcType=TIMESTAMP}, 
+      #{county,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+      #{contact,jdbcType=VARCHAR},#{contactMobile,jdbcType=VARCHAR},#{areaEngName,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.basic.oaas.model.Area">
+		INSERT INTO OAAS_AREA
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="areaId != null">
+				AREA_ID,
+			</if>
+			<if test="parentAreaId != null">
+				PARENT_AREA_ID,
+			</if>
+			<if test="areaCode != null">
+				AREA_CODE,
+			</if>
+			<if test="areaAbsName != null">
+				AREA_ABS_NAME,
+			</if>
+			<if test="areaName != null">
+				AREA_NAME,
+			</if>
+			<if test="displayIndex != null">
+				DISPLAY_INDEX,
+			</if>
+			<if test="idPath != null">
+				ID_PATH,
+			</if>
+			<if test="namePath != null">
+				NAME_PATH,
+			</if>
+			<if test="codePath != null">
+				CODE_PATH,
+			</if>
+			<if test="state != null">
+				STATE,
+			</if>
+			<if test="createUserId != null">
+				CREATE_USER_ID,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyUserId != null">
+				MODIFY_USER_ID,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="areaGrade != null">
+				AREA_GRADE,
+			</if>
+			<if test="remarks != null">
+				REMARKS,
+			</if>
+	      <if test="openStatus != null">
+	      	OPEN_STATUS,
+	      </if>
+	      <if test="openDate != null">
+	      	OPEN_DATE,
+	      </if>
+	      <if test="stopDate != null">
+	      	STOP_DATE,
+	      </if>
+	      <if test="county != null">
+	       COUNTY,
+	     </if>
+	     <if test="district != null">
+	       DISTRICT,
+	     </if>
+	     <if test="province != null">
+	       PROVINCE,
+	     </if>
+	     <if test="city != null">
+	       CITY,
+	     </if>
+	     <if test="contact != null">
+	       CONTACT,
+	     </if>
+	     <if test="contactMobile != null">
+	       CONTACT_MOBILE,
+	     </if>
+	     <if test="areaEngName != null">
+	       AREA_ENG_NAME
+	     </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="areaId != null">
+				#{areaId,jdbcType=DECIMAL},
+			</if>
+			<if test="parentAreaId != null">
+				#{parentAreaId,jdbcType=DECIMAL},
+			</if>
+			<if test="areaCode != null">
+				#{areaCode,jdbcType=VARCHAR},
+			</if>
+			<if test="areaAbsName != null">
+				#{areaAbsName,jdbcType=VARCHAR},
+			</if>
+			<if test="areaName != null">
+				#{areaName,jdbcType=VARCHAR},
+			</if>
+			<if test="displayIndex != null">
+				#{displayIndex,jdbcType=DECIMAL},
+			</if>
+			<if test="idPath != null">
+				#{idPath,jdbcType=VARCHAR},
+			</if>
+			<if test="namePath != null">
+				#{namePath,jdbcType=VARCHAR},
+			</if>
+			<if test="codePath != null">
+				#{codePath,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="createUserId != null">
+				#{createUserId,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyUserId != null">
+				#{modifyUserId,jdbcType=DECIMAL},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="areaGrade != null">
+				#{areaGrade,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="openStatus != null">
+	      	  	#{openStatus,jdbcType=NUMERIC},
+	        </if>
+	        <if test="openDate != null">
+	        	#{openDate,jdbcType=TIMESTAMP},
+	        </if>
+	        <if test="stopDate != null">
+	        	#{stopDate,jdbcType=TIMESTAMP},
+	        </if>
+	        <if test="county != null">
+		        #{county,jdbcType=VARCHAR},
+		      </if>
+		      <if test="district != null">
+		        #{district,jdbcType=VARCHAR},
+		      </if>
+		      <if test="province != null">
+		        #{province,jdbcType=VARCHAR},
+		      </if>
+		      <if test="city != null">
+		        #{city,jdbcType=VARCHAR},
+		      </if>
+		      <if test="contact != null">
+		        #{contact,jdbcType=VARCHAR},
+		      </if>
+		      <if test="contactMobile != null">
+		        #{contactMobile,jdbcType=VARCHAR},
+		      </if>
+		      <if test="areaEngName != null">
+		        #{areaEngName,jdbcType=VARCHAR}
+		      </if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.basic.oaas.model.Area">
+		UPDATE OAAS_AREA
+		<set>
+			<if test="parentAreaId != null">
+				PARENT_AREA_ID = #{parentAreaId,jdbcType=DECIMAL},
+			</if>
+			<if test="areaCode != null">
+				AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+			</if>
+			<if test="areaAbsName != null">
+				AREA_ABS_NAME = #{areaAbsName,jdbcType=VARCHAR},
+			</if>
+			<if test="areaName != null">
+				AREA_NAME = #{areaName,jdbcType=VARCHAR},
+			</if>
+			<if test="displayIndex != null">
+				DISPLAY_INDEX = #{displayIndex,jdbcType=DECIMAL},
+			</if>
+			<if test="idPath != null">
+				ID_PATH = #{idPath,jdbcType=VARCHAR},
+			</if>
+			<if test="namePath != null">
+				NAME_PATH = #{namePath,jdbcType=VARCHAR},
+			</if>
+			<if test="codePath != null">
+				CODE_PATH = #{codePath,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				STATE = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="createUserId != null">
+				CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyUserId != null">
+				MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="areaGrade != null">
+				AREA_GRADE = #{areaGrade,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				REMARKS = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="openStatus != null">
+	      		OPEN_STATUS = #{openStatus,jdbcType=NUMERIC},
+		     </if>
+		     <if test="openDate != null">
+		      	OPEN_DATE = #{openDate,jdbcType=TIMESTAMP},
+		     </if>
+		     <if test="stopDate != null">
+		      	STOP_DATE = #{stopDate,jdbcType=TIMESTAMP},
+		     </if>
+		     <if test="county != null">
+		        COUNTY = #{county,jdbcType=VARCHAR},
+		      </if>
+		      <if test="district != null">
+		        DISTRICT = #{district,jdbcType=VARCHAR},
+		      </if>
+		      <if test="province != null">
+		        PROVINCE = #{province,jdbcType=VARCHAR},
+		      </if>
+		      <if test="city != null">
+		        CITY = #{city,jdbcType=VARCHAR},
+		      </if>
+		      <if test="contact != null">
+		        CONTACT = #{contact,jdbcType=VARCHAR},
+		      </if>
+		      <if test="contactMobile != null">
+		        CONTACT_MOBILE = #{contactMobile,jdbcType=VARCHAR},
+		      </if>
+		      <if test="areaEngName != null">
+		        AREA_ENG_NAME = #{areaEngName,jdbcType=VARCHAR}
+		      </if>
+		</set>
+		WHERE AREA_ID = #{areaId,jdbcType=DECIMAL}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.basic.oaas.model.Area">
+		UPDATE OAAS_AREA
+		SET PARENT_AREA_ID = #{parentAreaId,jdbcType=DECIMAL},
+			AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+			AREA_ABS_NAME = #{areaAbsName,jdbcType=VARCHAR},
+			AREA_NAME = #{areaName,jdbcType=VARCHAR},
+			DISPLAY_INDEX = #{displayIndex,jdbcType=DECIMAL},
+			ID_PATH = #{idPath,jdbcType=VARCHAR},
+			NAME_PATH = #{namePath,jdbcType=VARCHAR},
+			CODE_PATH = #{codePath,jdbcType=VARCHAR},
+			STATE = #{state,jdbcType=VARCHAR},
+			CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+			CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+			MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			AREA_GRADE = #{areaGrade,jdbcType=VARCHAR},
+			REMARKS = #{remarks,jdbcType=VARCHAR},
+      		OPEN_STATUS = #{openStatus,jdbcType=NUMERIC},
+	      	OPEN_DATE = #{openDate,jdbcType=TIMESTAMP},
+	      	STOP_DATE = #{stopDate,jdbcType=TIMESTAMP},
+	        COUNTY = #{county,jdbcType=VARCHAR},
+	        DISTRICT = #{district,jdbcType=VARCHAR},
+	        PROVINCE = #{province,jdbcType=VARCHAR},
+	        CITY = #{city,jdbcType=VARCHAR},
+	        CONTACT = #{contact,jdbcType=VARCHAR},
+	        CONTACT_MOBILE = #{contactMobile,jdbcType=VARCHAR},
+	        AREA_ENG_NAME = #{areaEngName,jdbcType=VARCHAR}
+	        WHERE AREA_ID = #{areaId,jdbcType=DECIMAL}
+	</update>
+
+	<select id="selectByArea" parameterType="com.basic.oaas.bean.AreaIbean"
+		resultMap="BaseResultMap">
+		SELECT 
+			OA.*,
+			OU1.USER_TEXT AS CREATEUSERNAME,OU2.USER_TEXT AS MODIFYUSERNAME
+		FROM
+		OAAS_AREA OA
+		LEFT JOIN OAAS_USER OU1  ON  OU1.USER_ID = OA.CREATE_USER_ID
+		LEFT JOIN OAAS_USER OU2  ON  OU2.USER_ID = OA.MODIFY_USER_ID
+		<where>
+			<if test="areaType =='CURAREA'">
+				EXISTS
+				(SELECT 1 FROM OAAS_ORG OO
+				JOIN OAAS_JOB OJ ON
+				OO.ORG_ID = OJ.ORG_ID
+				JOIN OAAS_STAFF_JOB OSJ ON
+				OJ.JOB_ID = OSJ.JOB_ID
+				JOIN OAAS_STAFF OS ON
+				OSJ.STAFF_ID = OS.STAFF_ID
+				JOIN OAAS_USER_STAFF
+				OUS ON OUS.STAFF_ID =
+				OS.STAFF_ID
+				WHERE OA.AREA_ID=OO.AREA_ID AND
+				OUS.USER_ID =
+				#{userId,jdbcType=DECIMAL})
+			</if>
+			<if test="areaType =='SUBAREA'">
+				EXISTS
+				(SELECT 1 FROM OAAS_ORG OO
+				JOIN OAAS_JOB OJ ON
+				OO.ORG_ID = OJ.ORG_ID
+				JOIN OAAS_STAFF_JOB OSJ ON
+				OJ.JOB_ID = OSJ.JOB_ID
+				JOIN OAAS_STAFF OS ON
+				OSJ.STAFF_ID = OS.STAFF_ID
+				JOIN OAAS_USER_STAFF
+				OUS ON OUS.STAFF_ID =
+				OS.STAFF_ID
+				WHERE OA.PARENT_AREA_ID=OO.AREA_ID AND
+				OUS.USER_ID =
+				#{userId,jdbcType=DECIMAL})
+			</if>
+			<if test="areaType =='ALLAREA'">
+				<if test="parentAreaId == null or parentAreaId == '' ">
+					AND  OA.PARENT_AREA_ID = -1
+				</if>
+			</if>
+			<if test="areaType == null or areaType == ''">
+				AND 1=2
+			</if>
+			AND OA.STATE = '10A'
+			<if test="areaId != null and areaId != ''">
+				AND OA.areaId = #{areaId,jdbcType=DECIMAL}
+			</if>
+			<if test="parentAreaId != null and parentAreaId != ''">
+				AND  OA.PARENT_AREA_ID = #{parentAreaId,jdbcType=DECIMAL}
+			</if>
+		</where>
+		
+		ORDER BY OA.DISPLAY_INDEX
+	</select>
+
+	<select id="selectSubAreaById" parameterType="java.math.BigDecimal"
+		resultMap="BaseResultMap">
+		SELECT 
+			OA.*
+		FROM OAAS_AREA OA WHERE
+		OA.PARENT_AREA_ID = #{areaId,jdbcType=DECIMAL}
+	</select>
+
+	<select id="selectAllSubAreaById" parameterType="com.basic.oaas.model.Area"
+		resultMap="BaseResultMap">
+		SELECT 
+			OA.*
+		FROM OAAS_AREA OA WHERE
+		FIND_IN_SET(#{areaId,jdbcType=VARCHAR},ID_PATH) AND OA.AREA_ID != #{areaId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="selectExistSubAreaById" parameterType="com.basic.oaas.bean.AreaIbean"
+		resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM
+		OAAS_AREA OA
+		<where>
+		
+			<if test="areaType =='CURAREA'">
+				EXISTS
+				(SELECT 1 FROM OAAS_ORG OO
+				JOIN OAAS_JOB OJ ON
+				OO.ORG_ID = OJ.ORG_ID
+				JOIN OAAS_STAFF_JOB OSJ ON
+				OJ.JOB_ID = OSJ.JOB_ID
+				JOIN OAAS_STAFF OS ON
+				OSJ.STAFF_ID = OS.STAFF_ID
+				JOIN OAAS_USER_STAFF
+				OUS ON OUS.STAFF_ID =
+				OS.STAFF_ID
+				WHERE OA.AREA_ID=OO.AREA_ID AND
+				OUS.USER_ID =
+				#{userId,jdbcType=DECIMAL})
+			</if>
+			<if test="areaType =='SUBAREA'">
+				EXISTS
+				(SELECT 1 FROM OAAS_ORG OO
+				JOIN OAAS_JOB OJ ON
+				OO.ORG_ID = OJ.ORG_ID
+				JOIN OAAS_STAFF_JOB OSJ ON
+				OJ.JOB_ID = OSJ.JOB_ID
+				JOIN OAAS_STAFF OS ON
+				OSJ.STAFF_ID = OS.STAFF_ID
+				JOIN OAAS_USER_STAFF
+				OUS ON OUS.STAFF_ID =
+				OS.STAFF_ID
+				WHERE OA.PARENT_AREA_ID=OO.AREA_ID AND
+				OUS.USER_ID =
+				#{userId,jdbcType=DECIMAL})
+			</if>
+			<if test="areaType == null or areaType == ''">
+				AND 1=2
+			</if>
+			AND OA.STATE = '10A'
+			<if test="parentAreaId != null and parentAreaId != ''">
+				AND  OA.PARENT_AREA_ID = #{parentAreaId,jdbcType=DECIMAL}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectExistAreaCode" parameterType="string" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM OAAS_AREA WHERE AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+	</select>
+	<update id="updateAllStateById">
+		UPDATE OAAS_AREA SET STATE = '10X' WHERE FIND_IN_SET(#{areaId,jdbcType=VARCHAR},ID_PATH)
+	</update>
+	
+	
+	<select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT AREA.*,
+        (CASE (SELECT COUNT(1) FROM OAAS_AREA WHERE PARENT_AREA_ID = AREA.AREA_ID) WHEN 0 THEN FALSE ELSE TRUE END) 'isParent',
+        OU1.USER_TEXT 'createUserName',OU2.USER_TEXT 'modifyUserName' 
+        FROM OAAS_AREA AREA
+        LEFT JOIN OAAS_USER OU1  ON  OU1.USER_ID = AREA.CREATE_USER_ID
+		LEFT JOIN OAAS_USER OU2  ON  OU2.USER_ID = AREA.MODIFY_USER_ID
+        <where>
+            AREA.state = '10A'
+            <if test="whereSql!=null">
+                AND ${whereSql}
+            </if>
+        </where>
+        <if test="orderBySql!=null">
+            ORDER BY ${orderBySql}
+        </if>
+        <if test="orderBySql==null">
+            ORDER BY AREA.DISPLAY_INDEX ASC
+        </if>
+   </select>
+   
+   <select id="countArea" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM OAAS_AREA 
+		WHERE 1=1
+		<if test="parentId!=null">
+			AND PARENT_AREA_ID = #{parentId}
+		</if>
+	</select>
+</mapper>

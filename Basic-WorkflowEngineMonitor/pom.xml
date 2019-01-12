@@ -1,0 +1,209 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.basic.framework</groupId>
+	<artifactId>basic-workflowenginemonitor</artifactId>
+	<packaging>war</packaging>
+	<version>3.0.1-SNAPSHOT</version>
+	<name>Basic-WorkflowEngineMonitor</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<basic.framework.version>3.0.1-SNAPSHOT</basic.framework.version>
+		<activiti.version>5.20.0</activiti.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.basic.framework</groupId>
+			<artifactId>basic-common</artifactId>
+			<version>${basic.framework.version}</version>
+		</dependency>
+
+		<!-- 这里是合并war包，下面添加依赖的war包，同名文件以本工程为主，会覆盖 -->
+		<dependency>
+			<groupId>com.basic.framework</groupId>
+			<artifactId>basic-webframe</artifactId>
+			<version>${basic.framework.version}</version>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.basic.framework</groupId>
+			<artifactId>basic-webframe</artifactId>
+			<version>${basic.framework.version}</version>
+			<type>jar</type>
+			<classifier>classes</classifier>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.basic.framework</groupId>
+			<artifactId>basic-messgequeueproducer</artifactId>
+			<version>${basic.framework.version}</version>
+		</dependency>
+
+<!-- 		<dependency>
+			<groupId>com.basic.framework</groupId>
+			<artifactId>basic.messgequeueconsumer</artifactId>
+			<version>${basic.ramework.version}</version>
+		</dependency> -->
+
+		<dependency>
+			<groupId>com.basic.framework</groupId>
+			<artifactId>basic-workflowengineapi</artifactId>
+			<version>${basic.framework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.basic.framework</groupId>
+			<artifactId>basic-gidclient</artifactId>
+			<version>${basic.framework.version}</version>
+		</dependency>
+				
+		<!-- MYSQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.28</version>
+		</dependency>
+		
+
+		<!-- 添加oracle jdbc driver
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3</version>
+		</dependency>
+		 -->
+		 
+
+		<!-- MyBatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.3</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+			<!-- <scope>test</scope> -->
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+			<!-- <scope>test</scope> -->
+		</dependency>
+		      			
+	</dependencies>
+
+	<build>
+		<finalName>basic-workflowenginemonitor</finalName>
+		<defaultGoal>install</defaultGoal>
+
+		<plugins>
+			<!-- test -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<!-- compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<!-- resource -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- 使用Maven插件合并被合并的Web项目 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+					<attachClasses>true</attachClasses> <!-- 把class打包jar作为附件 -->
+					<archiveClasses>true</archiveClasses><!-- 把class打成jar包 -->
+					<!-- 把配置文件留在外面 -->
+			        <webResources>
+			            <resource>
+			                <directory>src/main/resources</directory>
+			                <targetPath>WEB-INF/classes</targetPath>
+			                <filtering>true</filtering>
+			            </resource>
+			        </webResources>
+					<!-- 这里来源于上面合并的war包，添加依赖 -->
+					<overlays>
+						<overlay>
+							<groupId>com.basic.framework</groupId>
+							<artifactId>basic-webframe</artifactId>
+						</overlay>
+					</overlays>		
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.appfuse.plugins</groupId>
+				<artifactId>maven-warpath-plugin</artifactId>
+				<version>3.0.0</version>
+				<extensions>true</extensions>
+				<!-- <executions> <execution> <goals> <goal>add-classes</goal> </goals> 
+					</execution> </executions> -->
+			</plugin>
+		</plugins>
+		
+		<resources>
+			<!-- 排除class里面的这些配置文件 -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**</exclude>
+				</excludes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+				
+	</build>
+</project>

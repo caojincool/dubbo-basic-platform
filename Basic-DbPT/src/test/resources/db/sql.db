@@ -1,0 +1,22 @@
+DROP TABLE IF EXISTS DB_PT;
+
+/*==============================================================*/
+/* Table: DB_PT                                                 */
+/*==============================================================*/
+CREATE TABLE DB_PT
+(
+   ID                   NUMERIC(20,0),
+   NAME1                VARCHAR(512),
+   NAME2                VARCHAR(512),
+   NAME3                VARCHAR(512),
+   NAME4                VARCHAR(512),
+   NAME5                VARCHAR(512),
+   NAME6                VARCHAR(512),
+   NAME7                VARCHAR(512),
+   NAME8                VARCHAR(512),
+   CREATE_TIME          TIMESTAMP
+);
+
+/*===============查看是否已存在表======================*/
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'ruizhidb'
+AND TABLE_NAME = 'DB_PT'

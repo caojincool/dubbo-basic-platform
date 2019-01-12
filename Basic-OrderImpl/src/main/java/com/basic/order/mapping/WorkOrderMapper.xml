@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.WorkOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.order.model.WorkOrder" >
+    <id column="WORK_ORDER_ID" property="workOrderId" jdbcType="DECIMAL" />
+    <result column="ORDER_ID" property="orderId" jdbcType="DECIMAL" />
+    <result column="TACHE_ID" property="tacheId" jdbcType="DECIMAL" />
+    <result column="WORK_ORDER_CODE" property="workOrderCode" jdbcType="VARCHAR" />
+    <result column="TASK_ID" property="taskId" jdbcType="DECIMAL" />
+    <result column="TACHE_CODE" property="tacheCode" jdbcType="VARCHAR" />
+    <result column="PARTY_ID" property="partyId" jdbcType="DECIMAL" />
+    <result column="PARTY_TYPE" property="partyType" jdbcType="VARCHAR" />
+    <result column="PARTY_NAME" property="partyName" jdbcType="VARCHAR" />
+    <result column="WORK_ORDER_STATE" property="workOrderState" jdbcType="VARCHAR" />
+    
+    <result column="WORK_ORDER_STATE_NAME" property="workOrderStateName" jdbcType="VARCHAR" />
+    
+    <result column="STATE_TIME" property="stateTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="ALTER_TIME" property="alterTime" jdbcType="TIMESTAMP" />
+    <result column="OVER_TIME" property="overTime" jdbcType="TIMESTAMP" />
+    <result column="WORK_ORDER_TYPE" property="workOrderType" jdbcType="VARCHAR" />
+    <result column="FINISH_USER_ID" property="finishUserId" jdbcType="DECIMAL" />
+    <result column="FINISH_USER_TEXT" property="finishUserText" jdbcType="VARCHAR" />
+    <result column="FINISH_ORG_ID" property="finishOrgId" jdbcType="DECIMAL" />
+    <result column="FINISH_ORG_NAME" property="finishOrgName" jdbcType="VARCHAR" />
+    <result column="FINISH_TIME" property="finishTime" jdbcType="TIMESTAMP" />
+    <result column="FINISH_BUSI_TIME" property="finishBusiTime" jdbcType="TIMESTAMP" />
+    <result column="COST_TIME" property="costTime" jdbcType="DECIMAL" />
+    <result column="COST_WORK_TIME" property="costWorkTime" jdbcType="DECIMAL" />
+    <result column="WORK_ORDER_COMMENTS" property="workOrderComments" jdbcType="VARCHAR" />
+    <result column="ERROR_CODE" property="errorCode" jdbcType="VARCHAR" />
+    <result column="ERR_INFO" property="errInfo" jdbcType="VARCHAR" />
+    
+    <result column="ORDER_WORK_CREATE_TIME" property="orderWorkCreateTime" jdbcType="DECIMAL" />
+    <result column="ORDER_CODE" property="orderCode" jdbcType="VARCHAR" />
+    <result column="ORDER_TITLE" property="orderTitle" jdbcType="VARCHAR" />
+    <result column="SERVICE_ID" property="serviceId" jdbcType="DECIMAL" />
+    <result column="SERVICE_CODE" property="serviceCode" jdbcType="VARCHAR" />
+    <result column="SERVICE_NAME" property="serviceName" jdbcType="VARCHAR" />
+    <result column="ORDER_STATE" property="orderState" jdbcType="VARCHAR" />
+    <result column="ORDER_STATE_NAME" property="orderStateName" jdbcType="VARCHAR" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+    <result column="ORDER_TYPE_NAME" property="orderTypeName" jdbcType="VARCHAR" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="DECIMAL" />
+    <result column="CREATE_USER_TEXT" property="createUserText" jdbcType="VARCHAR" />
+    <result column="TACHE_NAME" property="tacheName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    WORK_ORDER_ID, ORDER_ID, TACHE_ID, WORK_ORDER_CODE, TASK_ID, TACHE_CODE, PARTY_ID, 
+    PARTY_TYPE, PARTY_NAME, WORK_ORDER_STATE, STATE_TIME, CREATE_TIME, ALTER_TIME, OVER_TIME, 
+    WORK_ORDER_TYPE, FINISH_USER_ID, FINISH_USER_TEXT, FINISH_ORG_ID, FINISH_ORG_NAME, 
+    FINISH_TIME, FINISH_BUSI_TIME, COST_TIME, COST_WORK_TIME, WORK_ORDER_COMMENTS, ERROR_CODE, 
+    ERR_INFO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from OF_WORK_ORDER
+    where WORK_ORDER_ID = #{workOrderId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from OF_WORK_ORDER
+    where WORK_ORDER_ID = #{workOrderId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.order.model.WorkOrder" >
+    insert into OF_WORK_ORDER (WORK_ORDER_ID, ORDER_ID, TACHE_ID, 
+      WORK_ORDER_CODE, TASK_ID, TACHE_CODE, 
+      PARTY_ID, PARTY_TYPE, PARTY_NAME, 
+      WORK_ORDER_STATE, STATE_TIME, CREATE_TIME, 
+      ALTER_TIME, OVER_TIME, WORK_ORDER_TYPE, 
+      FINISH_USER_ID, FINISH_USER_TEXT, FINISH_ORG_ID, 
+      FINISH_ORG_NAME, FINISH_TIME, FINISH_BUSI_TIME, 
+      COST_TIME, COST_WORK_TIME, WORK_ORDER_COMMENTS, 
+      ERROR_CODE, ERR_INFO)
+    values (#{workOrderId,jdbcType=DECIMAL}, #{orderId,jdbcType=DECIMAL}, #{tacheId,jdbcType=DECIMAL}, 
+      #{workOrderCode,jdbcType=VARCHAR}, #{taskId,jdbcType=DECIMAL}, #{tacheCode,jdbcType=VARCHAR}, 
+      #{partyId,jdbcType=DECIMAL}, #{partyType,jdbcType=VARCHAR}, #{partyName,jdbcType=VARCHAR}, 
+      #{workOrderState,jdbcType=VARCHAR}, #{stateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{alterTime,jdbcType=TIMESTAMP}, #{overTime,jdbcType=TIMESTAMP}, #{workOrderType,jdbcType=VARCHAR}, 
+      #{finishUserId,jdbcType=DECIMAL}, #{finishUserText,jdbcType=VARCHAR}, #{finishOrgId,jdbcType=DECIMAL}, 
+      #{finishOrgName,jdbcType=VARCHAR}, #{finishTime,jdbcType=TIMESTAMP}, #{finishBusiTime,jdbcType=TIMESTAMP}, 
+      #{costTime,jdbcType=DECIMAL}, #{costWorkTime,jdbcType=DECIMAL}, #{workOrderComments,jdbcType=VARCHAR}, 
+      #{errorCode,jdbcType=VARCHAR}, #{errInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.order.model.WorkOrder" >
+    insert into OF_WORK_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="workOrderId != null" >
+        WORK_ORDER_ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="tacheId != null" >
+        TACHE_ID,
+      </if>
+      <if test="workOrderCode != null" >
+        WORK_ORDER_CODE,
+      </if>
+      <if test="taskId != null" >
+        TASK_ID,
+      </if>
+      <if test="tacheCode != null" >
+        TACHE_CODE,
+      </if>
+      <if test="partyId != null" >
+        PARTY_ID,
+      </if>
+      <if test="partyType != null" >
+        PARTY_TYPE,
+      </if>
+      <if test="partyName != null" >
+        PARTY_NAME,
+      </if>
+      <if test="workOrderState != null" >
+        WORK_ORDER_STATE,
+      </if>
+      <if test="stateTime != null" >
+        STATE_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="alterTime != null" >
+        ALTER_TIME,
+      </if>
+      <if test="overTime != null" >
+        OVER_TIME,
+      </if>
+      <if test="workOrderType != null" >
+        WORK_ORDER_TYPE,
+      </if>
+      <if test="finishUserId != null" >
+        FINISH_USER_ID,
+      </if>
+      <if test="finishUserText != null" >
+        FINISH_USER_TEXT,
+      </if>
+      <if test="finishOrgId != null" >
+        FINISH_ORG_ID,
+      </if>
+      <if test="finishOrgName != null" >
+        FINISH_ORG_NAME,
+      </if>
+      <if test="finishTime != null" >
+        FINISH_TIME,
+      </if>
+      <if test="finishBusiTime != null" >
+        FINISH_BUSI_TIME,
+      </if>
+      <if test="costTime != null" >
+        COST_TIME,
+      </if>
+      <if test="costWorkTime != null" >
+        COST_WORK_TIME,
+      </if>
+      <if test="workOrderComments != null" >
+        WORK_ORDER_COMMENTS,
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE,
+      </if>
+      <if test="errInfo != null" >
+        ERR_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="workOrderId != null" >
+        #{workOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="tacheId != null" >
+        #{tacheId,jdbcType=DECIMAL},
+      </if>
+      <if test="workOrderCode != null" >
+        #{workOrderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=DECIMAL},
+      </if>
+      <if test="tacheCode != null" >
+        #{tacheCode,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null" >
+        #{partyId,jdbcType=DECIMAL},
+      </if>
+      <if test="partyType != null" >
+        #{partyType,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null" >
+        #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="workOrderState != null" >
+        #{workOrderState,jdbcType=VARCHAR},
+      </if>
+      <if test="stateTime != null" >
+        #{stateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alterTime != null" >
+        #{alterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overTime != null" >
+        #{overTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workOrderType != null" >
+        #{workOrderType,jdbcType=VARCHAR},
+      </if>
+      <if test="finishUserId != null" >
+        #{finishUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="finishUserText != null" >
+        #{finishUserText,jdbcType=VARCHAR},
+      </if>
+      <if test="finishOrgId != null" >
+        #{finishOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="finishOrgName != null" >
+        #{finishOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null" >
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishBusiTime != null" >
+        #{finishBusiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costTime != null" >
+        #{costTime,jdbcType=DECIMAL},
+      </if>
+      <if test="costWorkTime != null" >
+        #{costWorkTime,jdbcType=DECIMAL},
+      </if>
+      <if test="workOrderComments != null" >
+        #{workOrderComments,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errInfo != null" >
+        #{errInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.WorkOrder" >
+    update OF_WORK_ORDER
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="tacheId != null" >
+        TACHE_ID = #{tacheId,jdbcType=DECIMAL},
+      </if>
+      <if test="workOrderCode != null" >
+        WORK_ORDER_CODE = #{workOrderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        TASK_ID = #{taskId,jdbcType=DECIMAL},
+      </if>
+      <if test="tacheCode != null" >
+        TACHE_CODE = #{tacheCode,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null" >
+        PARTY_ID = #{partyId,jdbcType=DECIMAL},
+      </if>
+      <if test="partyType != null" >
+        PARTY_TYPE = #{partyType,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null" >
+        PARTY_NAME = #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="workOrderState != null" >
+        WORK_ORDER_STATE = #{workOrderState,jdbcType=VARCHAR},
+      </if>
+      <if test="stateTime != null" >
+        STATE_TIME = #{stateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alterTime != null" >
+        ALTER_TIME = #{alterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overTime != null" >
+        OVER_TIME = #{overTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workOrderType != null" >
+        WORK_ORDER_TYPE = #{workOrderType,jdbcType=VARCHAR},
+      </if>
+      <if test="finishUserId != null" >
+        FINISH_USER_ID = #{finishUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="finishUserText != null" >
+        FINISH_USER_TEXT = #{finishUserText,jdbcType=VARCHAR},
+      </if>
+      <if test="finishOrgId != null" >
+        FINISH_ORG_ID = #{finishOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="finishOrgName != null" >
+        FINISH_ORG_NAME = #{finishOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null" >
+        FINISH_TIME = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishBusiTime != null" >
+        FINISH_BUSI_TIME = #{finishBusiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costTime != null" >
+        COST_TIME = #{costTime,jdbcType=DECIMAL},
+      </if>
+      <if test="costWorkTime != null" >
+        COST_WORK_TIME = #{costWorkTime,jdbcType=DECIMAL},
+      </if>
+      <if test="workOrderComments != null" >
+        WORK_ORDER_COMMENTS = #{workOrderComments,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errInfo != null" >
+        ERR_INFO = #{errInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WORK_ORDER_ID = #{workOrderId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.order.model.WorkOrder" >
+    update OF_WORK_ORDER
+    set ORDER_ID = #{orderId,jdbcType=DECIMAL},
+      TACHE_ID = #{tacheId,jdbcType=DECIMAL},
+      WORK_ORDER_CODE = #{workOrderCode,jdbcType=VARCHAR},
+      TASK_ID = #{taskId,jdbcType=DECIMAL},
+      TACHE_CODE = #{tacheCode,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=DECIMAL},
+      PARTY_TYPE = #{partyType,jdbcType=VARCHAR},
+      PARTY_NAME = #{partyName,jdbcType=VARCHAR},
+      WORK_ORDER_STATE = #{workOrderState,jdbcType=VARCHAR},
+      STATE_TIME = #{stateTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      ALTER_TIME = #{alterTime,jdbcType=TIMESTAMP},
+      OVER_TIME = #{overTime,jdbcType=TIMESTAMP},
+      WORK_ORDER_TYPE = #{workOrderType,jdbcType=VARCHAR},
+      FINISH_USER_ID = #{finishUserId,jdbcType=DECIMAL},
+      FINISH_USER_TEXT = #{finishUserText,jdbcType=VARCHAR},
+      FINISH_ORG_ID = #{finishOrgId,jdbcType=DECIMAL},
+      FINISH_ORG_NAME = #{finishOrgName,jdbcType=VARCHAR},
+      FINISH_TIME = #{finishTime,jdbcType=TIMESTAMP},
+      FINISH_BUSI_TIME = #{finishBusiTime,jdbcType=TIMESTAMP},
+      COST_TIME = #{costTime,jdbcType=DECIMAL},
+      COST_WORK_TIME = #{costWorkTime,jdbcType=DECIMAL},
+      WORK_ORDER_COMMENTS = #{workOrderComments,jdbcType=VARCHAR},
+      ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      ERR_INFO = #{errInfo,jdbcType=VARCHAR}
+    where WORK_ORDER_ID = #{workOrderId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM OF_WORK_ORDER
+    WHERE 
+    WORK_ORDER_STATE IN('10I','10G')
+    AND ORDER_ID = #{orderId,jdbcType=DECIMAL}
+  </select>
+
+  
+  <!-- 根据参数查询 -->
+  <select id="selectWorkOrderList" resultMap="BaseResultMap" parameterType="com.basic.order.bean.WorkOrderIbean" >
+    SELECT 
+	CASE WHEN OWO.WORK_ORDER_STATE ='10B' THEN OWO.STATE_TIME ELSE OWO.FINISH_TIME END  AS FINISH_TIME,
+    OWO.*,
+    PT.TACHE_NAME ,
+    PWOS.WORK_ORDER_STATE_NAME
+    FROM OF_WORK_ORDER OWO
+    JOIN PF_WORK_ORDER_STATE PWOS ON PWOS.WORK_ORDER_STATE = OWO.WORK_ORDER_STATE AND PWOS.STATE = '10A'
+    LEFT JOIN PF_TACHE PT ON PT.TACHE_ID = OWO.TACHE_ID AND PT.STATE = '10A'
+      <where>
+       OWO.WORK_ORDER_STATE !="10D"
+      <if test="orderId != null" >
+         AND OWO.ORDER_ID = #{orderId,jdbcType=DECIMAL}
+        AND OWO.WORK_ORDER_ID NOT IN (
+		SELECT WORK_ORDER_ID  FROM OF_WORK_ORDER WHERE OWO.ORDER_ID = #{orderId,jdbcType=DECIMAL} 
+		AND FINISH_USER_ID = 1)
+      </if>
+	  </where>
+	 ORDER BY  OWO.CREATE_TIME , OWO.STATE_TIME ASC 
+      <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+      </if>
+  </select>
+  
+  <!-- 根据参数查询的总数 -->
+  <select id="selectWorkOrderListCount" resultType="java.lang.Long" parameterType="com.basic.order.bean.WorkOrderIbean" >
+    SELECT 
+	COUNT(0)
+    FROM OF_WORK_ORDER OWO
+    JOIN PF_WORK_ORDER_STATE PWOS ON PWOS.WORK_ORDER_STATE = OWO.WORK_ORDER_STATE AND PWOS.STATE = '10A'
+      <where>
+       OWO.WORK_ORDER_STATE !="10D"
+      <if test="orderId != null" >
+        AND OWO.ORDER_ID = #{orderId,jdbcType=DECIMAL}
+      </if>
+	  </where>
+  </select>
+
+  <select id="selectByWorkOrderId" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    SELECT 
+    OWO.*, PWOS.WORK_ORDER_STATE_NAME
+    FROM OF_WORK_ORDER OWO
+    JOIN PF_WORK_ORDER_STATE PWOS ON PWOS.WORK_ORDER_STATE = OWO.WORK_ORDER_STATE AND PWOS.STATE = '10A'
+    WHERE WORK_ORDER_ID = #{workOrderId,jdbcType=DECIMAL}
+  </select>
+
+  <!-- 根据参数查询 -->
+  <select id="selectPartyWorkOrder" resultMap="BaseResultMap" parameterType="com.basic.order.bean.WorkOrderIbean" >
+    SELECT 
+    OWO.*, PWOS.WORK_ORDER_STATE_NAME,
+    OO.ORDER_CODE, OO.ORDER_TITLE, OO.SERVICE_ID, OO.SERVICE_CODE, OO.SERVICE_NAME, OO.ORDER_STATE, POS.ORDER_STATE_NAME, 
+    OO.ORDER_TYPE, OO.ORDER_TYPE_NAME, OO.CREATE_USER_ID, OO.CREATE_USER_TEXT,OO.CREATE_TIME ORDER_WORK_CREATE_TIME
+    FROM OF_WORK_ORDER OWO
+    JOIN PF_WORK_ORDER_STATE PWOS ON PWOS.WORK_ORDER_STATE = OWO.WORK_ORDER_STATE AND PWOS.STATE = '10A'
+    JOIN OF_ORDER OO ON OO.ORDER_ID = OWO.ORDER_ID
+    JOIN PF_ORDER_STATE POS ON POS.ORDER_STATE = OO.ORDER_STATE AND POS.STATE = '10A'
+      <where>
+        OWO.WORK_ORDER_STATE IN('10I','10G')
+      <!-- 
+      <if test="orderId != null" >
+        AND OWO.ORDER_ID = #{orderId,jdbcType=DECIMAL}
+      </if>
+       -->
+      <if test="orderCode != null and orderCode != ''" >
+        AND OO.ORDER_CODE = #{orderCode,jdbcType=VARCHAR}
+      </if>
+      <if test="workOrderCode != null and workOrderCode != ''" >
+        AND OWO.WORK_ORDER_CODE = #{workOrderCode,jdbcType=VARCHAR}
+      </if>
+      
+      <if test="staffId != null or userId != null or jobId != null or orgId != null" >
+        AND (
+	      <if test="userId != null" >
+	        (OWO.PARTY_TYPE = 'USER' AND OWO.PARTY_ID = #{userId,jdbcType=DECIMAL})
+	      </if>
+	      <if test="staffId != null" >
+	        OR (OWO.PARTY_TYPE = 'STA' AND OWO.PARTY_ID = #{staffId,jdbcType=DECIMAL})
+	      </if>
+	      <if test="jobId != null" >
+	        OR (OWO.PARTY_TYPE = 'JOB' AND OWO.PARTY_ID = #{jobId,jdbcType=DECIMAL})
+	      </if>
+	      <if test="orgId != null" >
+	        OR (OWO.PARTY_TYPE = 'ORG' AND OWO.PARTY_ID = #{orgId,jdbcType=DECIMAL})
+	      </if>
+	    )
+      </if>
+	  </where>
+	  ORDER BY ORDER_WORK_CREATE_TIME DESC
+      <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+      </if>
+  </select>
+  
+  <!-- 根据参数查询的总数 -->
+  <select id="selectPartyWorkOrderCount" resultType="java.lang.Long" parameterType="com.basic.order.bean.WorkOrderIbean" >
+    SELECT 
+	COUNT(0)
+    FROM OF_WORK_ORDER OWO
+    JOIN PF_WORK_ORDER_STATE PWOS ON PWOS.WORK_ORDER_STATE = OWO.WORK_ORDER_STATE AND PWOS.STATE = '10A'
+    JOIN OF_ORDER OO ON OO.ORDER_ID = OWO.ORDER_ID
+    JOIN PF_ORDER_STATE POS ON POS.ORDER_STATE = OO.ORDER_STATE AND POS.STATE = '10A'
+      <where>
+        OWO.WORK_ORDER_STATE IN('10I','10G')
+      <!-- 
+      <if test="orderId != null" >
+        AND OWO.ORDER_ID = #{orderId,jdbcType=DECIMAL}
+      </if>
+       -->
+      <if test="orderCode != null and orderCode != ''" >
+        AND OO.ORDER_CODE = #{orderCode,jdbcType=VARCHAR}
+      </if>
+      <if test="workOrderCode != null and workOrderCode != ''" >
+        AND OWO.WORK_ORDER_CODE = #{workOrderCode,jdbcType=VARCHAR}
+      </if>
+      
+      <if test="staffId != null or userId != null or jobId != null or orgId != null" >
+        AND (
+	      <if test="userId != null" >
+	        (OWO.PARTY_TYPE = 'USER' AND OWO.PARTY_ID = #{userId,jdbcType=DECIMAL})
+	      </if>
+	      <if test="staffId != null" >
+	        OR (OWO.PARTY_TYPE = 'STA' AND OWO.PARTY_ID = #{staffId,jdbcType=DECIMAL})
+	      </if>
+	      <if test="jobId != null" >
+	        OR (OWO.PARTY_TYPE = 'JOB' AND OWO.PARTY_ID = #{jobId,jdbcType=DECIMAL})
+	      </if>
+	      <if test="orgId != null" >
+	        OR (OWO.PARTY_TYPE = 'ORG' AND OWO.PARTY_ID = #{orgId,jdbcType=DECIMAL})
+	      </if>
+	    )
+      </if>
+	  </where>
+  </select>
+      
+      
+       <!-- 根据参数查询 -->
+  <select id="selectWorkOrderByTargetCode" resultMap="BaseResultMap" parameterType="com.basic.order.model.WorkOrder" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM OF_WORK_ORDER
+      <where>
+	     <if test="orderId != null and orderId != ''" >
+	       AND   ORDER_ID = #{orderId,jdbcType=DECIMAL}
+	     </if>
+     	 <if test="tacheCode != null and tacheCode != ''" >
+	       AND TACHE_CODE = #{tacheCode,jdbcType=VARCHAR}
+	     </if>
+	  </where>
+  </select>  
+  
+  
+   <select id="selectOfWorkOrder" resultMap="BaseResultMap" parameterType="com.basic.order.bean.WorkOrderIbean" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    from OF_WORK_ORDER OWO
+      <where>
+        OWO.WORK_ORDER_STATE IN('10I','10G','10B')
+        
+	      <if test="userId != null" >
+	         AND (OWO.PARTY_TYPE = 'USER' AND OWO.PARTY_ID = #{userId,jdbcType=DECIMAL})
+	      </if>
+	      <if test="staffId != null" >
+	        AND (OWO.PARTY_TYPE = 'STA' AND OWO.PARTY_ID = #{staffId,jdbcType=DECIMAL})
+	      </if>
+	      <if test="jobId != null" >
+	         AND (OWO.PARTY_TYPE = 'JOB' AND OWO.PARTY_ID = #{jobId,jdbcType=DECIMAL})
+	      </if>
+	      <if test="orgId != null" >
+	         AND (OWO.PARTY_TYPE = 'ORG' AND OWO.PARTY_ID = #{orgId,jdbcType=DECIMAL})
+	      </if>
+	  </where>
+  </select>
+</mapper>

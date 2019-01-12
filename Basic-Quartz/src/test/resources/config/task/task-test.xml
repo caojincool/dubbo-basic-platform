@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd ">
+	
+	<!-- 定时执行 -->
+	<bean id="taskBean" class="com.basic.framework.quartz.service.TestTask"></bean>
+	<!-- tomcat启动后10秒自动执行一次的任务 -->
+	<bean id="quartzTestServiceImpl" class="com.basic.framework.quartz.service.InitTask"></bean>
+  	
+ 	<!-- Quartz -->  
+ 	<!-- job的配置开始 -->
+	<bean id="testJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" >
+		<!-- 需要被执行的类路径 -->
+	    <property name="targetObject">
+	        <ref bean="taskBean" />
+	    </property>
+	    <!-- 需要被执行的类的方法 -->
+	 	<property name="targetMethod">
+	        <value>execute</value>
+	    </property>
+	    <!--false表示等上一个任务执行完后再开启新的任务-->
+    	<property name="concurrent" value="false"/>
+	</bean> 
+	  
+	<bean id="quartzTestServiceImplJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" >
+		<!-- 需要被执行的类路径 -->
+	    <property name="targetObject">
+	        <ref bean="quartzTestServiceImpl" />
+	    </property>
+	    <!-- 需要被执行的类的方法 -->
+	 	<property name="targetMethod">
+	        <value>execute</value>
+	    </property>
+	    <!--false表示等上一个任务执行完后再开启新的任务-->
+    	<property name="concurrent" value="false"/>
+	</bean>  
+	<!-- job的配置结束 -->   
+	
+    <!-- 触发器的配置开始 -->
+    <bean id="testTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="testJob" />
+        </property>
+        <property name="cronExpression">
+        	<!-- 每天的00:02:00，触发 -->
+            <!-- <value>0 0 2 * * ?</value> -->
+            <value>00 30 10 * * ?</value>
+            <!-- cron将时间设置成无限长  -->  
+            <!-- <value>1 0 0 1 1 ? 2099</value>   -->
+        </property>
+    </bean>
+    
+    <bean id="quartzTestServiceImplTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">     
+         <property name="jobDetail" ref="quartzTestServiceImplJob"/>     
+         <property name="startDelay" value="10000"/>   <!--延迟10s-->  
+         <property name="repeatInterval" value="0"/>    <!--每60s启动一次-->  
+         <property name="repeatCount" value="0"/>   <!--重复一次-->  
+    </bean>   
+    <!-- 触发器的配置结束 -->   
+    
+</beans>

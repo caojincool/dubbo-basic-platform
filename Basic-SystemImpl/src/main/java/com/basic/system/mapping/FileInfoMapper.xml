@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.system.dao.FileInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.system.model.FileInfo" >
+    <id column="FILE_INFO_ID" property="fileInfoId" jdbcType="DECIMAL" />
+    <result column="FILE_CONFIG_ID" property="fileConfigId" jdbcType="DECIMAL" />
+    <result column="SRC_FILE_NAME" property="srcFileName" jdbcType="VARCHAR" />
+    <result column="TAGET_FILE_NAME" property="tagetFileName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="SIZE" property="size" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FILE_INFO_ID, FILE_CONFIG_ID, SRC_FILE_NAME, TAGET_FILE_NAME, CREATE_TIME, SIZE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM FILE_INFO
+    WHERE FILE_INFO_ID = #{fileInfoId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    DELECT FROM FILE_INFO
+    WHERE FILE_INFO_ID = #{fileInfoId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.system.model.FileInfo" >
+    INSERT INTO FILE_INFO (FILE_INFO_ID, FILE_CONFIG_ID, SRC_FILE_NAME, 
+      TAGET_FILE_NAME, CREATE_TIME, SIZE)
+    VALUES (#{fileInfoId,jdbcType=DECIMAL}, #{fileConfigId,jdbcType=DECIMAL}, #{srcFileName,jdbcType=VARCHAR}, 
+      #{tagetFileName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{size,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.system.model.FileInfo" >
+    INSERT INTO FILE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileInfoId != null" >
+        FILE_INFO_ID,
+      </if>
+      <if test="fileConfigId != null" >
+        FILE_CONFIG_ID,
+      </if>
+      <if test="srcFileName != null" >
+        SRC_FILE_NAME,
+      </if>
+      <if test="tagetFileName != null" >
+        TAGET_FILE_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="size != null" >
+        SIZE,
+      </if>
+    </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+      <if test="fileInfoId != null" >
+        #{fileInfoId,jdbcType=DECIMAL},
+      </if>
+      <if test="fileConfigId != null" >
+        #{fileConfigId,jdbcType=DECIMAL},
+      </if>
+      <if test="srcFileName != null" >
+        #{srcFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagetFileName != null" >
+        #{tagetFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.system.model.FileInfo" >
+    UPDATE FILE_INFO
+    <set >
+      <if test="fileConfigId != null" >
+        FILE_CONFIG_ID = #{fileConfigId,jdbcType=DECIMAL},
+      </if>
+      <if test="srcFileName != null" >
+        SRC_FILE_NAME = #{srcFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagetFileName != null" >
+        TAGET_FILE_NAME = #{tagetFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="size != null" >
+        SIZE = #{size,jdbcType=DECIMAL},
+      </if>
+    </set>
+    WHERE FILE_INFO_ID = #{fileInfoId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.system.model.FileInfo" >
+    UPDATE FILE_INFO
+    set FILE_CONFIG_ID = #{fileConfigId,jdbcType=DECIMAL},
+      SRC_FILE_NAME = #{srcFileName,jdbcType=VARCHAR},
+      TAGET_FILE_NAME = #{tagetFileName,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      SIZE = #{size,jdbcType=DECIMAL}
+    WHERE FILE_INFO_ID = #{fileInfoId,jdbcType=DECIMAL}
+  </update>
+</mapper>

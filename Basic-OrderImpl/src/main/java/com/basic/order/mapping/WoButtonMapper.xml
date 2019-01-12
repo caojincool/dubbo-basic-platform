@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.WoButtonMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.order.model.WoButton" >
+    <id column="WO_BUTTON_ID" property="woButtonId" jdbcType="DECIMAL" />
+    <result column="BUTTON_ID" property="buttonId" jdbcType="DECIMAL" />
+    <result column="TACHE_ID" property="tacheId" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    WO_BUTTON_ID, BUTTON_ID, TACHE_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from PF_WO_BUTTON
+    where WO_BUTTON_ID = #{woButtonId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from PF_WO_BUTTON
+    where WO_BUTTON_ID = #{woButtonId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.order.model.WoButton" >
+    insert into PF_WO_BUTTON (WO_BUTTON_ID, BUTTON_ID, TACHE_ID
+      )
+    values (#{woButtonId,jdbcType=DECIMAL}, #{buttonId,jdbcType=DECIMAL}, #{tacheId,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.order.model.WoButton" >
+    insert into PF_WO_BUTTON
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="woButtonId != null" >
+        WO_BUTTON_ID,
+      </if>
+      <if test="buttonId != null" >
+        BUTTON_ID,
+      </if>
+      <if test="tacheId != null" >
+        TACHE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="woButtonId != null" >
+        #{woButtonId,jdbcType=DECIMAL},
+      </if>
+      <if test="buttonId != null" >
+        #{buttonId,jdbcType=DECIMAL},
+      </if>
+      <if test="tacheId != null" >
+        #{tacheId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.WoButton" >
+    update PF_WO_BUTTON
+    <set >
+      <if test="buttonId != null" >
+        BUTTON_ID = #{buttonId,jdbcType=DECIMAL},
+      </if>
+      <if test="tacheId != null" >
+        TACHE_ID = #{tacheId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where WO_BUTTON_ID = #{woButtonId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.order.model.WoButton" >
+    update PF_WO_BUTTON
+    set BUTTON_ID = #{buttonId,jdbcType=DECIMAL},
+      TACHE_ID = #{tacheId,jdbcType=DECIMAL}
+    where WO_BUTTON_ID = #{woButtonId,jdbcType=DECIMAL}
+  </update>
+</mapper>

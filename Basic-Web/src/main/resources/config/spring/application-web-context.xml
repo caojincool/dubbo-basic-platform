@@ -1,0 +1,63 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd 
+		 ">
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	
+	<bean id="properties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="order" value="1" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:config/properties/datasource.properties</value>
+				<value>classpath:config/properties/dubbo-consumer.properties</value>
+				<value>classpath:config/properties/redis.properties</value>
+				<value>classpath:config/properties/redisCacheCode.properties</value>
+				<value>classpath:config/properties/activemq-producer.properties</value>
+				<value>classpath:config/properties/jwt.properties</value>
+				<value>classpath:config/properties/ureport.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!--<bean id="ureportDataSource" class="com.basic.report.ureport.UreportDataSource"></bean>
+	<bean id="ureportDataSourceERP" class="com.basic.report.ureport.UreportDataSourceERP"></bean>
+	<bean id="fileReportProvider" class="com.basic.report.ureport.FileReportProvider"></bean>-->
+
+	<import resource="./application-datasource.xml"/>
+
+	<import resource="./application-dubbo-consumer.xml"/>
+	
+	<import resource="./application-redis.xml"/>
+	
+	<!-- mq provider -->
+	<import resource="./application-mq-provider.xml" />
+	<!-- 报表 -->
+	<import resource="classpath:/ureport-console-context.xml" />
+	
+	<context:component-scan base-package="com.basic.*">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+	<bean id = "privateService" class="com.basic.framework.security.demo.PrivateServiceImpl"/>
+
+
+	<bean id = "roleService" class="com.basic.framework.security.demo.RoleServiceImpl"/>
+
+	<bean id = "userDetailService" class="com.basic.framework.demo.service.UserDetailServiceImpl"/>
+
+	<bean id="jwtUtils" class="com.basic.framework.security.jwt.utils.JwtUtils">
+	</bean>
+	<bean id="userUtils" class="com.basic.framework.security.jwt.utils.UserUtils">
+	</bean>
+
+</beans>

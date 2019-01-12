@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+           http://www.springframework.org/schema/aop   
+           http://www.springframework.org/schema/aop/spring-aop-3.2.xsd  
+           http://www.springframework.org/schema/tx  
+           http://www.springframework.org/schema/tx/spring-tx-3.2.xsd  
+           http://www.springframework.org/schema/context  
+           http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+	>
+	
+	
+	<!-- 信息重新投递策略 重投6次分别间隔1、2、4、8、16、32秒 -->
+	<bean id="redeliveryPolicy" class="org.apache.activemq.RedeliveryPolicy">
+		<property name="maximumRedeliveries" value="6" />
+		<property name="initialRedeliveryDelay" value="1000" />
+		<property name="useExponentialBackOff" value="true" />
+		<property name="backOffMultiplier" value="2" />
+	</bean>
+
+	<!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供 -->
+	<bean id="targetConnectionFactory1" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<!-- ActiveMQ服务地址 -->
+        <property name="brokerURL" value="${activemq.producer.brokerURL1}" />
+        <property name="useAsyncSend" value="true"/>
+	</bean>
+	<bean id="targetConnectionFactory2" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<!-- ActiveMQ服务地址 -->
+        <property name="brokerURL" value="${activemq.producer.brokerURL2}" />
+        <property name="useAsyncSend" value="true"/>
+	</bean>
+
+    <!-- 
+    	ActiveMQ为我们提供了一个PooledConnectionFactory，通过往里面注入一个ActiveMQConnectionFactory
+    	可以用来将Connection、Session和MessageProducer池化，这样可以大大的减少我们的资源消耗。
+    	要依赖于 activemq-pool包
+     -->
+     <!-- 5.13.0 之前的版本PoolConnectionFactory  有bug 
+	<bean id="pooledConnectionFactory1" class="org.apache.activemq.pool.PooledConnectionFactory">
+		<property name="connectionFactory" ref="targetConnectionFactory1" />
+		<property name="maxConnections" value="10" />
+	</bean>
+	<bean id="pooledConnectionFactory2" class="org.apache.activemq.pool.PooledConnectionFactory">
+		<property name="connectionFactory" ref="targetConnectionFactory2" />
+		<property name="maxConnections" value="10" />
+	</bean>
+	-->
+
+	 <!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->
+	  <bean id="producerCachingConnectionFactory1" class="org.springframework.jms.connection.CachingConnectionFactory">
+         <!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+         <property name="targetConnectionFactory" ref="targetConnectionFactory1"/>
+         <property name="reconnectOnException" value="true"/>
+         <property name="cacheConsumers" value="false"/>
+         <property name="cacheProducers" value="false"/>
+         <property name="sessionCacheSize" value="50"/>
+     </bean>
+	 
+     <bean id="producerCachingConnectionFactory2" class="org.springframework.jms.connection.CachingConnectionFactory">
+         <!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+         <property name="targetConnectionFactory" ref="targetConnectionFactory2"/>
+         <property name="reconnectOnException" value="true"/>
+         <property name="cacheConsumers" value="false"/>
+         <property name="cacheProducers" value="false"/>
+         <property name="sessionCacheSize" value="50"/>
+     </bean>
+     
+	<!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->
+	<bean id="connectionFactory1" class="org.springframework.jms.connection.SingleConnectionFactory">
+		<!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+		<property name="targetConnectionFactory" ref="producerCachingConnectionFactory1" />
+	</bean>
+	<bean id="connectionFactory2" class="org.springframework.jms.connection.SingleConnectionFactory">
+		<!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+		<property name="targetConnectionFactory" ref="producerCachingConnectionFactory2" />
+	</bean>
+	
+	<!-- Spring提供的JMS工具类，它可以进行消息发送、接收等 -->
+	
+	<!-- 队列模板 -->
+	<bean id="activeMqJmsTemplate1" class="org.springframework.jms.core.JmsTemplate">  
+	    <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->  
+	    <property name="connectionFactory" ref="connectionFactory1"/>  
+	    
+         <!-- 使 deliveryMode, priority, timeToLive设置生效-->
+         <property name="explicitQosEnabled" value="true"/>
+         <!-- 设置NON_PERSISTENT模式, 默认为PERSISTENT -->
+         <property name="deliveryPersistent" value="true"/>
+         <!-- 设置优先级0-9, 默认为4 -->
+         <property name="priority" value="4"/>
+	</bean> 
+	<bean id="activeMqJmsTemplate2" class="org.springframework.jms.core.JmsTemplate">  
+	    <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->  
+	    <property name="connectionFactory" ref="connectionFactory2"/>  
+	    
+         <!-- 使 deliveryMode, priority, timeToLive设置生效-->
+         <property name="explicitQosEnabled" value="true"/>
+         <!-- 设置NON_PERSISTENT模式, 默认为PERSISTENT -->
+         <property name="deliveryPersistent" value="true"/>
+         <!-- 设置优先级0-9, 默认为4 -->
+         <property name="priority" value="4"/>
+	</bean> 
+	
+		
+
+	<!-- 群集编码配置,如果有多个就配置多个 -->
+	<bean id="logProducerQueue" class="com.basic.framework.messagequeue.modal.MqGroupSender">
+		<property name="isCache"  value="0"></property>
+		<property name="isPersistence"  value="0"></property>
+		<property name="persistenceType"  value="KEY_VALUE"></property><!-- 只有isPersistence为1时才生效 -->
+		<!-- 1.应该与application-redis（应该有且只有一个mq队列编码）中对应的消息队列的rediscode一致 ，应该写在properties文件中，这样redis与mq配置文件都可以保持一致
+			 2.也可以不配置该属性值，但需要在redis中CacheRedis构造器指定一个名字为“activeMQCode”的子map
+		-->
+		<property name="redisGroupCode" value="defaultActiveMQCache"></property>
+		<property name="destinationCode" value="log.notice.sendnotice.queue"></property>
+		<!-- 如果不是p2p,而是订阅模式，那么该destination的末尾添加 -topic,大小写敏感 -->
+		<!-- 
+		<property name="destinationCode" value="test-topic"></property>
+		 -->
+		<property name="jmsTamplateScopeMap">
+			<map>
+				<entry key="0-511" value-ref="activeMqJmsTemplate1"></entry>
+				<entry key="512-1023" value-ref="activeMqJmsTemplate2"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 只需配置一次 -->
+	<bean id="messageSenderActiveMQ" class="com.basic.framework.messagequeue.impl.MessageSenderActiveMQ">
+		<constructor-arg name="groupMap">
+			<map>
+				<entry key="log.notice.sendnotice.queue" value-ref="logProducerQueue"></entry>
+				<!-- 如果有多个，则添加多个 -->
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	
+</beans>

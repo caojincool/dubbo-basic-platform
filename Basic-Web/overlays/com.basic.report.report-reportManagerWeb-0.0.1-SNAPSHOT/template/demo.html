@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<script src='../static/limitless/assets/js/core/libraries/jquery.min.js'></script>
+	<script src='public/newNav/ajaxHtml.js'></script>
+	<script>
+		function getHeader(url,name){
+			 ajaxHtml.get(url).then(function(res){
+				    $("head").html(res);
+				    $("title").html(name);
+				  })
+		}
+		getHeader('header.html','正圣ERP');
+	</script>
+</head>
+<body>
+
+</body>
+</html>

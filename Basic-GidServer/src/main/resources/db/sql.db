@@ -1,0 +1,18 @@
+drop table if exists PUB_GID_SERVER;
+
+/*==============================================================*/
+/* Table: PUB_GID_SERVER                                        */
+/*==============================================================*/
+create table PUB_GID_SERVER
+(
+   GID_CODE             varchar(64) not null,
+   GID_NAME             varchar(64),
+   IS_USE               numeric(5),
+   CURR_VALUE           numeric(20),
+   CACHE_SIZE           numeric(5),
+   CLIENT_CACHE_SIZE    numeric(5),
+   INCREAMENT_BY        numeric(5),
+   REMARK               varchar(64),
+   primary key (GID_CODE)
+)
+tablespace DATA_TBS;

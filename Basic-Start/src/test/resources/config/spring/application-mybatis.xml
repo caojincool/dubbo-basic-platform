@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/sjujuuchema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd ">
+	<!-- MyBatis配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 配置扫描Domain的包路径 -->
+		<property name="typeAliasesPackage" value="com.basic.**.model" />
+		<!-- 配置扫描Mapper XML的位置 -->
+		<property name="mapperLocations"
+				  value="classpath*:com/basic/**/mapping/*.xml" />
+		<!-- 对应configuration的settings配置 -->
+		<property name="configurationProperties">
+			<props>
+				<prop key="logImpl">LOG4J</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+		<constructor-arg index="0" ref="sqlSessionFactory2" />
+	</bean>
+
+
+	<bean id="sqlSessionFactory2" class="com.basic.framework.common.spring.HtSqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:config/spring/configuration.xml"/>
+		<property name="dataSource" ref="dataSource" />
+		<!-- 配置扫描Domain的包路径 -->
+		<property name="typeAliasesPackage" value="com.basic.**.model" />
+		<!-- 配置扫描Mapper XML的位置 -->
+		<property name="mapperLocations"
+				  value="classpath*:com/basic/**/mapping/*.xml" />
+		<!-- 对应configuration的settings配置 -->
+		<property name="configurationProperties">
+			<props>
+				<prop key="logImpl">LOG4J</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 方言 -->
+	<bean id="dialect" class="com.basic.framework.common.DialectFactoryBean">
+		<property name="dbType" value="${jdbc.dbType}"/>
+	</bean>
+
+	<!--<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">-->
+	<!--<constructor-arg index="0" ref="sqlSessionFactory" />-->
+	<!--</bean>-->
+
+	<!-- 配置扫描Mapper接口的包路径 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 指定Mapper接口文件所在的基包 -->
+		<property name="basePackage" value="com.basic.*.dao,com.basic.*.*.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 配置事务控制，其实是有jdbc主要是查询，不需要事务控制 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- <tx:method name="insert*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="create*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="remove*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="modify*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" /> -->
+			<tx:method name="*" propagation="REQUIRED" read-only="false"
+					   rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- <aop:config>
+		配置切点为service层
+		<aop:pointcut id="pointCut"
+			expression="execution(public * com.crs.**.servicelmpl.*.*(..))" />
+		<aop:advisor pointcut-ref="pointCut" advice-ref="txAdvice" />
+	</aop:config> -->
+	<aop:config>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(public * com.basic.*.*.service.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(public * com.basic.*.*.service.*.*(..))"/>
+	</aop:config>
+
+	<!-- 注解方式配置事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>

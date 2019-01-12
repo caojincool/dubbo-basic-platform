@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.oaas.dao.PrivateDataGroupInstMapper">
+  <resultMap id="BaseResultMap" type="com.basic.oaas.model.PrivateDataGroupInst">
+    <id column="DATA_GRP_INST_ID" jdbcType="DECIMAL" property="dataGrpInstId" />
+    <result column="DATA_GROUP_ID" jdbcType="DECIMAL" property="dataGroupId" />
+    <result column="DATA_INST_ID" jdbcType="DECIMAL" property="dataInstId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DATA_GRP_INST_ID, DATA_GROUP_ID, DATA_INST_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from OAAS_PRIV_DATA_GRP_INST
+    where DATA_GRP_INST_ID = #{dataGrpInstId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from OAAS_PRIV_DATA_GRP_INST
+    where DATA_GRP_INST_ID = #{dataGrpInstId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.oaas.model.PrivateDataGroupInst">
+    insert into OAAS_PRIV_DATA_GRP_INST (DATA_GRP_INST_ID, DATA_GROUP_ID, DATA_INST_ID
+      )
+    values (#{dataGrpInstId,jdbcType=DECIMAL}, #{dataGroupId,jdbcType=DECIMAL}, #{dataInstId,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.oaas.model.PrivateDataGroupInst">
+    insert into OAAS_PRIV_DATA_GRP_INST
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dataGrpInstId != null">
+        DATA_GRP_INST_ID,
+      </if>
+      <if test="dataGroupId != null">
+        DATA_GROUP_ID,
+      </if>
+      <if test="dataInstId != null">
+        DATA_INST_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dataGrpInstId != null">
+        #{dataGrpInstId,jdbcType=DECIMAL},
+      </if>
+      <if test="dataGroupId != null">
+        #{dataGroupId,jdbcType=DECIMAL},
+      </if>
+      <if test="dataInstId != null">
+        #{dataInstId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.oaas.model.PrivateDataGroupInst">
+    update OAAS_PRIV_DATA_GRP_INST
+    <set>
+      <if test="dataGroupId != null">
+        DATA_GROUP_ID = #{dataGroupId,jdbcType=DECIMAL},
+      </if>
+      <if test="dataInstId != null">
+        DATA_INST_ID = #{dataInstId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DATA_GRP_INST_ID = #{dataGrpInstId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.oaas.model.PrivateDataGroupInst">
+    update OAAS_PRIV_DATA_GRP_INST
+    set DATA_GROUP_ID = #{dataGroupId,jdbcType=DECIMAL},
+      DATA_INST_ID = #{dataInstId,jdbcType=DECIMAL}
+    where DATA_GRP_INST_ID = #{dataGrpInstId,jdbcType=DECIMAL}
+  </update>
+  
+  <delete id="deleteBatchByDataGrpInstId">
+  	DELETE FROM OAAS_PRIV_DATA_GRP_INST WHERE
+  	DATA_GRP_INST_ID IN 
+  	<foreach collection="array" item="dataGrpInstId" index="index"
+            open="(" close=")" separator=",">
+               #{dataGrpInstId,jdbcType=DECIMAL}         
+    </foreach>
+  </delete>
+  
+  <select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT * FROM OAAS_PRIV_DATA_GRP_INST
+        <where>
+            <if test="whereSql!=null">
+                ${whereSql}
+            </if>
+        </where>
+        <if test="orderBySql!=null">
+            ORDER BY ${orderBySql}
+        </if>
+        <if test="orderBySql==null">
+            ORDER BY DATA_GRP_INST_ID DESC
+        </if>
+    </select>
+    
+    <delete id="deleteByDataGroupId" >
+	  	DELETE FROM OAAS_PRIV_DATA_GRP_INST
+	  	WHERE DATA_GROUP_ID =  #{groupId,jdbcType=DECIMAL}
+	  </delete>
+	
+	<insert id="insertBatchDataInstData" parameterType="java.util.List">
+  	INSERT INTO OAAS_PRIV_DATA_GRP_INST (
+    <include refid="Base_Column_List" /> 
+    ) VALUES
+     <foreach collection="list" item="item" index="index" separator="," >
+      ( 
+	      #{item.dataGrpInstId,jdbcType=DECIMAL}, 
+	      #{item.dataGroupId,jdbcType=DECIMAL},
+	      #{item.dataInstId,jdbcType=DECIMAL}
+       )
+    </foreach>
+  </insert>
+  
+  <select id="checkExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(1) from OAAS_PRIV_DATA_GRP_INST 
+    WHERE DATA_GROUP_ID = #{dataGroupId} AND DATA_INST_ID = #{dataInstId}
+  </select>
+</mapper>

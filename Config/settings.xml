@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <localRepository>D:\repository</localRepository>
+
+    <pluginGroups>
+    </pluginGroups>
+    <proxies>
+    </proxies>
+
+    <servers>
+        <!--第一个nexus-releases要和下面的mirror中的id一致，代表拉取是也需要进行身份校验-->
+        <server>
+            <id>nexus-releases</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+
+        <server>
+            <id>nexus-snapshots</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+    </servers>
+
+
+
+    <mirrors>
+        <mirror>
+            <id>nexus-releases</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://120.25.62.147:8081/nexus/content/groups/public</url>
+        </mirror>
+        <mirror>
+            <id>nexus-snapshots</id>
+            <name>internal nexus repository</name>
+            <!--镜像采用配置好的组的地址-->
+            <url>http://120.25.62.147:8081/nexus/content/repositories/snapshots</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+    </mirrors>
+
+
+
+
+    <profiles>
+        <profile>
+            <!--ID用来确定该profile的唯一标识-->
+            <id>jdk-1.8</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <jdk>1.8</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+                <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>nexus</id>
+            <repositories>
+                <repository>
+                    <id>nexus-releases</id>
+                    <url>http://nexus-releases</url>
+                    <releases><enabled>true</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
+                </repository>
+                <repository>
+                    <id>nexus-snapshots</id>
+                    <url>http://nexus-snapshots</url>
+                    <releases><enabled>true</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>nexus-releases</id>
+                    <url>http://nexus-releases</url>
+                    <releases><enabled>true</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>nexus-snapshots</id>
+                    <url>http://nexus-snapshots</url>
+                    <releases><enabled>true</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <!--需要激活 <profile>中的ID才生效-->
+        <activeProfile>nexus</activeProfile>
+        <activeProfile>jdk-1.8</activeProfile>
+    </activeProfiles>
+
+</settings>

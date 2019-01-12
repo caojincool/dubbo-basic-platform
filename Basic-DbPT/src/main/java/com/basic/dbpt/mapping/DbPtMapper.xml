@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.dbpt.dao.DbPtMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.dbpt.model.DbPt" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="NAME1" property="name1" jdbcType="VARCHAR" />
+    <result column="NAME2" property="name2" jdbcType="VARCHAR" />
+    <result column="NAME3" property="name3" jdbcType="VARCHAR" />
+    <result column="NAME4" property="name4" jdbcType="VARCHAR" />
+    <result column="NAME5" property="name5" jdbcType="VARCHAR" />
+    <result column="NAME6" property="name6" jdbcType="VARCHAR" />
+    <result column="NAME7" property="name7" jdbcType="VARCHAR" />
+    <result column="NAME8" property="name8" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.basic.dbpt.model.DbPt" >
+    <!-- INSERT INTO #{tableName,jdbcType=VARCHAR} (ID, NAME1, NAME2,  -->
+    INSERT INTO ${tableName} (ID, NAME1, NAME2, 
+      NAME3, NAME4, NAME5, 
+      NAME6, NAME7, NAME8, 
+      CREATE_TIME)
+    values (#{id,jdbcType=DECIMAL}, #{name1,jdbcType=VARCHAR}, #{name2,jdbcType=VARCHAR}, 
+      #{name3,jdbcType=VARCHAR}, #{name4,jdbcType=VARCHAR}, #{name5,jdbcType=VARCHAR}, 
+      #{name6,jdbcType=VARCHAR}, #{name7,jdbcType=VARCHAR}, #{name8,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <!-- 查询数据库是否有该表 -->
+  <select id="selectIsExistTable" resultType="java.lang.Long" parameterType="com.basic.dbpt.model.DbPt" >
+    SELECT 
+	COUNT(0)
+    FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = #{dbName,jdbcType=VARCHAR}
+	AND TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+  </select> 
+
+  <!-- 删除表 -->
+  <update id="deleteTable" parameterType="com.basic.dbpt.model.DbPt" >
+  	<!-- DROP TABLE #{tableName,jdbcType=VARCHAR} -->
+  	DROP TABLE ${tableName}
+  </update> 
+
+  <!-- 创建表 -->
+  <update id="createTable" parameterType="com.basic.dbpt.model.DbPt" >
+  	<!-- CREATE TABLE #{tableName,jdbcType=VARCHAR} -->
+  	CREATE TABLE ${tableName}
+	(
+	   ID                   NUMERIC(20,0),
+	   NAME1                VARCHAR(512),
+	   NAME2                VARCHAR(512),
+	   NAME3                VARCHAR(512),
+	   NAME4                VARCHAR(512),
+	   NAME5                VARCHAR(512),
+	   NAME6                VARCHAR(512),
+	   NAME7                VARCHAR(512),
+	   NAME8                VARCHAR(512),
+	   CREATE_TIME          TIMESTAMP
+	)
+  </update> 
+  
+</mapper>

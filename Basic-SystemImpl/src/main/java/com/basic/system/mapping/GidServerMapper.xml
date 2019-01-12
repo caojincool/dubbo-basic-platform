@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.system.dao.GidServerMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.system.model.GidServer" >
+    <id column="GID_CODE" property="gidCode" jdbcType="VARCHAR" />
+    <result column="GID_NAME" property="gidName" jdbcType="VARCHAR" />
+    <result column="IS_USE" property="isUse" jdbcType="DECIMAL" />
+    <result column="CURR_VALUE" property="currValue" jdbcType="DECIMAL" />
+    <result column="CACHE_SIZE" property="cacheSize" jdbcType="DECIMAL" />
+    <result column="CLIENT_CACHE_SIZE" property="clientCacheSize" jdbcType="DECIMAL" />
+    <result column="INCREAMENT_BY" property="increamentBy" jdbcType="DECIMAL" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GID_CODE, GID_NAME, IS_USE, CURR_VALUE, CACHE_SIZE, CLIENT_CACHE_SIZE, INCREAMENT_BY, 
+    REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PUB_GID_SERVER
+    where GID_CODE = #{gidCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PUB_GID_SERVER
+    where GID_CODE = #{gidCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.basic.system.model.GidServer" >
+    insert into PUB_GID_SERVER (GID_CODE, GID_NAME, IS_USE, 
+      CURR_VALUE, CACHE_SIZE, CLIENT_CACHE_SIZE, 
+      INCREAMENT_BY, REMARK)
+    values (#{gidCode,jdbcType=VARCHAR}, #{gidName,jdbcType=VARCHAR}, #{isUse,jdbcType=DECIMAL}, 
+      #{currValue,jdbcType=DECIMAL}, #{cacheSize,jdbcType=DECIMAL}, #{clientCacheSize,jdbcType=DECIMAL}, 
+      #{increamentBy,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.system.model.GidServer" >
+    insert into PUB_GID_SERVER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gidCode != null" >
+        GID_CODE,
+      </if>
+      <if test="gidName != null" >
+        GID_NAME,
+      </if>
+      <if test="isUse != null" >
+        IS_USE,
+      </if>
+      <if test="currValue != null" >
+        CURR_VALUE,
+      </if>
+      <if test="cacheSize != null" >
+        CACHE_SIZE,
+      </if>
+      <if test="clientCacheSize != null" >
+        CLIENT_CACHE_SIZE,
+      </if>
+      <if test="increamentBy != null" >
+        INCREAMENT_BY,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gidCode != null" >
+        #{gidCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gidName != null" >
+        #{gidName,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=DECIMAL},
+      </if>
+      <if test="currValue != null" >
+        #{currValue,jdbcType=DECIMAL},
+      </if>
+      <if test="cacheSize != null" >
+        #{cacheSize,jdbcType=DECIMAL},
+      </if>
+      <if test="clientCacheSize != null" >
+        #{clientCacheSize,jdbcType=DECIMAL},
+      </if>
+      <if test="increamentBy != null" >
+        #{increamentBy,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.system.model.GidServer" >
+    update PUB_GID_SERVER
+    <set >
+      <if test="gidName != null" >
+        GID_NAME = #{gidName,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        IS_USE = #{isUse,jdbcType=DECIMAL},
+      </if>
+      <if test="currValue != null" >
+        CURR_VALUE = #{currValue,jdbcType=DECIMAL},
+      </if>
+      <if test="cacheSize != null" >
+        CACHE_SIZE = #{cacheSize,jdbcType=DECIMAL},
+      </if>
+      <if test="clientCacheSize != null" >
+        CLIENT_CACHE_SIZE = #{clientCacheSize,jdbcType=DECIMAL},
+      </if>
+      <if test="increamentBy != null" >
+        INCREAMENT_BY = #{increamentBy,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GID_CODE = #{gidCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.system.model.GidServer" >
+    update PUB_GID_SERVER
+    set GID_NAME = #{gidName,jdbcType=VARCHAR},
+      IS_USE = #{isUse,jdbcType=DECIMAL},
+      CURR_VALUE = #{currValue,jdbcType=DECIMAL},
+      CACHE_SIZE = #{cacheSize,jdbcType=DECIMAL},
+      CLIENT_CACHE_SIZE = #{clientCacheSize,jdbcType=DECIMAL},
+      INCREAMENT_BY = #{increamentBy,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where GID_CODE = #{gidCode,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据参数查询 -->
+  <select id="selectGidServerList" resultMap="BaseResultMap" parameterType="com.basic.system.bean.GidServerIBean" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PUB_GID_SERVER
+      <where>
+      <if test="gidCode != null and gidCode != ''" >
+        AND GID_CODE = #{gidCode,jdbcType=VARCHAR}
+      </if>
+      <if test="gidName != null and gidName != ''" >
+        <![CDATA[
+        AND INSTR(GID_NAME, #{gidName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>     
+	  </where>
+      <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+      </if>
+  </select>
+  
+  <!-- 根据参数查询的总数 -->
+  <select id="selectGidServerListCount" resultType="java.lang.Long" parameterType="com.basic.system.bean.GidServerIBean" >
+    SELECT 
+	COUNT(0)
+    FROM PUB_GID_SERVER
+      <where>
+      <if test="gidCode != null and gidCode != ''" >
+        AND GID_CODE = #{gidCode,jdbcType=VARCHAR}
+      </if>
+      <if test="gidName != null and gidName != ''" >
+        <![CDATA[
+        AND INSTR(GID_NAME, #{gidName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>     
+	  </where>
+  </select>   
+  
+</mapper>

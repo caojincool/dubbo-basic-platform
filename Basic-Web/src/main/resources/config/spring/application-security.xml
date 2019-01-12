@@ -1,0 +1,182 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+  		http://www.springframework.org/schema/security 
+  		http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<!-- 静态资源文件不过滤 -->
+	<security:http pattern="/static/**" security="none"></security:http>
+	<security:http pattern="/template/**" security="none"></security:http>
+
+	<!-- 登录页不过滤 -->
+	<security:http pattern="/crs/api/**" security="none"></security:http>
+	<!-- <security:http pattern="/oaApi/**" security="none"></security:http> -->
+	<security:http pattern="/login*" security="none"></security:http>
+	<!-- <security:http pattern="/tokenLogin*" security="none"></security:http> -->
+
+	<security:http pattern="**.ico" security="none"></security:http>
+
+	<security:global-method-security
+		pre-post-annotations="enabled" proxy-target-class="true" />
+
+	<!-- <http>标签不能配置auto-config，因为这样配置后，依然会采用spring security的Filter Chain会与下面配的custom-filter冲突 -->
+	<security:http use-expressions="false" auto-config="false"
+		create-session="stateless" entry-point-ref="authenticationProcessingFilterEntryPoint">
+		<!-- <security:custom-filter ref="myLogoutFilter"
+			position="LOGOUT_FILTER" /> -->
+		<security:custom-filter ref="tokenAuthenticationFilter"
+			before="FORM_LOGIN_FILTER" />
+	</security:http>
+
+
+	<bean id="authenticationProcessingFilterEntryPoint"
+		class="com.basic.framework.security.jwt.JwtAuthenticationEntryPoint">
+		<!-- <property name="loginFormUrl" value="/login.do"></property> -->
+	</bean>
+
+	<bean id="sessionRegistry"
+		class="org.springframework.security.core.session.SessionRegistryImpl"></bean>
+
+
+	
+	
+	<bean id="tokenAuthenticationFilter"
+		class="com.basic.framework.security.jwt.filter.TokenAuthenticationFilter">
+		<property name="authenticationManager" ref="myAuthenticationManager" />
+	</bean>
+	
+	<!-- 记住我,自动登录认证 -->
+	<!-- <bean id="rememberMeServices"
+		class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+		<property name="userDetailsService" ref="myUserDetailService"></property>
+		为remember me cookie定义一个唯一的key值，以与我们的应用关联
+		<property name="key"
+			value="RUIZHI-SECURITY-RMKEY_t8ek8xyjZEKasgL7GpMw5wUf4NKvcRLfrpZY"></property>
+		<property name="tokenValiditySeconds" value="1209600"></property>
+		<property name="tokenRepository" ref="rememberMeTokenRepository" />
+		<property name="parameter" value="remember-me"></property>
+	</bean> -->
+	<bean id="rememberMeTokenRepository"
+		class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="rememberMeAuthenticationProvider"
+		class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+		<property name="key"
+			value="RUIZHI-SECURITY-RMKEY_t8ek8xyjZEKasgL7GpMw5wUf4NKvcRLfrpZY"></property>
+	</bean>
+
+	<bean id="sessionAuthenticationStrategy"
+		class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy">
+		<constructor-arg>
+			<list>
+				<bean
+					class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">
+					<constructor-arg ref="sessionRegistry" />
+					<property name="maximumSessions" value="1" />
+				</bean>
+				<bean
+					class="org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy">
+				</bean>
+				<bean
+					class="org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy">
+					<constructor-arg ref="sessionRegistry" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- 退出 -->
+	<!-- <bean id="myLogoutFilter" class="com.basic.framework.security.MyLogoutFilter">
+		处理退出
+		<property name="filterProcessesUrl" value="/logout.do" />
+		退出处理成功后的默认显示url
+		<constructor-arg index="0" value="/login.do" />
+		<constructor-arg index="1">
+			退出成功后的handler列表，可以添加自定义LogoutHandler实现类
+			<list>
+				<bean class="com.basic.framework.security.MyLogoutHandler"></bean>
+				清除Cookie
+				<ref bean="rememberMeServices" />
+				默认清楚验证
+				<bean
+					class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"></bean>
+			</list>
+		</constructor-arg>
+	</bean> -->
+
+	<!-- 用户详情 -->
+	<!-- <bean id="myUserDetailService" class="com.basic.framework.security.MyUserDetailsService"> -->
+	<bean id="myUserDetailService" class="com.basic.framework.security.jwt.UserDetailsServiceCustomImpl">
+		<property name="userService" ref="userServiceWeb" />
+	</bean>
+
+	<bean id="mySavedRequestAwareAuthenticationSuccessHandler"
+		class="com.basic.framework.security.MySavedRequestAwareAuthenticationSuccessHandler">
+		<property name="userService" ref="userServiceWeb" />
+	</bean>
+
+	<!-- 认证管理器，可配置多个AuthenticationProvider -->
+	<security:authentication-manager alias="myAuthenticationManager"
+		erase-credentials="false">
+		<!-- Spring Security将会按照顺序，依次从上向下调用所有Provider，只要任何一个Provider校验通过，整个认证将通过。 -->
+		<security:authentication-provider
+			ref="myAuthenticationProvider"></security:authentication-provider>
+		<security:authentication-provider
+			ref="rememberMeAuthenticationProvider"></security:authentication-provider>
+	</security:authentication-manager>
+
+
+	<!-- 替换user-service-ref方式的AuthenticationProvider -->
+	<bean id="myAuthenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="myUserDetailService"></property>
+		<!-- 默认为true隐藏后台正常的异常 -->
+		<property name="hideUserNotFoundExceptions" value="false"></property>
+		<!-- 使用MD5加密 -->
+		<property name="passwordEncoder" ref="md5PasswordEncoder"></property>
+		<!-- 登录账号做为盐值，username为org.springframework.security.core.userdetails.User属性 -->
+		<!-- <property name="saltSource"> <bean class="org.springframework.security.authentication.dao.ReflectionSaltSource"> 
+			<property name="userPropertyToUse" value="username"></property> </bean> </property> -->
+	</bean>
+
+	<!-- 用户的密码加密或解密 -->
+	<bean id="md5PasswordEncoder" class="com.basic.framework.security.MyPasswordEncoder"></bean>
+
+	<!-- 授权过滤器 -->
+	<!-- <bean id="mySecurityFilter" class="com.basic.framework.security.MySecurityFilter">
+		用户拥有的权限
+		<property name="authenticationManager" ref="myAuthenticationManager">
+		</property>
+		用户是否拥有所请求资源的权限
+		<property name="accessDecisionManager">
+			<bean class="com.basic.framework.security.MyAccessDecisionManager"></bean>
+		</property>
+		资源与权限对应关系
+		<property name="securityMetadataSource" ref="mySecurityMetadataSource" />
+
+	</bean> -->
+
+
+	<!-- <bean id="mySecurityMetadataSource" class="com.basic.framework.security.MySecurityMetadataSource">
+		<property name="privateService" ref="privateServiceWeb" />
+	</bean> -->
+
+
+
+	<!-- 国际化 -->
+	<!--<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:config/properties/i18n/messages_zh_CN</value>
+			</list>
+		</property>
+	</bean>-->
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver" />
+
+</beans>

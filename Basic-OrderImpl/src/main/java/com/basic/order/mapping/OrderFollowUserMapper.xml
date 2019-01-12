@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.OrderFollowUserMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.order.model.OrderFollowUser" >
+    <id column="FOLLOW_USER_ID" property="followUserId" jdbcType="DECIMAL" />
+    <result column="ORDER_ID" property="orderId" jdbcType="DECIMAL" />
+    <result column="USER_ID" property="userId" jdbcType="DECIMAL" />
+    <result column="USER_TEXT" property="userText" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FOLLOW_USER_ID, ORDER_ID, USER_ID, USER_TEXT, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from OF_ORDER_FOLLOW_USER
+    where FOLLOW_USER_ID = #{followUserId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from OF_ORDER_FOLLOW_USER
+    where FOLLOW_USER_ID = #{followUserId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.order.model.OrderFollowUser" >
+    insert into OF_ORDER_FOLLOW_USER (FOLLOW_USER_ID, ORDER_ID, USER_ID, 
+      USER_TEXT, CREATE_TIME)
+    values (#{followUserId,jdbcType=DECIMAL}, #{orderId,jdbcType=DECIMAL}, #{userId,jdbcType=DECIMAL}, 
+      #{userText,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.order.model.OrderFollowUser" >
+    insert into OF_ORDER_FOLLOW_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="followUserId != null" >
+        FOLLOW_USER_ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userText != null" >
+        USER_TEXT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="followUserId != null" >
+        #{followUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="userText != null" >
+        #{userText,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.OrderFollowUser" >
+    update OF_ORDER_FOLLOW_USER
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="userText != null" >
+        USER_TEXT = #{userText,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where FOLLOW_USER_ID = #{followUserId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.order.model.OrderFollowUser" >
+    update OF_ORDER_FOLLOW_USER
+    set ORDER_ID = #{orderId,jdbcType=DECIMAL},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      USER_TEXT = #{userText,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where FOLLOW_USER_ID = #{followUserId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 根据参数查询 -->
+  <select id="selectOrderFollowUserList" resultMap="BaseResultMap" parameterType="com.basic.order.bean.WorkOrderIbean" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM OF_ORDER_FOLLOW_USER
+      <where>
+      <if test="orderId != null" >
+        AND ORDER_ID = #{orderId,jdbcType=VARCHAR}
+      </if>
+	  </where>
+  </select>
+  
+  <insert id="insertBatchOrderFollowUser" parameterType="java.util.List">
+  	INSERT INTO OF_ORDER_FOLLOW_USER (
+    FOLLOW_USER_ID, ORDER_ID, USER_ID, USER_TEXT, CREATE_TIME
+    )
+     <foreach collection="list" item="item" index="index" separator="union all" >
+      (SELECT  
+      #{item.followUserId,jdbcType=DECIMAL}, 
+      #{item.orderId,jdbcType=DECIMAL}, 
+      #{item.userId,jdbcType=DECIMAL},
+      #{item.userText,jdbcType=VARCHAR},
+      #{item.createTime,jdbcType=TIMESTAMP}
+       )
+    </foreach>
+  </insert>
+  
+  <!-- 批量删除，正常情况下，别的模块只修改状态 -->
+  <delete id="deleteBatchByFollowUserIds">
+    DELETE FROM OF_ORDER_FOLLOW_USER
+    WHERE FOLLOW_USER_ID IN
+		<foreach collection="array" item="followUserId" index="index"
+            open="(" close=")" separator=",">
+               #{followUserId,jdbcType=DECIMAL}         
+        </foreach>  		 
+  </delete>
+  
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amq="http://activemq.apache.org/schema/core"
+	xmlns:jms="http://www.springframework.org/schema/jms"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+         http://www.springframework.org/schema/jms
+        http://www.springframework.org/schema/jms/spring-jms.xsd
+        http://activemq.apache.org/schema/core
+        http://activemq.apache.org/schema/core/activemq-core.xsd
+		">
+
+
+	<bean id="consumerTargetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="${activemq.consumer.brokerURL}" />
+		<property name="redeliveryPolicy">
+			<bean name="defaultRedeliveryPolicy" class="org.apache.activemq.RedeliveryPolicy">
+				<property name="maximumRedeliveries" value="10" />
+				<property name="redeliveryDelay" value="60000" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="consumerCachingConnectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+		<property name="targetConnectionFactory" ref="consumerTargetConnectionFactory" />
+		<property name="reconnectOnException" value="true" />
+		<property name="cacheConsumers" value="false" />
+		<property name="cacheProducers" value="false" />
+		<property name="sessionCacheSize" value="50" />
+	</bean>
+
+	<!--    自己的侦听实现     多个有多个，需要如此配置多次     -->
+	<!-- demo：配置队列对应的listener里的设置 -->
+	<bean id="sendnoticeConsumerListener" class="com.basic.framework.messagequeue.modal.MqGruopListener">
+		<!-- isCache应和生产者保持一致 -->
+	 	<property name="isCache"  value="0"></property>
+	 	<property name="isPersistence"  value="0"></property>
+	 	<!-- 应该与发送端的编码一致，应该写在properties文件中，保持一致，queueCode，队列编码，没作用，目前只为了数据库记录 -->
+	 	<property name="queueCode"  value="workflow.notice.sendnotice.queue"></property>
+	 	<!-- 业务实现类 -->
+	 	<property name="handler"  ref="workflowNoticeListener"></property>
+	 	<!-- 如果发送端没有指定值，这里就不需要指定值了，如果发送端指定了值，那么这里的值需要与发送端的值保持一致。 -->
+	 	<property name="redisGroupCode" value="defaultActiveMQCache"></property>
+	</bean>
+	
+	<!-- 注入自己定制的listener -->
+	<bean id="sendnoticeListener" class="com.basic.framework.messagequeue.impl.MessageListenerActiveMQ">
+		<constructor-arg index="0" ref="sendnoticeConsumerListener"></constructor-arg>
+	</bean>
+	
+	<!-- 部署自己的侦听器 -->
+	<jms:listener-container destination-type="queue"
+		container-type="default" connection-factory="consumerCachingConnectionFactory"
+		acknowledge="auto">
+		<jms:listener destination="workflow.notice.sendnotice.queue" ref="sendnoticeListener" />
+	</jms:listener-container>
+	
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+	<!--    自己的侦听实现end          -->
+	
+</beans>

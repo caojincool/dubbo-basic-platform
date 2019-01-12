@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.system.dao.ExcelImportTmpMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.system.model.ExcelImportTmp" >
+    <id column="TEMPLATE_CODE" property="templateCode" jdbcType="VARCHAR" />
+    <result column="TEMPLATE_NAME" property="templateName" jdbcType="VARCHAR" />
+    <result column="READ_FILE_INFO_ID" property="readFileInfoId" jdbcType="DECIMAL" />
+    <result column="READ_FILE_INFO_NAME" property="readFileInfoName" jdbcType="VARCHAR" />
+    <result column="IMPORT_FILE_INFO_ID" property="importFileInfoId" jdbcType="DECIMAL" />
+    <result column="IMPORT_FILE_INFO_NAME" property="importFileInfoName" jdbcType="VARCHAR" />
+    <result column="COMMENTS" property="comments" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TEMPLATE_CODE, TEMPLATE_NAME, READ_FILE_INFO_ID, READ_FILE_INFO_NAME, IMPORT_FILE_INFO_ID, 
+    IMPORT_FILE_INFO_NAME, COMMENTS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PUB_EXCEL_IMPORT_TMP
+    WHERE TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    DELECT FROM PUB_EXCEL_IMPORT_TMP
+    WHERE TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.basic.system.model.ExcelImportTmp" >
+    INSERT INTO PUB_EXCEL_IMPORT_TMP (TEMPLATE_CODE, TEMPLATE_NAME, READ_FILE_INFO_ID, 
+      READ_FILE_INFO_NAME, IMPORT_FILE_INFO_ID, IMPORT_FILE_INFO_NAME, 
+      COMMENTS)
+    VALUES (#{templateCode,jdbcType=VARCHAR}, #{templateName,jdbcType=VARCHAR}, #{readFileInfoId,jdbcType=DECIMAL}, 
+      #{readFileInfoName,jdbcType=VARCHAR}, #{importFileInfoId,jdbcType=DECIMAL}, #{importFileInfoName,jdbcType=VARCHAR}, 
+      #{comments,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.system.model.ExcelImportTmp" >
+    INSERT INTO PUB_EXCEL_IMPORT_TMP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="templateCode != null" >
+        TEMPLATE_CODE,
+      </if>
+      <if test="templateName != null" >
+        TEMPLATE_NAME,
+      </if>
+      <if test="readFileInfoId != null" >
+        READ_FILE_INFO_ID,
+      </if>
+      <if test="readFileInfoName != null" >
+        READ_FILE_INFO_NAME,
+      </if>
+      <if test="importFileInfoId != null" >
+        IMPORT_FILE_INFO_ID,
+      </if>
+      <if test="importFileInfoName != null" >
+        IMPORT_FILE_INFO_NAME,
+      </if>
+      <if test="comments != null" >
+        COMMENTS,
+      </if>
+    </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+      <if test="templateCode != null" >
+        #{templateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="templateName != null" >
+        #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="readFileInfoId != null" >
+        #{readFileInfoId,jdbcType=DECIMAL},
+      </if>
+      <if test="readFileInfoName != null" >
+        #{readFileInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="importFileInfoId != null" >
+        #{importFileInfoId,jdbcType=DECIMAL},
+      </if>
+      <if test="importFileInfoName != null" >
+        #{importFileInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.system.model.ExcelImportTmp" >
+    UPDATE PUB_EXCEL_IMPORT_TMP
+    <set >
+      <if test="templateName != null" >
+        TEMPLATE_NAME = #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="readFileInfoId != null" >
+        READ_FILE_INFO_ID = #{readFileInfoId,jdbcType=DECIMAL},
+      </if>
+      <if test="readFileInfoName != null" >
+        READ_FILE_INFO_NAME = #{readFileInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="importFileInfoId != null" >
+        IMPORT_FILE_INFO_ID = #{importFileInfoId,jdbcType=DECIMAL},
+      </if>
+      <if test="importFileInfoName != null" >
+        IMPORT_FILE_INFO_NAME = #{importFileInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+    </set>
+    WHERE TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.system.model.ExcelImportTmp" >
+    UPDATE PUB_EXCEL_IMPORT_TMP
+    SET TEMPLATE_NAME = #{templateName,jdbcType=VARCHAR},
+      READ_FILE_INFO_ID = #{readFileInfoId,jdbcType=DECIMAL},
+      READ_FILE_INFO_NAME = #{readFileInfoName,jdbcType=VARCHAR},
+      IMPORT_FILE_INFO_ID = #{importFileInfoId,jdbcType=DECIMAL},
+      IMPORT_FILE_INFO_NAME = #{importFileInfoName,jdbcType=VARCHAR},
+      COMMENTS = #{comments,jdbcType=VARCHAR}
+    WHERE TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据参数查询 -->
+  <select id="selectExcelImportTmpList" resultMap="BaseResultMap" parameterType="com.basic.system.bean.ExcelImportTmpIBean" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PUB_EXCEL_IMPORT_TMP
+      <where>
+      <if test="templateCode != null and templateCode != ''" >
+        AND TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+      </if>
+      <if test="templateName != null and templateName != ''" >
+        <![CDATA[
+        AND INSTR(TEMPLATE_NAME, #{templateName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>     
+	  </where>
+      <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+      </if>
+  </select>
+  
+  <!-- 根据参数查询的总数 -->
+  <select id="selectExcelImportTmpListCount" resultType="java.lang.Long" parameterType="com.basic.system.bean.ExcelImportTmpIBean" >
+    SELECT 
+	COUNT(0)
+    FROM PUB_EXCEL_IMPORT_TMP
+      <where>
+      <if test="templateCode != null and templateCode != ''" >
+        AND TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+      </if>
+      <if test="templateName != null and templateName != ''" >
+        <![CDATA[
+        AND INSTR(TEMPLATE_NAME, #{templateName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>     
+	  </where>
+  </select>   
+  
+</mapper>

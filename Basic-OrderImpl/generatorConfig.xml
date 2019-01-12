@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+<!-- 设置mysql驱动路径 -->
+<classPathEntry location="D:\.m2\repository\mysql\mysql-connector-java\5.1.28\mysql-connector-java-5.1.28.jar" />
+<!-- 此处指定生成针对MyBatis3的DAO -->
+  <context id="context1"  targetRuntime="MyBatis3">
+  <commentGenerator>  
+    <!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
+    <property name="suppressAllComments" value="true" />  
+  </commentGenerator>   
+  <!-- jdbc连接信息 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"  
+    connectionURL="jdbc:mysql://112.74.79.74:3306/ruizhidb" 
+    userId="root" password="ruizhisoft" />
+    
+    <!-- java类型处理器
+        用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+        注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；
+    
+    <javaTypeResolver type="com.generator.MyJavaTypeResolver">-->
+    <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+        
+<!--             true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+            false：默认,
+                scale>0;length>18：使用BigDecimal;
+                scale=0;length[10,18]：使用Long；
+                scale=0;length[5,9]：使用Integer；
+                scale=0;length<5：使用Short； -->
+        
+        <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+    
+    <!-- 生成模型的包名和位置（报错就把位置改成项目的名称） -->
+    <javaModelGenerator targetPackage="com.basic.order.model" targetProject="RuiZhi-OrderApi/src/main/java" />
+    <!-- 生成映射文件的包名和位置 -->
+    <sqlMapGenerator targetPackage="com.basic.order.mapping" targetProject="RuiZhi-OrderImpl/src/main/java" />
+    <!-- 生成DAO的类文件以及配置文件 -->
+    <javaClientGenerator targetPackage="com.basic.order.dao" targetProject="RuiZhi-OrderImpl/src/main/java" type="XMLMAPPER" />
+    <!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象 -->
+     <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 --> 
+    <table schema="" tableName="OF_ORDER" domainObjectName="Order"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="OF_ORDER_FOLLOW_USER" domainObjectName="OrderFollowUser"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="OF_ORDER_OPER" domainObjectName="OrderOper"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="OF_WORK_ORDER" domainObjectName="WorkOrder"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="OF_WORK_ORDER_OPER" domainObjectName="WorkOrderOper"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    
+    
+    <table schema="" tableName="PF_ORDER_PRIORITY" domainObjectName="OrderPriority"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="PF_ORDER_SERVICE" domainObjectName="OrderService"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="PF_ORDER_STATE" domainObjectName="OrderState"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="PF_ORDER_STATE_COMPONENT" domainObjectName="OrderStateComponent"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="PF_ORDER_TYPE" domainObjectName="OrderType"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="PF_PROCESS_RULE" domainObjectName="ProcessRule"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="PF_TACHE" domainObjectName="Tache"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="PF_TACHE_CATALOG" domainObjectName="TacheCatalog"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="PF_WO_COMPONENT" domainObjectName="WoComponent"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="PF_WO_DISP_RULE" domainObjectName="WoDispRule"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="PF_WO_DISP_RULE_INST" domainObjectName="WoDispRuleInst"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+    <table schema="" tableName="PF_WORK_ORDER_STATE" domainObjectName="WorkOrderState"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+  </context>
+</generatorConfiguration>

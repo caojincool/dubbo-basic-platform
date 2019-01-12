@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.OrderStateComponentMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.order.model.OrderStateComponent" >
+    <id column="COMPONENT_ID" property="componentId" jdbcType="DECIMAL" />
+    <result column="ORDER_STATE" property="orderState" jdbcType="VARCHAR" />
+    
+    <result column="ORDER_STATE_NAME" property="orderStateName" jdbcType="VARCHAR" />
+    
+    <result column="COMPONENT_CODE" property="componentCode" jdbcType="VARCHAR" />
+    <result column="COMPONENT_NAME" property="componentName" jdbcType="VARCHAR" />
+    <result column="EXEC_INDEX" property="execIndex" jdbcType="DECIMAL" />
+    <result column="COMPONENT_STATE" property="componentState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COMPONENT_ID, ORDER_STATE, COMPONENT_CODE, COMPONENT_NAME, EXEC_INDEX, COMPONENT_STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from PF_ORDER_STATE_COMPONENT
+    where COMPONENT_ID = #{componentId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from PF_ORDER_STATE_COMPONENT
+    where COMPONENT_ID = #{componentId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.order.model.OrderStateComponent" >
+    insert into PF_ORDER_STATE_COMPONENT (COMPONENT_ID, ORDER_STATE, COMPONENT_CODE, 
+      COMPONENT_NAME, EXEC_INDEX, COMPONENT_STATE
+      )
+    values (#{componentId,jdbcType=DECIMAL}, #{orderState,jdbcType=VARCHAR}, #{componentCode,jdbcType=VARCHAR}, 
+      #{componentName,jdbcType=VARCHAR}, #{execIndex,jdbcType=DECIMAL}, #{componentState,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.order.model.OrderStateComponent" >
+    insert into PF_ORDER_STATE_COMPONENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="componentId != null" >
+        COMPONENT_ID,
+      </if>
+      <if test="orderState != null" >
+        ORDER_STATE,
+      </if>
+      <if test="componentCode != null" >
+        COMPONENT_CODE,
+      </if>
+      <if test="componentName != null" >
+        COMPONENT_NAME,
+      </if>
+      <if test="execIndex != null" >
+        EXEC_INDEX,
+      </if>
+      <if test="componentState != null" >
+        COMPONENT_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="componentId != null" >
+        #{componentId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="componentCode != null" >
+        #{componentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="componentName != null" >
+        #{componentName,jdbcType=VARCHAR},
+      </if>
+      <if test="execIndex != null" >
+        #{execIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="componentState != null" >
+        #{componentState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.OrderStateComponent" >
+    update PF_ORDER_STATE_COMPONENT
+    <set >
+      <if test="orderState != null" >
+        ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="componentCode != null" >
+        COMPONENT_CODE = #{componentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="componentName != null" >
+        COMPONENT_NAME = #{componentName,jdbcType=VARCHAR},
+      </if>
+      <if test="execIndex != null" >
+        EXEC_INDEX = #{execIndex,jdbcType=INTEGER},
+      </if>
+      <if test="componentState != null" >
+        COMPONENT_STATE = #{componentState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COMPONENT_ID = #{componentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.order.model.OrderStateComponent" >
+    update PF_ORDER_STATE_COMPONENT
+    set ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+      COMPONENT_CODE = #{componentCode,jdbcType=VARCHAR},
+      COMPONENT_NAME = #{componentName,jdbcType=VARCHAR},
+      EXEC_INDEX = #{execIndex,jdbcType=DECIMAL},
+      COMPONENT_STATE = #{componentState,jdbcType=VARCHAR}
+    where COMPONENT_ID = #{componentId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="selectByOrderState" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	SELECT 
+	<include refid="Base_Column_List" />
+	FROM PF_ORDER_STATE_COMPONENT
+	WHERE ORDER_STATE = #{orderState,jdbcType=VARCHAR}
+	AND COMPONENT_STATE = '10A'
+	ORDER BY EXEC_INDEX ASC
+  </select>
+  <!-- 根据参数查询 -->
+	<select id="selectOrderStateComponentList" resultMap="BaseResultMap"
+		parameterType="com.basic.order.bean.OrderStateComponentIbean">
+		SELECT
+		POSC.*, POS.ORDER_STATE_NAME
+		FROM PF_ORDER_STATE_COMPONENT POSC
+		JOIN PF_ORDER_STATE POS ON POS.ORDER_STATE = POSC.ORDER_STATE AND POS.STATE = '10A'
+		<where>
+			POSC.COMPONENT_STATE = '10A'
+			<if test="componentCode != null and componentCode != ''">
+				 AND POSC.COMPONENT_CODE = #{componentCode,jdbcType=VARCHAR}
+			</if>
+			<if test="componentName != null and componentName != ''">
+				<![CDATA[
+        			AND INSTR(POSC.COMPONENT_NAME, #{componentName,jdbcType=VARCHAR}) > 0
+       			 ]]>
+			</if>
+		</where>
+		<if test="start != null and limit != null and limit > 0">
+			LIMIT #{start}, #{limit}
+		</if>
+	</select>
+
+	<!-- 根据参数查询的总数 -->
+	<select id="selectOrderStateComponentListCount" resultType="java.lang.Long"
+		parameterType="com.basic.order.bean.OrderStateComponentIbean">
+		SELECT
+		COUNT(0)
+		FROM PF_ORDER_STATE_COMPONENT POSC
+		JOIN PF_ORDER_STATE POS ON POS.ORDER_STATE = POSC.ORDER_STATE AND POS.STATE = '10A'
+		<where>
+			POSC.COMPONENT_STATE = '10A'
+			<if test="componentCode != null and componentCode != ''">
+				 AND POSC.COMPONENT_CODE = #{componentCode,jdbcType=VARCHAR}
+			</if>
+			<if test="componentName != null and componentName != ''">
+				<![CDATA[
+        			AND INSTR(POSC.COMPONENT_NAME, #{componentName,jdbcType=VARCHAR}) > 0
+       			 ]]>
+			</if>
+		</where>
+	</select>
+
+	<!-- 批量修改状态 -->
+	<update id="updateBatchStateByComponentIds" parameterType="com.basic.order.model.OrderStateComponent">
+		UPDATE PF_ORDER_STATE_COMPONENT
+		<set>
+			<if test="orderState != null">
+				ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+			</if>
+			<if test="componentCode != null">
+				COMPONENT_CODE = #{componentCode,jdbcType=VARCHAR},
+			</if>
+			<if test="componentName != null">
+				COMPONENT_NAME = #{componentName,jdbcType=VARCHAR},
+			</if>
+			<if test="execIndex != null">
+				EXEC_INDEX = #{execIndex,jdbcType=INTEGER},
+			</if>
+			<if test="componentState != null">
+				COMPONENT_STATE = #{componentState,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE COMPONENT_ID IN
+		<foreach collection="componentIds" item="componentId"
+			index="index" open="(" close=")" separator=",">
+			#{componentId,jdbcType=BIGINT}
+		</foreach>
+	</update>
+</mapper>

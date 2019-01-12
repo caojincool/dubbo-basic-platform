@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.oaas.dao.PrivateFuncMapper">
+  <resultMap id="BaseResultMap" type="com.basic.oaas.model.PrivateFunc">
+    <id column="FUNC_ID" jdbcType="DECIMAL" property="funcId" />
+    <result column="FUNC_CODE" jdbcType="VARCHAR" property="funcCode" />
+    <result column="FUNC_NAME" jdbcType="VARCHAR" property="funcName" />
+    <result column="FUNC_URL" jdbcType="VARCHAR" property="funcUrl" />
+    <result column="FUNC_ICON" jdbcType="VARCHAR" property="funcIcon" />
+    <result column="DISPLAY_INDEX" jdbcType="DECIMAL" property="displayIndex" />
+    <result column="PRIVATE_ID" jdbcType="DECIMAL" property="privateId" />
+    <result column="CREATE_USER_ID" jdbcType="DECIMAL" property="createUserId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_USER_ID" jdbcType="DECIMAL" property="modifyUserId" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    <result property="openStatus" column="OPEN_STATUS" jdbcType="NUMERIC"/>
+	<result property="openDate" column="OPEN_DATE" jdbcType="TIMESTAMP"/>
+	<result property="stopDate" column="STOP_DATE" jdbcType="TIMESTAMP"/>
+    
+    <result column="CREATEUSERNAME" jdbcType="VARCHAR" property="createUserName" />
+    <result column="MODIFYUSERNAME" jdbcType="VARCHAR" property="modifyUserName" />
+    
+    <result column="MENU_ID" jdbcType="DECIMAL" property="menuId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    FUNC_ID, FUNC_CODE, FUNC_NAME, FUNC_URL, FUNC_ICON, DISPLAY_INDEX, PRIVATE_ID,  
+    STATE, CREATE_USER_ID, CREATE_TIME, MODIFY_USER_ID, MODIFY_TIME, REMARKS,OPEN_STATUS,OPEN_DATE,STOP_DATE,MENU_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from OAAS_PRIV_FUNC
+    where FUNC_ID = #{funcId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from OAAS_PRIV_FUNC
+    where FUNC_ID = #{funcId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.oaas.model.PrivateFunc">
+    insert into OAAS_PRIV_FUNC (FUNC_ID, FUNC_CODE, FUNC_NAME, 
+      FUNC_URL, FUNC_ICON, DISPLAY_INDEX, 
+      PRIVATE_ID,  STATE, 
+      CREATE_USER_ID, CREATE_TIME, MODIFY_USER_ID, 
+      MODIFY_TIME, REMARKS,OPEN_STATUS,OPEN_DATE,STOP_DATE,MENU_ID)
+    values (#{funcId,jdbcType=DECIMAL}, #{funcCode,jdbcType=VARCHAR}, #{funcName,jdbcType=VARCHAR}, 
+      #{funcUrl,jdbcType=VARCHAR}, #{funcIcon,jdbcType=VARCHAR}, #{displayIndex,jdbcType=DECIMAL}, 
+      #{privateId,jdbcType=DECIMAL},  #{state,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=DECIMAL}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{openStatus,jdbcType=NUMERIC}, 
+      #{openDate,jdbcType=TIMESTAMP}, #{stopDate,jdbcType=TIMESTAMP},#{menuId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.oaas.model.PrivateFunc">
+    insert into OAAS_PRIV_FUNC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="funcId != null">
+        FUNC_ID,
+      </if>
+      <if test="funcCode != null">
+        FUNC_CODE,
+      </if>
+      <if test="funcName != null">
+        FUNC_NAME,
+      </if>
+      <if test="funcUrl != null">
+        FUNC_URL,
+      </if>
+      <if test="funcIcon != null">
+        FUNC_ICON,
+      </if>
+      <if test="displayIndex != null">
+        DISPLAY_INDEX,
+      </if>
+      <if test="privateId != null">
+        PRIVATE_ID,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="remarks != null">
+        REMARKS,
+      </if>
+      <if test="openStatus != null">
+      	OPEN_STATUS,
+      </if>
+      <if test="openDate != null">
+      	OPEN_DATE,
+      </if>
+      <if test="stopDate != null">
+      	STOP_DATE,
+      </if>
+      <if test="menuId != null">
+      	MENU_ID
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="funcId != null">
+        #{funcId,jdbcType=DECIMAL},
+      </if>
+      <if test="funcCode != null">
+        #{funcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="funcName != null">
+        #{funcName,jdbcType=VARCHAR},
+      </if>
+      <if test="funcUrl != null">
+        #{funcUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="funcIcon != null">
+        #{funcIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="displayIndex != null">
+        #{displayIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="privateId != null">
+        #{privateId,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="openStatus != null">
+      	 #{openStatus,jdbcType=NUMERIC},
+      </if>
+      <if test="openDate != null">
+      	 #{openDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopDate != null">
+      	 #{stopDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuId != null">
+      	 #{menuId,jdbcType=DECIMAL}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.oaas.model.PrivateFunc">
+    update OAAS_PRIV_FUNC
+    <set>
+      <if test="funcCode != null">
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="funcName != null">
+        FUNC_NAME = #{funcName,jdbcType=VARCHAR},
+      </if>
+      <if test="funcUrl != null">
+        FUNC_URL = #{funcUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="funcIcon != null">
+        FUNC_ICON = #{funcIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="displayIndex != null">
+        DISPLAY_INDEX = #{displayIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="privateId != null">
+        PRIVATE_ID = #{privateId,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="openStatus != null">
+      	 OPEN_STATUS = #{openStatus,jdbcType=NUMERIC},
+      </if>
+      <if test="openDate != null">
+      	 OPEN_DATE = #{openDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopDate != null">
+      	 STOP_DATE = #{stopDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuId != null">
+      	 MENU_ID = #{menuId,jdbcType=DECIMAL}
+      </if>
+    </set>
+    where FUNC_ID = #{funcId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.oaas.model.PrivateFunc">
+    update OAAS_PRIV_FUNC
+    set FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+        FUNC_NAME = #{funcName,jdbcType=VARCHAR},
+        FUNC_URL = #{funcUrl,jdbcType=VARCHAR},
+        FUNC_ICON = #{funcIcon,jdbcType=VARCHAR},
+        DISPLAY_INDEX = #{displayIndex,jdbcType=DECIMAL},
+        PRIVATE_ID = #{privateId,jdbcType=DECIMAL},
+        STATE = #{state,jdbcType=VARCHAR},
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      	OPEN_STATUS = #{openStatus,jdbcType=NUMERIC},
+      	OPEN_DATE = #{openDate,jdbcType=TIMESTAMP},
+      	STOP_DATE = #{stopDate,jdbcType=TIMESTAMP},
+      	MENU_ID = #{menuId,jdbcType=DECIMAL}
+    where FUNC_ID = #{funcId,jdbcType=DECIMAL}
+  </update>
+  
+  
+  <!-- 批量删除 -->
+  <delete id="deleteBatchByFuncIds">
+  	 DELETE FROM OAAS_PRIV_FUNC
+    WHERE FUNC_ID IN
+		<foreach collection="array" item="funcId" index="index"
+            open="(" close=")" separator=",">
+               #{funcId,jdbcType=DECIMAL}         
+        </foreach>  
+  </delete>
+  <!-- 批量修改 -->
+  <update id="updateBatchByFuncIds">
+  	UPDATE OAAS_PRIV_FUNC
+  	SET STATE = '10X'
+  	WHERE FUNC_ID IN
+		<foreach collection="array" item="funcId" index="index"
+            open="(" close=")" separator=",">
+               #{funcId,jdbcType=DECIMAL}         
+        </foreach>
+  </update>
+  
+  <select id="selectFuncByFuncCode"  resultMap="BaseResultMap">
+  	SELECT
+		OPF.*
+	FROM
+	OAAS_PRIV_FUNC AS OPF
+	WHERE OPF.FUNC_CODE IN 
+	<foreach collection="array" item="code" index="index"
+            open="(" close=")" separator=",">
+               #{code,jdbcType=VARCHAR}         
+    </foreach>
+    ORDER BY OPF.DISPLAY_INDEX
+  </select>
+  
+  <select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT * FROM OAAS_PRIV_FUNC
+        <where>
+            state = '10A'
+            <if test="whereSql!=null">
+                AND ${whereSql}
+            </if>
+        </where>
+        <if test="orderBySql!=null">
+            ORDER BY ${orderBySql}
+        </if>
+        <if test="orderBySql==null">
+            ORDER BY FUNC_ID DESC
+        </if>
+    </select>
+</mapper>

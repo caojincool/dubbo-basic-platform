@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+		">
+
+	<!-- 流程单据 -->
+ 	<dubbo:reference id="orderFollowUserService" interface="com.basic.order.service.OrderFollowUserService" group="platform"/>
+	<dubbo:reference id="orderOperService" interface="com.basic.order.service.OrderOperService" group="platform"/>
+	<dubbo:reference id="orderPriorityService" interface="com.basic.order.service.OrderPriorityService" group="platform"/>
+	<dubbo:reference id="orderService" interface="com.basic.order.service.OrderService" group="platform"/>
+	<dubbo:reference id="orderServiceService" interface="com.basic.order.service.OrderServiceService" group="platform"/>
+	<dubbo:reference id="orderStateComponentService" interface="com.basic.order.service.OrderStateComponentService" group="platform"/>
+	<dubbo:reference id="orderStateService" interface="com.basic.order.service.OrderStateService" group="platform"/>
+	<dubbo:reference id="orderTypeService" interface="com.basic.order.service.OrderTypeService" group="platform"/>
+	<dubbo:reference id="processOrderManageService" interface="com.basic.order.service.ProcessOrderManageService" group="platform"/>
+	<dubbo:reference id="processRuleService" interface="com.basic.order.service.ProcessRuleService" group="platform"/>
+	<dubbo:reference id="processWorkOrderManageService" interface="com.basic.order.service.ProcessWorkOrderManageService" group="platform"/>
+	<dubbo:reference id="tacheCatalogService" interface="com.basic.order.service.TacheCatalogService" group="platform"/>
+	<dubbo:reference id="tacheService" interface="com.basic.order.service.TacheService" group="platform"/>
+	<dubbo:reference id="woComponentService" interface="com.basic.order.service.WoComponentService" group="platform"/>
+	<dubbo:reference id="woDispRuleInstService" interface="com.basic.order.service.WoDispRuleInstService" group="platform"/>
+	<dubbo:reference id="woDispRuleService" interface="com.basic.order.service.WoDispRuleService" group="platform"/>
+	<dubbo:reference id="workOrderOperService" interface="com.basic.order.service.WorkOrderOperService" group="platform"/>
+	<dubbo:reference id="workOrderService" interface="com.basic.order.service.WorkOrderService" group="platform"/>
+	<dubbo:reference id="workOrderStateService" interface="com.basic.order.service.WorkOrderStateService" group="platform"/>
+	<dubbo:reference id="buttonService" interface="com.basic.order.service.ButtonService" group="platform"/>
+	<dubbo:reference id="orderButtonService" interface="com.basic.order.service.OrderButtonService" group="platform"/>
+	<dubbo:reference id="woButtonService" interface="com.basic.order.service.WoButtonService" group="platform"/>
+
+	<!-- 系统通知 -->
+<!--	<dubbo:reference id="sysNoticeService" interface="com.basic.order.service.SysNoticeService" group="platform"/>
+	<dubbo:reference id="sysNoticePartyService" interface="com.basic.order.service.SysNoticePartyService" group="platform"/>
+	<dubbo:reference id="erpOaStaticService" interface="com.basic.order.service.ErpOaStaticService" group="platform"/>-->
+</beans>

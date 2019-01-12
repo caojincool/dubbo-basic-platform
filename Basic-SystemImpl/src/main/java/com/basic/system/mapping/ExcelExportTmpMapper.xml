@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.system.dao.ExcelExportTmpMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.system.model.ExcelExportTmp" >
+    <id column="TEMPLATE_CODE" property="templateCode" jdbcType="VARCHAR" />
+    <result column="FILE_INFO_ID" property="fileInfoId" jdbcType="DECIMAL" />
+    <result column="TEMPLATE_NAME" property="templateName" jdbcType="VARCHAR" />
+    <result column="WRITE_FILE_INFO_NAME" property="writeFileInfoName" jdbcType="VARCHAR" />
+    <result column="COMMENTS" property="comments" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TEMPLATE_CODE, FILE_INFO_ID, TEMPLATE_NAME, WRITE_FILE_INFO_NAME, COMMENTS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PUB_EXCEL_EXPORT_TMP
+    WHERE TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    DELETE FROM PUB_EXCEL_EXPORT_TMP
+    WHERE TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.basic.system.model.ExcelExportTmp" >
+    INSERT INTO PUB_EXCEL_EXPORT_TMP (TEMPLATE_CODE, FILE_INFO_ID, TEMPLATE_NAME, 
+      WRITE_FILE_INFO_NAME, COMMENTS)
+    VALUES (#{templateCode,jdbcType=VARCHAR}, #{fileInfoId,jdbcType=DECIMAL}, #{templateName,jdbcType=VARCHAR}, 
+      #{writeFileInfoName,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.system.model.ExcelExportTmp" >
+    INSERT INTO PUB_EXCEL_EXPORT_TMP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="templateCode != null" >
+        TEMPLATE_CODE,
+      </if>
+      <if test="fileInfoId != null" >
+        FILE_INFO_ID,
+      </if>
+      <if test="templateName != null" >
+        TEMPLATE_NAME,
+      </if>
+      <if test="writeFileInfoName != null" >
+        WRITE_FILE_INFO_NAME,
+      </if>
+      <if test="comments != null" >
+        COMMENTS,
+      </if>
+    </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+      <if test="templateCode != null" >
+        #{templateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fileInfoId != null" >
+        #{fileInfoId,jdbcType=DECIMAL},
+      </if>
+      <if test="templateName != null" >
+        #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="writeFileInfoName != null" >
+        #{writeFileInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.system.model.ExcelExportTmp" >
+    UPDATE PUB_EXCEL_EXPORT_TMP
+    <set >
+      <if test="fileInfoId != null" >
+        FILE_INFO_ID = #{fileInfoId,jdbcType=DECIMAL},
+      </if>
+      <if test="templateName != null" >
+        TEMPLATE_NAME = #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="writeFileInfoName != null" >
+        WRITE_FILE_INFO_NAME = #{writeFileInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+    </set>
+    WHERE TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.system.model.ExcelExportTmp" >
+    UPDATE PUB_EXCEL_EXPORT_TMP
+    SET FILE_INFO_ID = #{fileInfoId,jdbcType=DECIMAL},
+      TEMPLATE_NAME = #{templateName,jdbcType=VARCHAR},
+      WRITE_FILE_INFO_NAME = #{writeFileInfoName,jdbcType=VARCHAR},
+      COMMENTS = #{comments,jdbcType=VARCHAR}
+    WHERE TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据参数查询 -->
+  <select id="selectExcelExportTmpList" resultMap="BaseResultMap" parameterType="com.basic.system.bean.ExcelExportTmpIBean" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PUB_EXCEL_EXPORT_TMP
+      <where>
+      <if test="templateCode != null and templateCode != ''" >
+        AND TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+      </if>
+      <if test="templateName != null and templateName != ''" >
+        <![CDATA[
+        AND INSTR(TEMPLATE_NAME, #{templateName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>   
+	  </where>
+      <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+      </if>
+  </select>
+  
+  <!-- 根据参数查询的总数 -->
+  <select id="selectExcelExportTmpListCount" resultType="java.lang.Long" parameterType="com.basic.system.bean.ExcelExportTmpIBean" >
+    SELECT 
+	COUNT(0)
+    FROM PUB_EXCEL_EXPORT_TMP
+      <where>
+      <if test="templateCode != null and templateCode != ''" >
+        AND TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+      </if>
+      <if test="templateName != null and templateName != ''" >
+        <![CDATA[
+        AND INSTR(TEMPLATE_NAME, #{templateName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>     
+	  </where>
+  </select>   
+  
+</mapper>

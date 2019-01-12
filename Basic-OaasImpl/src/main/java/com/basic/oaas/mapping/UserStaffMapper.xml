@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.oaas.dao.UserStaffMapper">
+  <resultMap id="BaseResultMap" type="com.basic.oaas.model.UserStaff">
+    <id column="USER_ID" jdbcType="DECIMAL" property="userId" />
+    <result column="STAFF_ID" jdbcType="DECIMAL" property="staffId" />
+    
+    <result column="USER_TEXT" jdbcType="VARCHAR" property="userText" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="SOURCE" jdbcType="NUMERIC" property="source" />
+    <result column="TYPE_" jdbcType="NUMERIC" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    USER_ID, STAFF_ID,TYPE_,SOURCE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from OAAS_USER_STAFF
+    where USER_ID = #{userId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from OAAS_USER_STAFF
+    where USER_ID = #{userId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.oaas.model.UserStaff">
+    insert into OAAS_USER_STAFF (USER_ID, STAFF_ID,TYPE_,SOURCE)
+    values (#{userId,jdbcType=DECIMAL}, #{staffId,jdbcType=DECIMAL}, 
+    #{type,jdbcType=NUMERIC}, #{source,jdbcType=NUMERIC})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.oaas.model.UserStaff">
+    insert into OAAS_USER_STAFF
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="staffId != null">
+        STAFF_ID,
+      </if>
+      <if test="type != null">
+        TYPE_,
+      </if>
+      <if test="source != null">
+        SOURCE
+      </if>
+       
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=NUMERIC},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=NUMERIC}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.oaas.model.UserStaff">
+    update OAAS_USER_STAFF
+    <set>
+      <if test="staffId != null">
+        STAFF_ID = #{staffId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.oaas.model.UserStaff">
+    UPDATE OAAS_USER_STAFF
+    SET STAFF_ID = #{staffId,jdbcType=DECIMAL},
+        TYPE_ = #{type,jdbcType=NUMERIC},
+        SOURCE = #{source,jdbcType=NUMERIC}
+    WHERE USER_ID = #{userId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="selectUserStaffList" resultMap="BaseResultMap" parameterType="com.basic.oaas.bean.UserStaffIbean">
+  	SELECT
+	OUS.*,
+	OU.USER_TEXT,
+	OU.USERNAME
+	FROM
+	OAAS_USER_STAFF AS OUS
+	LEFT JOIN OAAS_USER AS OU ON OU.USER_ID = OUS.USER_ID
+    <where>
+    	OU.STATE = '10A'
+    	<if test="staffId != null and staffId !=''">
+    		AND OUS.STAFF_ID = #{staffId,jdbcType=DECIMAL}
+    	</if>
+    	<if test="userId != null and userId !=''">
+    		AND OUS.STAFF_ID = #{userId,jdbcType=DECIMAL}
+    	</if>
+    </where>
+    <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+    </if>
+  </select>
+  <select id="selectUserStaffListCount" resultType="java.lang.Long" parameterType="com.basic.oaas.bean.UserStaffIbean">
+  	SELECT
+	 COUNT(1)
+	FROM
+	OAAS_USER_STAFF AS OUS
+	LEFT JOIN OAAS_USER AS OU ON OU.USER_ID = OUS.USER_ID
+    <where>
+    	OU.STATE = '10A' 
+    	<if test="staffId != null and staffId !=''">
+    		AND STAFF_ID = #{staffId,jdbcType=DECIMAL}
+    	</if>
+    	<if test="userId != null and userId !=''">
+    		AND OU.USER_ID = #{userId,jdbcType=DECIMAL}
+    	</if>
+    </where>
+  </select>
+  
+  <delete id="deleteBatchByUserIds">
+  		DELETE FROM OAAS_USER_STAFF WHERE  USER_ID IN
+ 		<foreach collection="array" item="userId" index="index"
+           open="(" close=")" separator=",">
+              #{userId,jdbcType=DECIMAL}         
+       </foreach>
+  </delete>
+  
+  
+  <delete id="deleteByUser" parameterType="com.basic.oaas.model.UserStaff">
+  		DELETE FROM OAAS_USER_STAFF   
+ 		<where>
+ 			1=1 
+ 			  <if test="userId != null">
+		        AND USER_ID = #{userId,jdbcType=DECIMAL}
+		      </if>
+		      <if test="staffId != null">
+		       AND STAFF_ID = #{staffId,jdbcType=DECIMAL}
+		      </if>
+ 		</where>
+  </delete>
+  
+  <select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">
+	SELECT
+	OUS.*,
+	OU.USER_TEXT,
+	OU.USERNAME
+	FROM
+	OAAS_USER_STAFF AS OUS
+	LEFT JOIN OAAS_USER AS OU ON OU.USER_ID = OUS.USER_ID
+	<where>
+		OU.STATE = '10A' 
+	    <if test="whereSql!=null">
+	        AND ${whereSql}
+	    </if>
+	</where>
+	<if test="orderBySql!=null">
+	    ORDER BY ${orderBySql}
+	</if>
+	<if test="orderBySql==null">
+	    ORDER BY OUS.USER_ID DESC
+	</if>
+	
+  </select>
+  
+</mapper>

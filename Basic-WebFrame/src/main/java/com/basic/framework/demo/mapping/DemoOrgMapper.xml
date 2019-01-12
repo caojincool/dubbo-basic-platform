@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.framework.demo.dao.DemoOrgMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.framework.demo.model.DemoOrg" >
+    
+    <id column="ORG_ID" property="orgId" jdbcType="BIGINT" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="ORG_NAME" property="orgName" jdbcType="VARCHAR" />
+    <result column="PARENT_ORG_ID" property="parentOrgId" jdbcType="BIGINT" />
+    <result column="DISPLAY_INDEX" property="displayIndex" jdbcType="BIGINT" />
+    <result column="ID_PATH" property="idPath" jdbcType="VARCHAR" />
+    <result column="NAME_PATH" property="namePath" jdbcType="VARCHAR" />
+    <result column="CODE_PATH" property="codePath" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+   
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="P_ID" property="pId" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="IS_PARENT" property="isParent" jdbcType="VARCHAR" />
+    
+    <result column="CREATE_USER_NAME" property="createUserName" jdbcType="VARCHAR"/>
+    <result column="MODIFY_USER_NAME" property="modifyUserName" jdbcType="VARCHAR"/>
+    <result column="PARENT_ORG_NAME" property="parentOrgName" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <!-- 获取部门和职位的树结构 -->
+  <select id="selectOrgsTreeStep" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  		<!-- 有子节点(isLeaf值为false) -->
+  		<![CDATA[
+			SELECT ORG_ID,
+			       ORG_CODE,
+			       ORG_NAME,
+			       PARENT_ORG_ID,
+			       DISPLAY_INDEX,
+			       ID_PATH,
+			       NAME_PATH,
+			       CODE_PATH,
+			       REMARKS,
+			       STATE,
+			       MODIFY_TIME,
+			       CREATE_TIME,
+			       'false'       AS "IS_LEAF",
+			       'false'       AS "EXPANDED",
+			       PARENT_ORG_ID AS "PARENT"
+			  FROM OAAS_ORG OO
+			 WHERE OO.PARENT_ORG_ID = #{nodeid,jdbcType=BIGINT} 
+			   AND OO.STATE = '10A'
+			   AND EXISTS
+			 (SELECT 1
+			          FROM OAAS_ORG OO1
+			         WHERE OO.ORG_ID = OO1.PARENT_ORG_ID
+			           AND OO.PARENT_ORG_ID = #{nodeid,jdbcType=BIGINT}
+			 )          
+		]]>
+		<!-- 无子节点(isLeaf值为true) -->	
+		<![CDATA[
+		UNION ALL
+		
+		SELECT ORG_ID,
+		       ORG_CODE,
+		       ORG_NAME,
+		       PARENT_ORG_ID,
+		       DISPLAY_INDEX,
+		       ID_PATH,
+		       NAME_PATH,
+		       CODE_PATH,
+		       REMARKS,
+		       STATE,
+		       MODIFY_TIME,
+		       CREATE_TIME,
+		       'true'        AS "IS_LEAF",
+		       'false'       AS "EXPANDED",
+		       PARENT_ORG_ID AS "PARENT"
+		  FROM OAAS_ORG OO
+		 WHERE OO.PARENT_ORG_ID = #{nodeid,jdbcType=BIGINT}
+		   AND OO.STATE = '10A'
+		   AND NOT EXISTS
+		 (SELECT 1 FROM OAAS_ORG OO1 WHERE OO.ORG_ID = OO1.PARENT_ORG_ID)
+		]]>
+  </select>
+  
+  <!-- 获取部门和职位的树结构 -->
+  <select id="selectAllOrgs" resultMap="BaseResultMap">
+  	<![CDATA[
+		SELECT ORG_ID,
+		       ORG_CODE,
+		       ORG_NAME,
+		       PARENT_ORG_ID,
+		       DISPLAY_INDEX,
+		       ID_PATH,
+		       NAME_PATH,
+		       CODE_PATH,
+		       REMARKS,
+		       STATE,
+		       MODIFY_TIME,
+		       CREATE_TIME,
+		       PARENT_ORG_ID AS "PARENT",
+		       ORG_ID        AS "ID"
+		  FROM OAAS_ORG OO
+		 WHERE OO.STATE = '10A'
+	]]>
+  </select>
+    
+  <select id="selectOaasOrgTreeStep" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  		<!-- 有子节点(isParent值为true) -->
+  		<![CDATA[
+			SELECT ORG_ID,
+			       ORG_CODE,
+			       ORG_NAME,
+			       PARENT_ORG_ID,
+			       DISPLAY_INDEX,
+			       ID_PATH,
+			       NAME_PATH,
+			       CODE_PATH,
+			       REMARKS,
+			       STATE,
+			       MODIFY_TIME,
+			       CREATE_TIME,
+			       'true' AS "IS_PARENT",
+			       ORG_ID AS ID, 
+			       ORG_NAME AS NAME, 
+			       PARENT_ORG_ID AS P_ID
+			  FROM OAAS_ORG OO
+			 WHERE OO.PARENT_ORG_ID = #{id,jdbcType=BIGINT} 
+			   AND OO.STATE = '10A'
+			   AND EXISTS
+			 (SELECT 1
+			          FROM OAAS_ORG OO1
+			         WHERE OO.ORG_ID = OO1.PARENT_ORG_ID
+			         AND OO1.STATE = '10A'
+			         AND OO.PARENT_ORG_ID = #{id,jdbcType=BIGINT}
+			 )          
+		]]>
+		<!-- 无子节点(isParent值为false) -->	
+		<![CDATA[
+		UNION ALL
+		
+		SELECT ORG_ID,
+		       ORG_CODE,
+		       ORG_NAME,
+		       PARENT_ORG_ID,
+		       DISPLAY_INDEX,
+		       ID_PATH,
+		       NAME_PATH,
+		       CODE_PATH,
+		       REMARKS,
+		       STATE,
+		       MODIFY_TIME,
+		       CREATE_TIME,
+		       'false' AS "IS_PARENT",
+		       ORG_ID as ID, 
+		       ORG_NAME as NAME, 
+		       PARENT_ORG_ID as P_ID
+		  FROM OAAS_ORG OO
+		 WHERE OO.PARENT_ORG_ID = #{id,jdbcType=BIGINT}
+		   AND OO.STATE = '10A'
+		   AND NOT EXISTS
+		 (SELECT 1 FROM OAAS_ORG OO1 WHERE OO.ORG_ID = OO1.PARENT_ORG_ID AND OO1.STATE = '10A')
+		]]>
+  </select>
+      
+  <select id="selectOaasOrgTree"  resultMap="BaseResultMap">
+   SELECT
+     OO.ORG_ID, OO.ORG_CODE, OO.ORG_NAME, OO.PARENT_ORG_ID, OO.DISPLAY_INDEX, OO.ID_PATH, OO.NAME_PATH, OO.CODE_PATH, 
+     OO.STATE, OO.CREATE_USER_ID, OO.CREATE_TIME, OO.MODIFY_USER_ID, OO.MODIFY_TIME, OO.REMARKS,
+     OO.ORG_ID as ID, OO.ORG_NAME as NAME, OO.PARENT_ORG_ID as P_ID, OUC.USER_NAME AS CREATE_USER_NAME,
+     OUU.USER_NAME AS MODIFY_USER_NAME
+   FROM OAAS_ORG  OO
+   LEFT JOIN OAAS_USER  OUC ON OUC.USER_ID = OO.CREATE_USER_ID
+   LEFT JOIN OAAS_USER  OUU ON OUU.USER_ID = OO.MODIFY_USER_ID
+   WHERE 1=1
+   AND OO.STATE = '10A'
+  </select>
+    
+</mapper>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.oaas.dao.UserPrivateMapper">
+  <resultMap id="BaseResultMap" type="com.basic.oaas.model.UserPrivate">
+    <id column="USER_PRIVATE_ID" jdbcType="DECIMAL" property="userPrivateId" />
+    <result column="USER_ID" jdbcType="DECIMAL" property="userId" />
+    <result column="PRIVATE_ID" jdbcType="DECIMAL" property="privateId" />
+    <result column="EMPOWER_FLAG" jdbcType="DECIMAL" property="empowerFlag" />
+    <result column="CREATE_USER_ID" jdbcType="DECIMAL" property="createUserId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    USER_PRIVATE_ID, USER_ID, PRIVATE_ID, EMPOWER_FLAG,CREATE_USER_ID,CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from OAAS_USER_PRIVATE
+    where USER_PRIVATE_ID = #{userPrivateId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from OAAS_USER_PRIVATE
+    where USER_PRIVATE_ID = #{userPrivateId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.oaas.model.UserPrivate">
+    insert into OAAS_USER_PRIVATE (USER_PRIVATE_ID, USER_ID, PRIVATE_ID, 
+      EMPOWER_FLAG,CREATE_USER_ID,CREATE_TIME)
+    values (#{userPrivateId,jdbcType=DECIMAL}, #{userId,jdbcType=DECIMAL}, #{privateId,jdbcType=DECIMAL}, 
+      #{empowerFlag,jdbcType=DECIMAL},#{createUserId,jdbcType=DECIMAL},#{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.oaas.model.UserPrivate">
+    insert into OAAS_USER_PRIVATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userPrivateId != null">
+        USER_PRIVATE_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="privateId != null">
+        PRIVATE_ID,
+      </if>
+      <if test="empowerFlag != null">
+        EMPOWER_FLAG,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userPrivateId != null">
+        #{userPrivateId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="privateId != null">
+        #{privateId,jdbcType=DECIMAL},
+      </if>
+      <if test="empowerFlag != null">
+        #{empowerFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.oaas.model.UserPrivate">
+    update OAAS_USER_PRIVATE
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="privateId != null">
+        PRIVATE_ID = #{privateId,jdbcType=DECIMAL},
+      </if>
+      <if test="empowerFlag != null">
+        EMPOWER_FLAG = #{empowerFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where USER_PRIVATE_ID = #{userPrivateId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.oaas.model.UserPrivate">
+    update OAAS_USER_PRIVATE
+    set USER_ID = #{userId,jdbcType=DECIMAL},
+      PRIVATE_ID = #{privateId,jdbcType=DECIMAL},
+      EMPOWER_FLAG = #{empowerFlag,jdbcType=DECIMAL},
+      CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where USER_PRIVATE_ID = #{userPrivateId,jdbcType=DECIMAL}
+  </update>
+  
+  <delete id="deleteBatchByUserId">
+  	DELETE FROM OAAS_USER_PRIVATE
+    WHERE USER_ID = #{userId,jdbcType=DECIMAL}
+  </delete>
+  
+  <delete id="deleteBatchByIds">
+  	DELETE FROM OAAS_USER_PRIVATE
+    WHERE USER_ID = #{userId}
+    AND PRIVATE_ID IN 
+   <foreach collection="ids" item="id" index="index"
+           open="(" close=")" separator=",">
+              #{id,jdbcType=DECIMAL}         
+   </foreach>
+  </delete>
+  
+  <insert id="insertBatchUserPrivate" parameterType="java.util.List">
+  	INSERT INTO OAAS_USER_PRIVATE (
+    <include refid="Base_Column_List" /> 
+    ) VALUES
+     <foreach collection="list" item="item" index="index" separator="," >
+      ( 
+      #{item.userPrivateId,jdbcType=DECIMAL}, 
+      #{item.userId,jdbcType=DECIMAL}, 
+      #{item.privateId,jdbcType=DECIMAL}, 
+      #{item.empowerFlag,jdbcType=DECIMAL},
+      #{item.createUserId,jdbcType=DECIMAL},
+      #{item.createTime,jdbcType=TIMESTAMP}
+       )
+    </foreach>
+  </insert>
+  
+  <select id="selectUserPrivateByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	SELECT
+		OUP.USER_PRIVATE_ID,OUP.USER_ID,OUP.PRIVATE_ID,
+		OUP.EMPOWER_FLAG
+	FROM
+	OAAS_USER_PRIVATE AS OUP
+	<where>
+			OUP.USER_ID = #{userId,jdbcType=DECIMAL}
+	</where>
+  </select>
+  
+  <select id="checkExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	SELECT COUNT(1) 
+	FROM
+	OAAS_USER_PRIVATE 
+	<where>
+			USER_ID = #{userId}
+			AND PRIVATE_ID = #{privateId}
+	</where>
+  </select>
+</mapper>

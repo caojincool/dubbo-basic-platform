@@ -1,0 +1,91 @@
+ <settings>
+    <localRepository>E:\apache-maven-3.5.0\repository\hkmoa-tq</localRepository>
+<mirrors>
+  <mirror>
+    <id>nexus</id> 
+    <mirrorOf>*</mirrorOf> 
+    <!-- 内网 -->
+    <url>http://192.168.9.59:8081/nexus/content/groups/Creatson</url>
+    <!-- 外网 -->
+    <!--  <url>http://119.145.165.118:8101/nexus/content/groups/Creatson</url> -->
+    <!-- 快照是否可以下载使用 -->
+    <!--<snapshots>-->
+		  <!--<enabled>true</enabled>-->
+	<!--</snapshots>-->
+  </mirror>
+  
+   <mirror>
+    <id>nexus-hotent</id> 
+    <mirrorOf>*</mirrorOf> 
+    <url>http://www.hotent.org:8081/nexus/content/groups/hotent/</url>
+  </mirror>
+  <mirror>
+      <id>alimaven</id>
+      <name>aliyun maven</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+      <mirrorOf>central</mirrorOf>        
+  </mirror>
+</mirrors>
+ <profiles>  
+    <profile>  
+      <id>nexus</id>  
+      <repositories>  
+        <repository>  
+            <id>nexus</id>  
+            <name>local private nexus</name>  
+            <url>http://192.168.9.59:8081/nexus/content/groups/Creatson</url>  
+            <snapshots>
+		        <enabled>true</enabled>
+		    </snapshots>
+        </repository> 
+        <repository>
+		      <id>repository.maven</id>
+		      <name>Maven Repository</name>
+		      <layout>default</layout>
+		      <url>http://search.maven.org/</url>
+		      <snapshots>
+		        <enabled>true</enabled>
+		      </snapshots>
+	    </repository>  
+      </repositories> 
+    	
+    </profile>  
+    <!--profile>  
+      <id>hotent-local</id>  
+      <repositories>  
+        <repository>  
+            <id>hotent-local</id>  
+            <name>local private htsoft release</name>  
+            <url>http://192.168.1.8:8081/nexus/content/groups/public</url>  
+        </repository>  
+      </repositories>  
+    </profile-->
+    
+    <profile>  
+      <id>hotent-remote</id>  
+      <repositories>  
+        <repository>  
+            <id>hotent-remote</id>  
+            <name>remote hotent maven release</name>  
+            <url>http://192.168.9.59:8081/nexus/content/groups/Creatson</url>  
+        </repository>  
+      </repositories>  
+    </profile>
+   
+ </profiles>  
+ <servers>
+	<server>
+     <id>snapshots</id>
+     <username>deployment</username>
+     <password>deployment1234</password>
+    </server>
+ </servers>
+ <activeProfiles>  
+    
+      <activeProfile>hotent-remote</activeProfile> 
+      <activeProfile>nexus</activeProfile> 
+     <!--
+     <activeProfile>nexus-snapshots</activeProfile>  
+     -->
+ </activeProfiles>
+ </settings>

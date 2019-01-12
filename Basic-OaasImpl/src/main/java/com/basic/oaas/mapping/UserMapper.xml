@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.oaas.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.basic.oaas.model.User">
+        <id column="USER_ID" jdbcType="DECIMAL" property="userId"/>
+        <result column="USER_TEXT" jdbcType="VARCHAR" property="userText"/>
+        <result column="USER_PASSWORD" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="USERNAME" jdbcType="VARCHAR" property="username"/>
+        <result column="EXPIRE_TIME" jdbcType="TIMESTAMP" property="expireTime"/>
+        <result column="STATE" jdbcType="VARCHAR" property="state"/>
+        <result column="CREATE_USER_ID" jdbcType="DECIMAL" property="createUserId"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="MODIFY_USER_ID" jdbcType="DECIMAL" property="modifyUserId"/>
+        <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="REMARKS" jdbcType="VARCHAR" property="remarks"/>
+
+        <result column="CREATE_USER_TEXT" jdbcType="VARCHAR" property="createUserText"/>
+        <result column="MODIFY_USER_TEXT" jdbcType="VARCHAR" property="modifyUserText"/>
+
+        <result column="USER_TYPE" jdbcType="VARCHAR" property="userType"/>
+        <result column="SOURCE" jdbcType="VARCHAR" property="source"/>
+        <result column="OPEN_STATUS" property="openStatus" jdbcType="NUMERIC"/>
+        <result column="OPEN_DATE" property="openDate" jdbcType="TIMESTAMP"/>
+        <result column="STOP_DATE" property="stopDate" jdbcType="TIMESTAMP"/>
+        <result column="DATA_PRIV_EXEMPTION" property="dataPrivExemption" jdbcType="NUMERIC"/>
+    </resultMap>
+
+    <resultMap id="StaffResultMapCustom" type="com.basic.oaas.model.Staff">
+        <result column="STAFF_ID" jdbcType="DECIMAL" property="staffId"/>
+        <result column="STAFF_NAME" jdbcType="VARCHAR" property="staffName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    USER_ID, USER_TEXT, USER_PASSWORD, USERNAME, EXPIRE_TIME, STATE, CREATE_USER_ID, 
+    CREATE_TIME, MODIFY_USER_ID, MODIFY_TIME, REMARKS,USER_TYPE,SOURCE,OPEN_STATUS,OPEN_DATE,STOP_DATE,DATA_PRIV_EXEMPTION
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    SELECT U.*,OU1.USER_TEXT 'createUserName',OU2.USER_TEXT 'modifyUserName' FROM OAAS_USER U
+    LEFT JOIN OAAS_USER OU1  ON  OU1.USER_ID = U.CREATE_USER_ID
+    LEFT JOIN OAAS_USER OU2  ON  OU2.USER_ID = U.MODIFY_USER_ID
+    WHERE U.USER_ID = #{userId,jdbcType=DECIMAL} AND U.STATE = '10A'
+  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    DELETE FROM OAAS_USER
+    WHERE USER_ID = #{userId,jdbcType=DECIMAL}
+  </delete>
+    <insert id="insert" parameterType="com.basic.oaas.model.User">
+    INSERT INTO OAAS_USER (USER_ID, USER_TEXT, USER_PASSWORD, 
+      USERNAME, EXPIRE_TIME, STATE, 
+      CREATE_USER_ID, CREATE_TIME, MODIFY_USER_ID, 
+      MODIFY_TIME, REMARKS,USER_TYPE,SOURCE,OPEN_STATUS,OPEN_DATE,STOP_DATE,DATA_PRIV_EXEMPTION)
+    VALUES (#{userId,jdbcType=DECIMAL}, #{userText,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{expireTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=DECIMAL}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{userType,jdbcType=NUMERIC},
+      #{source,jdbcType=NUMERIC},#{openStatus,jdbcType=NUMERIC},
+      #{openDate,jdbcType=TIMESTAMP},#{stopDate,jdbcType=TIMESTAMP},#{dataPrivExemption,jdbcType=NUMERIC})
+  </insert>
+    <insert id="insertSelective" parameterType="com.basic.oaas.model.User">
+        INSERT INTO OAAS_USER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                USER_ID,
+            </if>
+            <if test="userText != null">
+                USER_TEXT,
+            </if>
+            <if test="userPassword != null">
+                USER_PASSWORD,
+            </if>
+            <if test="username != null">
+                USERNAME,
+            </if>
+            <if test="expireTime != null">
+                EXPIRE_TIME,
+            </if>
+            <if test="state != null">
+                STATE,
+            </if>
+            <if test="createUserId != null">
+                CREATE_USER_ID,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="modifyUserId != null">
+                MODIFY_USER_ID,
+            </if>
+            <if test="modifyTime != null">
+                MODIFY_TIME,
+            </if>
+            <if test="remarks != null">
+                REMARKS,
+            </if>
+            <if test="userType != null">
+                USER_TYPE,
+            </if>
+            <if test="source != null">
+                SOURCE,
+            </if>
+            <if test="openStatus != null">
+                OPEN_STATUS,
+            </if>
+            <if test="openDate != null">
+                OPEN_DATE,
+            </if>
+            <if test="stopDate != null">
+                STOP_DATE,
+            </if>
+            <if test="dataPrivExemption != null">
+                DATA_PRIV_EXEMPTION
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=DECIMAL},
+            </if>
+            <if test="userText != null">
+                #{userText,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="expireTime != null">
+                #{expireTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                #{createUserId,jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+                #{modifyUserId,jdbcType=DECIMAL},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=NUMERIC},
+            </if>
+            <if test="source != null">
+                #{source,jdbcType=NUMERIC},
+            </if>
+            <if test="openStatus != null">
+                #{openStatus,jdbcType=NUMERIC},
+            </if>
+            <if test="openDate != null">
+                #{openDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="stopDate != null">
+                #{stopDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dataPrivExemption != null">
+                #{dataPrivExemption,jdbcType=NUMERIC}
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.basic.oaas.model.User">
+        UPDATE OAAS_USER
+        <set>
+            <if test="userText != null">
+                USER_TEXT = #{userText,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                USERNAME = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="expireTime != null">
+                EXPIRE_TIME = #{expireTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                STATE = #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUserId != null">
+                MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+            </if>
+            <if test="modifyTime != null">
+                MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                REMARKS = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                USER_TYPE = #{userType,jdbcType=NUMERIC},
+            </if>
+            <if test="source != null">
+                SOURCE = #{source,jdbcType=NUMERIC},
+            </if>
+            <if test="openStatus != null">
+                OPEN_STATUS = #{openStatus,jdbcType=NUMERIC},
+            </if>
+            <if test="openDate != null">
+                OPEN_DATE = #{openDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="stopDate != null">
+                STOP_DATE = #{stopDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dataPrivExemption != null">
+                DATA_PRIV_EXEMPTION = #{dataPrivExemption,jdbcType=NUMERIC}
+            </if>
+        </set>
+        WHERE USER_ID = #{userId,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.basic.oaas.model.User">
+    UPDATE OAAS_USER
+    SET USER_TEXT = #{userText,jdbcType=VARCHAR},
+        USERNAME = #{username,jdbcType=VARCHAR},
+        EXPIRE_TIME = #{expireTime,jdbcType=TIMESTAMP},
+        STATE = #{state,jdbcType=VARCHAR},
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+        USER_TYPE = #{userType,jdbcType=NUMERIC},
+      	SOURCE = #{source,jdbcType=NUMERIC},
+        OPEN_STATUS = #{openStatus,jdbcType=NUMERIC},
+        OPEN_DATE = #{openDate,jdbcType=TIMESTAMP},
+        STOP_DATE = #{stopDate,jdbcType=TIMESTAMP},
+        DATA_PRIV_EXEMPTION = #{dataPrivExemption,jdbcType=NUMERIC}
+    WHERE USER_ID = #{userId,jdbcType=DECIMAL}
+  </update>
+
+    <update id="changePwd" parameterType="com.basic.oaas.model.User">
+    UPDATE OAAS_USER
+    SET USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    WHERE USER_ID = #{userId,jdbcType=DECIMAL}
+  </update>
+
+    <select id="selectByUsername" parameterType="java.lang.String"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM OAAS_USER WHERE STATE != '10X'
+        AND USERNAME = #{username,jdbcType=VARCHAR}
+
+    </select>
+
+    <select id="selectUserList" parameterType="com.basic.oaas.bean.UserIBean"
+            resultMap="BaseResultMap">
+        SELECT
+        OU.USER_ID, OU.USER_TEXT, OU.USER_PASSWORD, OU.USERNAME, OU.EXPIRE_TIME, OU.STATE, OU.CREATE_USER_ID,
+        OU.CREATE_TIME, OU.MODIFY_USER_ID, OU.MODIFY_TIME, OU.REMARKS,
+        OU1.USER_TEXT AS CREATE_USER_TEXT,OU2.USER_TEXT AS MODIFY_USER_TEXT
+        FROM OAAS_USER OU
+        <if test="orgId != null and orgId !=''">
+            INNER JOIN OAAS_USER_STAFF OUS ON OUS.USER_ID = OU.USER_ID
+            INNER JOIN OAAS_STAFF_JOB OSJ ON OSJ.STAFF_ID = OUS.STAFF_ID
+            INNER JOIN OAAS_JOB OJ ON OJ.JOB_ID = OSJ.JOB_ID
+        </if>
+        LEFT JOIN OAAS_USER OU1 ON OU.CREATE_USER_ID = OU1.USER_ID
+        LEFT JOIN OAAS_USER OU2 ON OU.MODIFY_USER_ID = OU2.USER_ID
+        <where>
+            <if test="orgId != null and orgId !=''">
+                OJ.ORG_ID = #{orgId,jdbcType=DECIMAL}
+            </if>
+            <if test="username != null and username != ''">
+                AND INSTR(OU.USERNAME,#{username,jdbcType=VARCHAR}) >0
+            </if>
+            <if test="userText != null and userText !=''">
+                AND INSTR(OU.USER_TEXT,#{userText,jdbcType=VARCHAR}) >0
+            </if>
+            <if test="beginExpireTime !=null and beginExpireTime !='' and endExpireTime !=null and endExpireTime !=''">
+                AND OU.EXPIRE_TIME BETWEEN #{beginExpireTime,jdbcType=TIMESTAMP} AND #{endExpireTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="staffId != null and staffId != ''">
+                AND NOT EXISTS (SELECT 1 FROM OAAS_USER_STAFF OUS WHERE OUS.USER_ID = OU.USER_ID AND OUS.STAFF_ID
+                =#{staffId,jdbcType=DECIMAL} )
+            </if>
+            AND OU.STATE != '10X'
+        </where>
+        <if test="start != null and limit != null and limit > 0">
+            LIMIT #{start}, #{limit}
+        </if>
+    </select>
+
+    <select id="selectUserCount" parameterType="com.basic.oaas.bean.UserIBean"
+            resultType="java.lang.Long">
+        SELECT
+        count(1)
+        FROM OAAS_USER OU
+        <if test="orgId != null and orgId !=''">
+            INNER JOIN OAAS_USER_STAFF OUS ON OUS.USER_ID = OU.USER_ID
+            INNER JOIN OAAS_STAFF_JOB OSJ ON OSJ.STAFF_ID = OUS.STAFF_ID
+            INNER JOIN OAAS_JOB OJ ON OJ.JOB_ID = OSJ.JOB_ID
+        </if>
+        LEFT JOIN OAAS_USER OU1 ON OU.CREATE_USER_ID = OU1.USER_ID
+        LEFT JOIN OAAS_USER OU2 ON OU.MODIFY_USER_ID = OU2.USER_ID
+        <where>
+            <if test="orgId != null and orgId !=''">
+                OJ.ORG_ID = #{orgId,jdbcType=DECIMAL}
+            </if>
+            <if test="username != null and username != ''">
+                AND INSTR(OU.USERNAME,#{username,jdbcType=VARCHAR}) >0
+            </if>
+            <if test="userText != null and userText !=''">
+                AND INSTR(OU.USER_TEXT,#{userText,jdbcType=VARCHAR}) >0
+            </if>
+            <if test="beginExpireTime != null and beginExpireTime !='' and endExpireTime !=null and endExpireTime !=''">
+                AND OU.EXPIRE_TIME BETWEEN #{beginExpireTime,jdbcType=TIMESTAMP} AND #{endExpireTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="staffId != null and staffId != ''">
+                AND NOT EXISTS (SELECT 1 FROM OAAS_USER_STAFF OUS WHERE OUS.USER_ID = OU.USER_ID AND OUS.STAFF_ID
+                =#{staffId,jdbcType=DECIMAL} )
+            </if>
+            AND OU.STATE != '10X'
+        </where>
+    </select>
+
+    <update id="updateBatchByUserIds">
+        UPDATE OAAS_USER SET STATE ='10X'
+        WHERE USER_ID IN
+        <foreach collection="array" item="userId" index="index"
+                 open="(" close=")" separator=",">
+            #{userId,jdbcType=DECIMAL}
+        </foreach>
+        AND USER_ID != 1
+    </update>
+
+    <select id="selectByOrgId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT 
+    OU.USER_ID, OU.USER_TEXT, OU.USER_PASSWORD, OU.USERNAME, OU.EXPIRE_TIME, OU.STATE, OU.CREATE_USER_ID, 
+    OU.CREATE_TIME, OU.MODIFY_USER_ID, OU.MODIFY_TIME, OU.REMARKS
+    FROM OAAS_USER OU
+    JOIN OAAS_USER_STAFF OUS ON OUS.USER_ID = OU.USER_ID
+    JOIN OAAS_STAFF OS ON OS.STAFF_ID = OUS.STAFF_ID AND OS.STATE = '10A'
+    JOIN OAAS_STAFF_JOB OSJ ON OSJ.STAFF_ID = OS.STAFF_ID
+    JOIN OAAS_JOB OJ ON OJ.JOB_ID = OSJ.JOB_ID AND OJ.STATE = '10A'
+    WHERE 
+    OJ.ORG_ID = #{orgId,jdbcType=DECIMAL}
+  </select>
+
+    <select id="selectByStaffId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT OU.*
+    FROM OAAS_USER OU
+    JOIN OAAS_USER_STAFF OUS ON OUS.USER_ID = OU.USER_ID
+    JOIN OAAS_STAFF OS ON OS.STAFF_ID = OUS.STAFF_ID AND OS.STATE = '10A'
+    WHERE 
+    OS.STAFF_ID = #{staffId,jdbcType=DECIMAL}
+  </select>
+
+    <select id="selectByJobId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT 
+    OU.*
+    FROM OAAS_USER OU
+    JOIN OAAS_USER_STAFF OUS ON OUS.USER_ID = OU.USER_ID
+    JOIN OAAS_STAFF OS ON OS.STAFF_ID = OUS.STAFF_ID AND OS.STATE = '10A'
+    JOIN OAAS_STAFF_JOB OSJ ON OSJ.STAFF_ID = OS.STAFF_ID
+    JOIN OAAS_JOB OJ ON OJ.JOB_ID = OSJ.JOB_ID AND OJ.STATE = '10A'
+    WHERE 
+    OJ.JOB_ID = #{jobId,jdbcType=DECIMAL}
+  </select>
+
+    <select id="selectByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT 
+    OU.*
+    FROM OAAS_USER OU
+    JOIN OAAS_USER_ROLE OUR ON OUR.USER_ID = OU.USER_ID
+    WHERE 
+    OUR.ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </select>
+
+    <select id="qryAllUser" resultMap="BaseResultMap">
+    SELECT 
+     *
+  	FROM OAAS_USER
+  	WHERE STATE = "10A"
+  </select>
+
+    <select id="qryStaffIdByUsername" resultMap="StaffResultMapCustom" parameterType="java.lang.String">
+	SELECT  OS.STAFF_ID 
+	FROM OAAS_STAFF OS 
+		LEFT JOIN OAAS_USER_STAFF OUS ON OUS.STAFF_ID = OS.STAFF_ID
+	LEFT JOIN OAAS_USER OU ON OU.USER_ID = OUS.USER_ID 
+	WHERE 
+	OU.USERNAME = #{account,jdbcType=VARCHAR}
+</select>
+
+    <select id="checkByUser" resultMap="BaseResultMap" parameterType="com.basic.oaas.model.User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM OAAS_USER
+        <where>
+            <if test="state != null">
+                STATE = #{state,jdbcType=VARCHAR}
+            </if>
+            <if test="username != null">
+                AND USERNAME = #{username,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT U.*,OU1.USER_TEXT 'createUserName',OU2.USER_TEXT 'modifyUserName' FROM OAAS_USER U
+        LEFT JOIN OAAS_USER OU1 ON OU1.USER_ID = U.CREATE_USER_ID
+        LEFT JOIN OAAS_USER OU2 ON OU2.USER_ID = U.MODIFY_USER_ID
+        <where>
+            U.state = '10A'
+            <if test="whereSql!=null">
+                AND ${whereSql}
+            </if>
+        </where>
+        <if test="orderBySql!=null">
+            ORDER BY ${orderBySql}
+        </if>
+        <if test="orderBySql==null">
+            ORDER BY U.USER_ID DESC
+        </if>
+    </select>
+
+    <select id="getAvaliableAccounts" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT *
+        FROM OAAS_USER
+        WHERE STATE='10A'
+        AND USER_ID NOT IN (SELECT USER_ID FROM OAAS_USER_STAFF)
+        AND USER_TYPE = #{userType}
+        <if test="userName != null">
+            AND USERNAME like "%"#{userName}"%"
+        </if>
+        <if test="userText != null">
+            AND USER_TEXT like "%"#{userText}"%"
+        </if>
+        ORDER BY USER_ID DESC
+        <if test="start != null and limit != null and limit > 0">
+            LIMIT #{start}, #{limit}
+        </if>
+    </select>
+
+    <select id="getBindingAccounts" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT U.*
+        FROM OAAS_USER_STAFF OUS
+        JOIN OAAS_USER U ON U.USER_ID = OUS.USER_ID AND U.STATE = '10A'
+        <where>
+            1=1
+            <if test="userType != null">
+                AND U.USER_TYPE = #{userType}
+            </if>
+            <if test="bindId != null">
+                AND OUS.STAFF_ID = #{bindId}
+            </if>
+        </where>
+        ORDER BY U.USER_ID DESC
+        <if test="start != null and limit != null and limit > 0">
+            LIMIT #{start}, #{limit}
+        </if>
+    </select>
+
+    <select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		SELECT * FROM OAAS_USER WHERE USER_ID = #{id}
+	</select>
+
+    <select id="selectByOrgIds" resultMap="BaseResultMap" parameterType="java.util.List">
+        SELECT
+        OUS.*
+        FROM OAAS_USER OU
+        JOIN OAAS_USER_STAFF OUS ON OUS.USER_ID = OU.USER_ID
+        JOIN OAAS_STAFF OS ON OS.STAFF_ID = OUS.STAFF_ID AND OS.STATE = '10A'
+        JOIN OAAS_STAFF_JOB OSJ ON OSJ.STAFF_ID = OS.STAFF_ID
+        JOIN OAAS_JOB OJ ON OJ.JOB_ID = OSJ.JOB_ID AND OJ.STATE = '10A'
+        WHERE
+        OJ.ORG_ID IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getOutSideCode" parameterType="java.lang.Long" resultType="java.lang.String">
+    SELECT
+	   b.`code`
+    FROM
+	(
+		SELECT
+			ou.USER_ID,
+			ou.USER_TEXT,
+			os.STAFF_ID,
+			bc.`code`,
+			ou.USER_TYPE
+		FROM
+			oaas_user ou
+		LEFT JOIN oaas_user_staff os ON ou.USER_ID = os.USER_ID
+		LEFT JOIN base_customer bc ON os.STAFF_ID = bc.companyId
+		UNION ALL
+			SELECT
+				ou.USER_ID,
+				ou.USER_TEXT,
+				os.STAFF_ID,
+				sup.`code`,
+				ou.USER_TYPE
+			FROM
+				oaas_user ou
+			LEFT JOIN oaas_user_staff os ON ou.USER_ID = os.USER_ID
+			LEFT JOIN base_supplier_info sup ON os.STAFF_ID = sup.companyId
+	   ) b
+    WHERE
+	   b.USER_ID =  #{userId}
+      AND b.USER_TYPE = 1
+    </select>
+</mapper>

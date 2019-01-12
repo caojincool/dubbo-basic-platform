@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.OrderOperMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.order.model.OrderOper" >
+    <id column="OPER_ID" property="operId" jdbcType="DECIMAL" />
+    <result column="ORDER_ID" property="orderId" jdbcType="DECIMAL" />
+    <result column="OPER_TYPE" property="operType" jdbcType="VARCHAR" />
+    <result column="OPER_USER_ID" property="operUserId" jdbcType="DECIMAL" />
+    <result column="OPER_USER_TEXT" property="operUserText" jdbcType="VARCHAR" />
+    <result column="OPER_TIME" property="operTime" jdbcType="TIMESTAMP" />
+    <result column="OPER_INFO" property="operInfo" jdbcType="VARCHAR" />
+    <result column="OPER_COMMENTS" property="operComments" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OPER_ID, ORDER_ID, OPER_TYPE, OPER_USER_ID, OPER_USER_TEXT, OPER_TIME, OPER_INFO, 
+    OPER_COMMENTS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from OF_ORDER_OPER
+    where OPER_ID = #{operId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from OF_ORDER_OPER
+    where OPER_ID = #{operId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.order.model.OrderOper" >
+    insert into OF_ORDER_OPER (OPER_ID, ORDER_ID, OPER_TYPE, 
+      OPER_USER_ID, OPER_USER_TEXT, OPER_TIME, 
+      OPER_INFO, OPER_COMMENTS)
+    values (#{operId,jdbcType=DECIMAL}, #{orderId,jdbcType=DECIMAL}, #{operType,jdbcType=VARCHAR}, 
+      #{operUserId,jdbcType=DECIMAL}, #{operUserText,jdbcType=VARCHAR}, #{operTime,jdbcType=TIMESTAMP}, 
+      #{operInfo,jdbcType=VARCHAR}, #{operComments,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.order.model.OrderOper" >
+    insert into OF_ORDER_OPER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="operId != null" >
+        OPER_ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="operType != null" >
+        OPER_TYPE,
+      </if>
+      <if test="operUserId != null" >
+        OPER_USER_ID,
+      </if>
+      <if test="operUserText != null" >
+        OPER_USER_TEXT,
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME,
+      </if>
+      <if test="operInfo != null" >
+        OPER_INFO,
+      </if>
+      <if test="operComments != null" >
+        OPER_COMMENTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="operId != null" >
+        #{operId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="operType != null" >
+        #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="operUserId != null" >
+        #{operUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="operUserText != null" >
+        #{operUserText,jdbcType=VARCHAR},
+      </if>
+      <if test="operTime != null" >
+        #{operTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operInfo != null" >
+        #{operInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="operComments != null" >
+        #{operComments,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.OrderOper" >
+    update OF_ORDER_OPER
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="operType != null" >
+        OPER_TYPE = #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="operUserId != null" >
+        OPER_USER_ID = #{operUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="operUserText != null" >
+        OPER_USER_TEXT = #{operUserText,jdbcType=VARCHAR},
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operInfo != null" >
+        OPER_INFO = #{operInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="operComments != null" >
+        OPER_COMMENTS = #{operComments,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OPER_ID = #{operId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.order.model.OrderOper" >
+    update OF_ORDER_OPER
+    set ORDER_ID = #{orderId,jdbcType=DECIMAL},
+      OPER_TYPE = #{operType,jdbcType=VARCHAR},
+      OPER_USER_ID = #{operUserId,jdbcType=DECIMAL},
+      OPER_USER_TEXT = #{operUserText,jdbcType=VARCHAR},
+      OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
+      OPER_INFO = #{operInfo,jdbcType=VARCHAR},
+      OPER_COMMENTS = #{operComments,jdbcType=VARCHAR}
+    where OPER_ID = #{operId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 根据参数查询 -->
+  <select id="selectOrderOperList" resultMap="BaseResultMap" parameterType="com.basic.order.bean.WorkOrderIbean" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM OF_ORDER_OPER
+      <where>
+        AND ORDER_ID = #{orderId,jdbcType=VARCHAR}
+	  </where>
+  </select>
+  
+</mapper>

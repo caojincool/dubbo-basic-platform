@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="gidFiller" class="com.basic.framework.gid.server.GidFiller" factory-method="getInstance">
+		<property name="gidDAO" ref="gidDAO" />
+	</bean>
+
+	<bean id="gidManager" class="com.basic.framework.gid.server.GidManager" factory-method="getInstance">
+		<property name="gidFiller" ref="gidFiller" />
+		<property name="gidDAO" ref="gidDAO" />
+	</bean>
+
+
+</beans>

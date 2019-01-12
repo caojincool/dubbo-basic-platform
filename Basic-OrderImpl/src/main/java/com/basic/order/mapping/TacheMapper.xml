@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.TacheMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.order.model.Tache" >
+    <id column="TACHE_ID" property="tacheId" jdbcType="DECIMAL" />
+    <result column="CATALOG_ID" property="catalogId" jdbcType="DECIMAL" />
+    <result column="TACHE_CODE" property="tacheCode" jdbcType="VARCHAR" />
+    <result column="TACHE_NAME" property="tacheName" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="DECIMAL" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TACHE_ID, CATALOG_ID, TACHE_CODE, TACHE_NAME, STATE, CREATE_USER_ID, CREATE_TIME, 
+    MODIFY_USER_ID, MODIFY_TIME, REMARKS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from PF_TACHE
+    where TACHE_ID = #{tacheId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from PF_TACHE
+    where TACHE_ID = #{tacheId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.order.model.Tache" >
+    insert into PF_TACHE (TACHE_ID, CATALOG_ID, TACHE_CODE, 
+      TACHE_NAME, STATE, CREATE_USER_ID, 
+      CREATE_TIME, MODIFY_USER_ID, MODIFY_TIME, 
+      REMARKS)
+    values (#{tacheId,jdbcType=DECIMAL}, #{catalogId,jdbcType=DECIMAL}, #{tacheCode,jdbcType=VARCHAR}, 
+      #{tacheName,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{createUserId,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=DECIMAL}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.order.model.Tache" >
+    insert into PF_TACHE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tacheId != null" >
+        TACHE_ID,
+      </if>
+      <if test="catalogId != null" >
+        CATALOG_ID,
+      </if>
+      <if test="tacheCode != null" >
+        TACHE_CODE,
+      </if>
+      <if test="tacheName != null" >
+        TACHE_NAME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyUserId != null" >
+        MODIFY_USER_ID,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="remarks != null" >
+        REMARKS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tacheId != null" >
+        #{tacheId,jdbcType=DECIMAL},
+      </if>
+      <if test="catalogId != null" >
+        #{catalogId,jdbcType=DECIMAL},
+      </if>
+      <if test="tacheCode != null" >
+        #{tacheCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tacheName != null" >
+        #{tacheName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.Tache" >
+    update PF_TACHE
+    <set >
+      <if test="catalogId != null" >
+        CATALOG_ID = #{catalogId,jdbcType=DECIMAL},
+      </if>
+      <if test="tacheCode != null" >
+        TACHE_CODE = #{tacheCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tacheName != null" >
+        TACHE_NAME = #{tacheName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TACHE_ID = #{tacheId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.order.model.Tache" >
+    update PF_TACHE
+    set CATALOG_ID = #{catalogId,jdbcType=DECIMAL},
+      TACHE_CODE = #{tacheCode,jdbcType=VARCHAR},
+      TACHE_NAME = #{tacheName,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      REMARKS = #{remarks,jdbcType=VARCHAR}
+    where TACHE_ID = #{tacheId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 根据环节编码查询有效的一条数据 -->
+  <select id="selectByTacheCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PF_TACHE
+    WHERE TACHE_CODE = #{tacheCode,jdbcType=DECIMAL}
+    AND STATE = '10A'
+  </select>
+
+  <!-- 根据参数查询 -->
+  <select id="selectTacheList" resultMap="BaseResultMap" parameterType="com.basic.order.bean.TacheIbean" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PF_TACHE
+      <where>
+      STATE = '10A'
+      <if test="catalogId != null" >
+        AND CATALOG_ID = #{catalogId,jdbcType=DECIMAL}
+      </if>
+      <if test="tacheCode != null and tacheCode != ''" >
+        AND TACHE_CODE = #{tacheCode,jdbcType=VARCHAR}
+      </if>
+      <if test="tacheName != null and tacheName != ''" >
+        <![CDATA[
+        AND INSTR(TACHE_NAME, #{tacheName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>  
+	  </where>
+      <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+      </if>
+  </select>
+  
+  <!-- 根据参数查询的总数 -->
+  <select id="selectTacheListCount" resultType="java.lang.Long" parameterType="com.basic.order.bean.TacheIbean" >
+    SELECT 
+	COUNT(0)
+    FROM PF_TACHE
+      <where>
+      STATE = '10A'
+      <if test="catalogId != null" >
+        AND CATALOG_ID = #{catalogId,jdbcType=DECIMAL}
+      </if>
+      <if test="tacheCode != null and tacheCode != ''" >
+        AND TACHE_CODE = #{tacheCode,jdbcType=VARCHAR}
+      </if>
+      <if test="tacheName != null and tacheName != ''" >
+        <![CDATA[
+        AND INSTR(TACHE_NAME, #{tacheName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>  
+	  </where>
+  </select> 
+  
+  <!-- 批量修改状态 -->
+  <update id="updateBatchStateByTacheIds" parameterType="com.basic.order.model.Tache">
+  	UPDATE PF_TACHE
+  	<set>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserId != null" >
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+  	WHERE TACHE_ID IN
+  	<foreach collection="tacheIds" item="tacheId" index="index"
+            open="(" close=")" separator=",">
+               #{tacheId,jdbcType=VARCHAR}         
+    </foreach>
+  </update>
+      
+</mapper>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.OrderPriorityMapper">
+	<resultMap id="BaseResultMap" type="com.basic.order.model.OrderPriority">
+		<id column="ORDER_PRIORITY" property="orderPriority" jdbcType="DECIMAL" />
+		<result column="ORDER_PRIORITY_NAME" property="orderPriorityName"
+			jdbcType="VARCHAR" />
+		<result column="STATE" property="state" jdbcType="VARCHAR" />
+		<result column="CREATE_USER_ID" property="createUserId"
+			jdbcType="DECIMAL" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_USER_ID" property="modifyUserId"
+			jdbcType="DECIMAL" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ORDER_PRIORITY, ORDER_PRIORITY_NAME, STATE, CREATE_USER_ID, CREATE_TIME,
+		MODIFY_USER_ID,
+		MODIFY_TIME, REMARKS
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from PF_ORDER_PRIORITY
+		where ORDER_PRIORITY = #{orderPriority,jdbcType=DECIMAL}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from PF_ORDER_PRIORITY
+		where ORDER_PRIORITY = #{orderPriority,jdbcType=DECIMAL}
+	</delete>
+	<insert id="insert" parameterType="com.basic.order.model.OrderPriority">
+		insert into PF_ORDER_PRIORITY (ORDER_PRIORITY, ORDER_PRIORITY_NAME,
+		STATE, CREATE_USER_ID, CREATE_TIME,
+		MODIFY_USER_ID, MODIFY_TIME, REMARKS
+		)
+		values (#{orderPriority,jdbcType=DECIMAL},
+		#{orderPriorityName,jdbcType=VARCHAR},
+		#{state,jdbcType=VARCHAR}, #{createUserId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP},
+		#{modifyUserId,jdbcType=DECIMAL}, #{modifyTime,jdbcType=TIMESTAMP},
+		#{remarks,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.basic.order.model.OrderPriority">
+		insert into PF_ORDER_PRIORITY
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="orderPriority != null">
+				ORDER_PRIORITY,
+			</if>
+			<if test="orderPriorityName != null">
+				ORDER_PRIORITY_NAME,
+			</if>
+			<if test="state != null">
+				STATE,
+			</if>
+			<if test="createUserId != null">
+				CREATE_USER_ID,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyUserId != null">
+				MODIFY_USER_ID,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="remarks != null">
+				REMARKS,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="orderPriority != null">
+				#{orderPriority,jdbcType=DECIMAL},
+			</if>
+			<if test="orderPriorityName != null">
+				#{orderPriorityName,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="createUserId != null">
+				#{createUserId,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyUserId != null">
+				#{modifyUserId,jdbcType=DECIMAL},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.OrderPriority">
+		update PF_ORDER_PRIORITY
+		<set>
+			<if test="orderPriorityName != null">
+				ORDER_PRIORITY_NAME = #{orderPriorityName,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				STATE = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="createUserId != null">
+				CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyUserId != null">
+				MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remarks != null">
+				REMARKS = #{remarks,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ORDER_PRIORITY = #{orderPriority,jdbcType=DECIMAL}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.basic.order.model.OrderPriority">
+		update PF_ORDER_PRIORITY
+		set ORDER_PRIORITY_NAME = #{orderPriorityName,jdbcType=VARCHAR},
+		STATE = #{state,jdbcType=VARCHAR},
+		CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+		MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+		REMARKS = #{remarks,jdbcType=VARCHAR}
+		where ORDER_PRIORITY = #{orderPriority,jdbcType=DECIMAL}
+	</update>
+
+	<!-- 根据参数查询 -->
+	<select id="selectOrderPriorityList" resultMap="BaseResultMap"
+		parameterType="com.basic.order.bean.OrderPriorityIbean">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM PF_ORDER_PRIORITY
+		<where>
+			STATE = '10A'
+			<if test="orderPriority != null">
+			AND	ORDER_PRIORITY = #{orderPriority,jdbcType=DECIMAL}
+			</if>
+			<if test="orderPriorityName != null and orderPriorityName != ''">
+        <![CDATA[
+        AND INSTR(ORDER_PRIORITY_NAME, #{orderPriorityName,jdbcType=VARCHAR}) > 0
+        ]]>
+			</if>
+		</where>
+		<if test="start != null and limit != null and limit > 0">
+			LIMIT #{start}, #{limit}
+		</if>
+	</select>
+
+	<!-- 根据参数查询的总数 -->
+	<select id="selectOrderPriorityListCount" resultType="java.lang.Long"
+		parameterType="com.basic.order.bean.OrderPriorityIbean">
+		SELECT
+		COUNT(0)
+		FROM PF_ORDER_PRIORITY
+		<where>
+			STATE = '10A'
+			<if test="orderPriority != null and orderPriority != ''">
+				AND ORDER_PRIORITY = #{orderPriority,jdbcType=DECIMAL}
+			</if>
+			<if test="orderPriorityName != null and orderPriorityName != ''">
+        <![CDATA[
+        AND INSTR(ORDER_PRIORITY_NAME, #{orderPriorityName,jdbcType=VARCHAR}) > 0
+        ]]>
+			</if>
+		</where>
+	</select>
+
+	<!-- 批量修改状态 -->
+	<update id="updateBatchStateByOrderPrioritys" parameterType="com.basic.order.model.OrderPriority">
+		UPDATE PF_ORDER_PRIORITY
+		<set>
+			<if test="state != null">
+				STATE = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyUserId != null">
+				MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		WHERE ORDER_PRIORITY IN
+		<foreach collection="orderPrioritys" item="orderPriority"
+			index="index" open="(" close=")" separator=",">
+			#{orderPriority,jdbcType=DECIMAL}
+		</foreach>
+	</update>
+
+</mapper>

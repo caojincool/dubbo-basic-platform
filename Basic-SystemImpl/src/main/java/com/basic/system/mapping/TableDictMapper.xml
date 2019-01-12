@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.system.dao.TableDictMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.system.model.TableDict" >
+    <id column="DICT_ID" property="dictId" jdbcType="DECIMAL" />
+    <result column="TABLE_CODE" property="tableCode" jdbcType="VARCHAR" />
+    <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+    <result column="COL_CODE" property="colCode" jdbcType="VARCHAR" />
+    <result column="COL_NAME" property="colName" jdbcType="VARCHAR" />
+    <result column="COL_VALUE" property="colValue" jdbcType="VARCHAR" />
+    <result column="COL_TEXT" property="colText" jdbcType="VARCHAR" />
+    <result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DICT_ID, TABLE_CODE, TABLE_NAME, COL_CODE, COL_NAME, COL_VALUE, COL_TEXT, REMARKS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PUB_TABLE_DICT
+    WHERE DICT_ID = #{dictId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    DELETE FROM PUB_TABLE_DICT
+    WHERE DICT_ID = #{dictId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.system.model.TableDict" >
+    INSERT INTO PUB_TABLE_DICT (DICT_ID, TABLE_CODE, TABLE_NAME, 
+      COL_CODE, COL_NAME, COL_VALUE, 
+      COL_TEXT, REMARKS)
+    VALUES (#{dictId,jdbcType=DECIMAL}, #{tableCode,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, 
+      #{colCode,jdbcType=VARCHAR}, #{colName,jdbcType=VARCHAR}, #{colValue,jdbcType=VARCHAR}, 
+      #{colText,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.system.model.TableDict" >
+    INSERT INTO PUB_TABLE_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        DICT_ID,
+      </if>
+      <if test="tableCode != null" >
+        TABLE_CODE,
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+      <if test="colCode != null" >
+        COL_CODE,
+      </if>
+      <if test="colName != null" >
+        COL_NAME,
+      </if>
+      <if test="colValue != null" >
+        COL_VALUE,
+      </if>
+      <if test="colText != null" >
+        COL_TEXT,
+      </if>
+      <if test="remarks != null" >
+        REMARKS,
+      </if>
+    </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        #{dictId,jdbcType=DECIMAL},
+      </if>
+      <if test="tableCode != null" >
+        #{tableCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="colCode != null" >
+        #{colCode,jdbcType=VARCHAR},
+      </if>
+      <if test="colName != null" >
+        #{colName,jdbcType=VARCHAR},
+      </if>
+      <if test="colValue != null" >
+        #{colValue,jdbcType=VARCHAR},
+      </if>
+      <if test="colText != null" >
+        #{colText,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.system.model.TableDict" >
+    UPDATE PUB_TABLE_DICT
+    <set >
+      <if test="tableCode != null" >
+        TABLE_CODE = #{tableCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="colCode != null" >
+        COL_CODE = #{colCode,jdbcType=VARCHAR},
+      </if>
+      <if test="colName != null" >
+        COL_NAME = #{colName,jdbcType=VARCHAR},
+      </if>
+      <if test="colValue != null" >
+        COL_VALUE = #{colValue,jdbcType=VARCHAR},
+      </if>
+      <if test="colText != null" >
+        COL_TEXT = #{colText,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    WHERE DICT_ID = #{dictId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.system.model.TableDict" >
+    UPDATE PUB_TABLE_DICT
+    SET TABLE_CODE = #{tableCode,jdbcType=VARCHAR},
+      TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      COL_CODE = #{colCode,jdbcType=VARCHAR},
+      COL_NAME = #{colName,jdbcType=VARCHAR},
+      COL_VALUE = #{colValue,jdbcType=VARCHAR},
+      COL_TEXT = #{colText,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR}
+    WHERE DICT_ID = #{dictId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 根据参数查询 -->
+  <select id="selectTableDictList" resultMap="BaseResultMap" parameterType="com.basic.system.bean.TableDictIbean" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PUB_TABLE_DICT
+      <where>
+      <if test="tableCode != null and tableCode != ''" >
+        AND TABLE_CODE = #{tableCode,jdbcType=VARCHAR}
+      </if>
+      <if test="tableName != null and tableName != ''" >
+        <!-- AND TABLE_NAME LIKE "%"#{tableName,jdbcType=VARCHAR}"%" -->
+        <![CDATA[
+        AND INSTR(TABLE_NAME, #{tableName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>
+      <if test="colCode != null and colCode != ''" >
+        AND COL_CODE = #{colCode,jdbcType=VARCHAR}
+      </if>
+      <if test="colName != null and colName != ''" >
+        <!-- AND COL_NAME LIKE "%"#{colName,jdbcType=VARCHAR}"%" -->
+        <![CDATA[
+        AND INSTR(COL_NAME, #{colName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>   
+	  </where>
+      <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+      </if>
+  </select>
+  
+  <!-- 根据参数查询的总数 -->
+  <select id="selectTableDictListCount" resultType="java.lang.Long" parameterType="com.basic.system.bean.TableDictIbean" >
+    SELECT 
+	COUNT(0)
+    FROM PUB_TABLE_DICT
+      <where>
+      <if test="tableCode != null and tableCode != ''" >
+        AND TABLE_CODE = #{tableCode,jdbcType=VARCHAR}
+      </if>
+      <if test="tableName != null and tableName != ''" >
+        <!-- AND TABLE_NAME LIKE "%"#{tableName,jdbcType=VARCHAR}"%" -->
+        <![CDATA[
+        AND INSTR(TABLE_NAME, #{tableName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>
+      <if test="colCode != null and colCode != ''" >
+        AND COL_CODE = #{colCode,jdbcType=VARCHAR}
+      </if>
+      <if test="colName != null and colName != ''" >
+        <!-- AND COL_NAME LIKE "%"#{colName,jdbcType=VARCHAR}"%" -->
+        <![CDATA[
+        AND INSTR(COL_NAME, #{colName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>     
+	  </where>
+  </select> 
+  
+  <!-- 批量删除，正常情况下，别的模块只修改状态 -->
+  <delete id="deleteBatchByDictIds">
+    DELETE FROM PUB_TABLE_DICT
+    WHERE DICT_ID IN
+		<foreach collection="array" item="dictId" index="index"
+            open="(" close=")" separator=",">
+               #{dictId,jdbcType=DECIMAL}         
+        </foreach>  		 
+  </delete>
+  
+</mapper>

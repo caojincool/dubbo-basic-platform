@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.oaas.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.basic.oaas.model.Role">
+    <id column="ROLE_ID" jdbcType="DECIMAL" property="roleId" />
+    <result column="CATALOG_ID" jdbcType="DECIMAL" property="catalogId" />
+    <result column="ROLE_CODE" jdbcType="VARCHAR" property="roleCode" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="DISPLAY_INDEX" jdbcType="DECIMAL" property="displayIndex" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="CREATE_USER_ID" jdbcType="DECIMAL" property="createUserId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_USER_ID" jdbcType="DECIMAL" property="modifyUserId" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    
+    <result column="CREATEUSERNAME" jdbcType="VARCHAR" property="createUserName" />
+    <result column="MODIFYUSERNAME" jdbcType="VARCHAR" property="modifyUserName" />
+    
+    <result column="CATALOG_NAME" jdbcType="VARCHAR" property="catalogName"/>
+    <result column="OPEN_STATUS" property="openStatus" jdbcType="NUMERIC" />
+	<result column="OPEN_DATE" property="openDate" jdbcType="TIMESTAMP" />
+	<result column="STOP_DATE" property="stopDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLE_ID, CATALOG_ID, ROLE_CODE, ROLE_NAME, DISPLAY_INDEX, STATE, CREATE_USER_ID, 
+    CREATE_TIME, MODIFY_USER_ID, MODIFY_TIME, REMARKS,OPEN_STATUS,OPEN_DATE,STOP_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select *
+    from OAAS_ROLE
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from OAAS_ROLE
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.oaas.model.Role">
+    insert into OAAS_ROLE (ROLE_ID, CATALOG_ID, ROLE_CODE, 
+      ROLE_NAME, DISPLAY_INDEX, STATE, 
+      CREATE_USER_ID, CREATE_TIME, MODIFY_USER_ID, 
+      MODIFY_TIME, REMARKS,OPEN_STATUS,OPEN_DATE,STOP_DATE)
+    values (#{roleId,jdbcType=DECIMAL}, #{catalogId,jdbcType=DECIMAL}, #{roleCode,jdbcType=VARCHAR}, 
+      #{roleName,jdbcType=VARCHAR}, #{displayIndex,jdbcType=DECIMAL}, #{state,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=DECIMAL}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR},#{openStatus,jdbcType=NUMERIC},
+      #{openDate,jdbcType=TIMESTAMP},#{stopDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.oaas.model.Role">
+    insert into OAAS_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="catalogId != null">
+        CATALOG_ID,
+      </if>
+      <if test="roleCode != null">
+        ROLE_CODE,
+      </if>
+      <if test="roleName != null">
+        ROLE_NAME,
+      </if>
+      <if test="displayIndex != null">
+        DISPLAY_INDEX,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="remarks != null">
+        REMARKS,
+      </if>
+      <if test="openStatus != null">
+        OPEN_STATUS,
+      </if>
+      <if test="openDate != null">
+        OPEN_DATE,
+      </if>
+      <if test="stopDate != null">
+        STOP_DATE
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=DECIMAL},
+      </if>
+      <if test="catalogId != null">
+        #{catalogId,jdbcType=DECIMAL},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="displayIndex != null">
+        #{displayIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="openStatus != null">
+        #{openStatus,jdbcType=NUMERIC},
+      </if>
+      <if test="openDate != null">
+        #{openDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopDate != null">
+        #{stopDate,jdbcType=TIMESTAMP}
+      </if>
+      
+      
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.oaas.model.Role">
+    update OAAS_ROLE
+    <set>
+      <if test="catalogId != null">
+        CATALOG_ID = #{catalogId,jdbcType=DECIMAL},
+      </if>
+      <if test="roleCode != null">
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="displayIndex != null">
+        DISPLAY_INDEX = #{displayIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="openStatus != null">
+        OPEN_STATUS = #{openStatus,jdbcType=NUMERIC},
+      </if>
+      <if test="openDate != null">
+        OPEN_DATE = #{openDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopDate != null">
+        STOP_DATE = #{stopDate,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.oaas.model.Role">
+    update OAAS_ROLE
+    set CATALOG_ID = #{catalogId,jdbcType=DECIMAL},
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+        DISPLAY_INDEX = #{displayIndex,jdbcType=DECIMAL},
+        STATE = #{state,jdbcType=VARCHAR},
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+        OPEN_STATUS = #{openStatus,jdbcType=NUMERIC},
+        OPEN_DATE = #{openDate,jdbcType=TIMESTAMP},
+        STOP_DATE = #{stopDate,jdbcType=TIMESTAMP}
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="selectRoleList" parameterType="com.basic.oaas.bean.RoleIbean" resultMap="BaseResultMap">
+  	SELECT
+		R.*,
+		OU1.USER_TEXT AS CREATEUSERNAME,
+		OU2.USER_TEXT AS MODIFYUSERNAME,
+		ORC.CATALOG_NAME
+	FROM
+	OAAS_ROLE AS R
+  	LEFT JOIN OAAS_USER OU1  ON  OU1.USER_ID = R.CREATE_USER_ID
+	LEFT JOIN OAAS_USER OU2  ON  OU2.USER_ID = R.MODIFY_USER_ID
+	LEFT JOIN OAAS_ROLE_CATALOG ORC ON  ORC.CATALOG_ID = R.CATALOG_ID
+	<if test="userId !=null and userId !=''">
+	INNER JOIN	OAAS_USER_ROLE AS OUR ON OUR.ROLE_ID = R.ROLE_ID
+	</if>
+	<where>
+		<if test="catalogId != null and catalogId !=''">
+			R.CATALOG_ID = #{catalogId,jdbcType=DECIMAL}
+		</if>
+		<if test="userId !=null and userId !=''">
+			AND OUR.USER_ID = #{userId,jdbcType=DECIMAL}
+			<if test="authorize">
+				AND OUR.EMPOWER_FLAG = 1
+			</if>
+		</if>
+		<if test="roleName != null and roleName !=''">
+			AND INSTR(R.ROLE_NAME,#{roleName,jdbcType=VARCHAR}) >0
+		</if>
+		AND R.STATE = '10A'
+	</where>
+	<if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+    </if>
+  </select>
+  <select id="selectRoleListCount" parameterType="com.basic.oaas.bean.RoleIbean" resultType="java.lang.Long">
+  	SELECT
+		COUNT(1)
+	FROM
+	OAAS_ROLE AS R
+	<if test="userId !=null and userId !=''">
+	INNER JOIN	OAAS_USER_ROLE AS OUR ON OUR.ROLE_ID = R.ROLE_ID
+	</if>
+	<where>
+		<if test="catalogId != null and catalogId !=''">
+			R.CATALOG_ID = #{catalogId,jdbcType=DECIMAL}
+		</if>
+		<if test="userId !=null and userId !=''">
+			AND OUR.USER_ID = #{userId,jdbcType=DECIMAL}
+			<if test="authorize">
+				AND OUR.EMPOWER_FLAG = 1
+			</if>
+		</if>
+		<if test="roleName != null and roleName !=''">
+			AND INSTR(R.ROLE_NAME,#{roleName,jdbcType=VARCHAR}) >0
+		</if>
+		AND R.STATE = '10A'
+	</where>
+  </select>
+  <!-- 批量删除 -->
+  <delete id="deleteBatchByRoleIds">
+  	 DELETE FROM OAAS_ROLE
+    WHERE ROLE_ID IN
+		<foreach collection="array" item="roleId" index="index"
+            open="(" close=")" separator=",">
+               #{roleId,jdbcType=DECIMAL}         
+        </foreach>  
+  </delete>
+  <!-- 批量修改 -->
+  <update id="updateBatchByRoleIds">
+  	UPDATE OAAS_ROLE
+  	SET STATE = '10X'
+  	WHERE ROLE_ID IN
+		<foreach collection="array" item="roleId" index="index"
+            open="(" close=")" separator=",">
+               #{roleId,jdbcType=DECIMAL}         
+        </foreach>
+  </update>
+  
+  <select id="selectRoleByUsername" parameterType="string" resultMap="BaseResultMap">
+  	SELECT
+		R.*
+	FROM
+	OAAS_ROLE AS R
+	INNER JOIN	OAAS_USER_ROLE AS OUR ON OUR.ROLE_ID = R.ROLE_ID
+	INNER JOIN OAAS_USER AS OU ON OU.USER_ID = OUR.USER_ID
+	WHERE OU.USERNAME = #{username,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT ROLE.*,OU1.USER_TEXT 'createUserName',OU2.USER_TEXT 'modifyUserName' FROM OAAS_ROLE ROLE
+        LEFT JOIN OAAS_USER OU1  ON  OU1.USER_ID = ROLE.CREATE_USER_ID
+		LEFT JOIN OAAS_USER OU2  ON  OU2.USER_ID = ROLE.MODIFY_USER_ID
+        <where>
+            ROLE.state = '10A'
+            <if test="whereSql!=null">
+                AND ${whereSql}
+            </if>
+        </where>
+        <if test="orderBySql!=null">
+            ORDER BY ${orderBySql}
+        </if>
+        <if test="orderBySql==null">
+            ORDER BY ROLE.DISPLAY_INDEX ASC
+        </if>
+   </select>
+   
+   <select id="countRole" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM OAAS_ROLE 
+		WHERE 1=1
+	</select>
+   
+   
+   
+</mapper>

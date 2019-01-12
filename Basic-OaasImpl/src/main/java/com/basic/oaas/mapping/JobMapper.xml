@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.oaas.dao.JobMapper">
+  <resultMap id="BaseResultMap" type="com.basic.oaas.model.Job">
+    <id column="JOB_ID" jdbcType="DECIMAL" property="jobId" />
+    <result column="JOB_CODE" jdbcType="VARCHAR" property="jobCode" />
+    <result column="JOB_NAME" jdbcType="VARCHAR" property="jobName" />
+    <result column="ORG_ID" jdbcType="DECIMAL" property="orgId" />
+    <result column="DISPLAY_INDEX" jdbcType="DECIMAL" property="displayIndex" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="CREATE_USER_ID" jdbcType="DECIMAL" property="createUserId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_USER_ID" jdbcType="DECIMAL" property="modifyUserId" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    <result column="JOB_TYPE" jdbcType="VARCHAR" property="jobType" />
+    
+    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
+    <result column="CREATEUSERNAME" jdbcType="VARCHAR" property="createUserName" />
+    <result column="MODIFYUSERNAME" jdbcType="VARCHAR" property="modifyUserName" />
+    
+    <result column="ORG_CODE" jdbcType="VARCHAR" property="orgCode" />
+    <result column="ORG_CODE_PATH" jdbcType="VARCHAR" property="orgCodePath" />
+    <result column="ORG_NAME_PATH" jdbcType="VARCHAR" property="orgNamePath" />
+    <result column="AREA_ID" jdbcType="DECIMAL" property="areaId" />
+    <result column="AREA_CODE" jdbcType="VARCHAR" property="areaCode" />
+    <result column="AREA_NAME" jdbcType="VARCHAR" property="areaName" />
+    <result column="AREA_CODE_PATH" jdbcType="VARCHAR" property="areaCodePath" />
+    <result column="AREA_NAME_PATH" jdbcType="VARCHAR" property="areaNamePath" />
+    
+    <result column="DEFAULT_JOB" jdbcType="DECIMAL" property="defaultJob"/>
+    
+    <result column="PARENT_ORG_ID" jdbcType="DECIMAL" property="parentOrgId"/>
+    <result column="PARENT_AREA_ID" jdbcType="DECIMAL" property="parentAreaId"/>
+    <result column="SOURCE" jdbcType="NUMERIC" property="source"/>
+    <result column="SYNC_DATE" property="syncDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    JOB_ID, JOB_CODE, JOB_NAME, ORG_ID, DISPLAY_INDEX, STATE, CREATE_USER_ID, CREATE_TIME, 
+    MODIFY_USER_ID, MODIFY_TIME, REMARKS, JOB_TYPE, SOURCE, SYNC_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM OAAS_JOB
+    WHERE JOB_ID = #{jobId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    UPDATE OAAS_JOB SET STATE = '10X' 
+    WHERE JOB_ID = #{jobId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.oaas.model.Job">
+    INSERT INTO OAAS_JOB (JOB_ID, JOB_CODE, JOB_NAME, 
+      ORG_ID, DISPLAY_INDEX, STATE, 
+      CREATE_USER_ID, CREATE_TIME, MODIFY_USER_ID, 
+      MODIFY_TIME, REMARKS, JOB_TYPE,SOURCE,SYNC_DATE
+      )
+    VALUES (#{jobId,jdbcType=DECIMAL}, #{jobCode,jdbcType=VARCHAR}, #{jobName,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=DECIMAL}, #{displayIndex,jdbcType=DECIMAL}, #{state,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=DECIMAL}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{jobType,jdbcType=VARCHAR}, 
+      #{source,jdbcType=NUMERIC}, #{syncDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.oaas.model.Job">
+    INSERT INTO OAAS_JOB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jobId != null">
+        JOB_ID,
+      </if>
+      <if test="jobCode != null">
+        JOB_CODE,
+      </if>
+      <if test="jobName != null">
+        JOB_NAME,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="displayIndex != null">
+        DISPLAY_INDEX,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="remarks != null">
+        REMARKS,
+      </if>
+      <if test="jobType != null">
+        JOB_TYPE,
+      </if>
+      <if test="source != null">
+        SOURCE,
+      </if>
+      <if test="syncDate != null">
+        SYNC_DATE
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jobId != null">
+        #{jobId,jdbcType=DECIMAL},
+      </if>
+      <if test="jobCode != null">
+        #{jobCode,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=DECIMAL},
+      </if>
+      <if test="displayIndex != null">
+        #{displayIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="jobType != null">
+        #{jobType,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+         #{source,jdbcType=NUMERIC},
+      </if>
+      <if test="syncDate != null">
+          #{syncDate,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.oaas.model.Job">
+    UPDATE OAAS_JOB
+    <set>
+      <if test="jobCode != null">
+        JOB_CODE = #{jobCode,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null">
+        JOB_NAME = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=DECIMAL},
+      </if>
+      <if test="displayIndex != null">
+        DISPLAY_INDEX = #{displayIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="jobType != null">
+        JOB_TYPE = #{jobType,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        SOURCE = #{source,jdbcType=NUMERIC},
+      </if>
+      <if test="syncDate != null">
+        SYNC_DATE =  #{syncDate,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    WHERE JOB_ID = #{jobId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.oaas.model.Job">
+    UPDATE OAAS_JOB
+    SET JOB_CODE = #{jobCode,jdbcType=VARCHAR},
+        JOB_NAME = #{jobName,jdbcType=VARCHAR},
+        ORG_ID = #{orgId,jdbcType=DECIMAL},
+        DISPLAY_INDEX = #{displayIndex,jdbcType=DECIMAL},
+        STATE = #{state,jdbcType=VARCHAR},
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+        JOB_TYPE = #{jobType,jdbcType=VARCHAR},
+        SOURCE = #{source,jdbcType=NUMERIC},
+        SYNC_DATE =  #{syncDate,jdbcType=TIMESTAMP}
+    WHERE JOB_ID = #{jobId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="selectJobList" resultMap="BaseResultMap" parameterType="com.basic.oaas.bean.JobIbean">
+  	SELECT OJ.*,
+	OO.ORG_NAME,
+	OU1.USER_TEXT AS CREATEUSERNAME,OU2.USER_TEXT AS MODIFYUSERNAME
+	FROM OAAS_JOB OJ
+	LEFT JOIN OAAS_ORG OO ON OO.ORG_ID = OJ.ORG_ID
+	LEFT JOIN OAAS_USER OU1  ON  OU1.USER_ID = OJ.CREATE_USER_ID
+	LEFT JOIN OAAS_USER OU2  ON  OU2.USER_ID = OJ.MODIFY_USER_ID
+	<where>
+		<if test="orgType == 'CURORG' and  orgId != null and orgId != ''">
+			EXISTS
+			(SELECT 1 FROM
+				OAAS_ORG  WHERE OO.ORG_ID = ORG_ID AND
+				FIND_IN_SET(#{orgId,jdbcType=DECIMAL},ID_PATH)
+			)
+		</if>
+		<if test="orgType == 'ALLORG' and orgId != null and orgId != ''">
+			AND OJ.ORG_ID = #{orgId,jdbcType=DECIMAL}
+		</if>
+		<if test="orgType == null or orgType == ''">
+			<if test="orgId != null and orgId != ''">
+				AND OJ.ORG_ID = #{orgId,jdbcType=DECIMAL}
+			</if>
+		</if>
+		<if test="orgName != null and orgName != ''">
+			AND INSTR(OO.ORG_NAME,#{orgName,jdbcType=VARCHAR}) >0
+		</if>
+		<if test="jobName != null and jobName != ''">
+			AND INSTR(OJ.JOB_NAME,#{jobName,jdbcType=VARCHAR}) >0
+		</if>
+		<if test="jobType != null and jobType != ''">
+			AND OJ.JOB_TYPE = #{jobType,jdbcType=VARCHAR}
+		</if>
+		AND OJ.STATE = '10A'
+	</where>
+	<if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+    </if>
+  </select>
+  
+  <select id="selectJobListCount" resultType="java.lang.Long" parameterType="com.basic.oaas.bean.JobIbean">
+  	SELECT 
+		COUNT(1)
+	FROM OAAS_JOB OJ
+	LEFT JOIN OAAS_ORG OO ON OO.ORG_ID = OJ.ORG_ID
+	LEFT JOIN OAAS_USER OU1  ON  OU1.USER_ID = OJ.CREATE_USER_ID
+	LEFT JOIN OAAS_USER OU2  ON  OU2.USER_ID = OJ.MODIFY_USER_ID
+	<where>
+		<if test="orgType == 'CURORG' and  orgId != null and orgId != ''">
+			EXISTS
+			(SELECT 1 FROM
+				OAAS_ORG  WHERE OO.ORG_ID = ORG_ID AND
+				FIND_IN_SET(#{orgId,jdbcType=DECIMAL},ID_PATH)
+			)
+		</if>
+		<if test="orgType == 'ALLORG' and orgId != null and orgId != ''">
+			AND OJ.ORG_ID = #{orgId,jdbcType=DECIMAL}
+		</if>
+		<if test="orgType == null or orgType == ''">
+			<if test="orgId != null and orgId != ''">
+				AND OJ.ORG_ID = #{orgId,jdbcType=DECIMAL}
+			</if>
+		</if>
+		<if test="orgName != null and orgName != ''">
+			AND INSTR(OO.ORG_NAME,#{orgId,jdbcType=VARCHAR}) >0
+		</if>
+		<if test="jobName != null and jobName != ''">
+			AND INSTR(OJ.JOB_NAME,#{jobName,jdbcType=VARCHAR}) >0
+		</if>
+		AND OJ.STATE = '10A'
+	</where>
+	
+  </select>
+  
+  <delete id="deleteBatchByJobIds">
+  	DELETE FROM OAAS_JOB
+    WHERE JOB_ID IN
+		<foreach collection="array" item="jobId" index="index"
+            open="(" close=")" separator=",">
+               #{jobId,jdbcType=DECIMAL}         
+        </foreach>
+  </delete>
+  
+  <update id="updateBatchByJobIds">
+  	UPDATE OAAS_JOB SET STATE = '10X' 
+  	WHERE JOB_ID IN
+  	<foreach collection="array" item="jobId" index="index"
+            open="(" close=")" separator=",">
+               #{jobId,jdbcType=DECIMAL}         
+    </foreach>
+  </update>
+  <select id="selectExistJobCode" parameterType="string" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM OAAS_JOB WHERE JOB_CODE = #{jobCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectDefaultJobByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+	SELECT
+		OO.ORG_ID,OO.ORG_CODE,OO.ORG_NAME,
+		OO.CODE_PATH AS ORG_CODE_PATH,OO.NAME_PATH AS ORG_NAME_PATH,
+		OA.AREA_ID,OA.CODE_PATH AS AREA_CODE_PATH,OA.AREA_CODE,
+		OA.AREA_NAME,OA.NAME_PATH AS AREA_NAME_PATH,OJ.*,OSJ.DEFAULT_JOB
+	FROM
+	OAAS_AREA AS OA
+	INNER JOIN OAAS_ORG AS OO ON OO.AREA_ID = OA.AREA_ID
+	INNER JOIN OAAS_JOB AS OJ ON OJ.ORG_ID = OO.ORG_ID
+	INNER JOIN OAAS_STAFF_JOB AS OSJ ON OSJ.JOB_ID = OJ.JOB_ID AND OSJ.DEFAULT_JOB = 1
+	INNER JOIN OAAS_STAFF AS OS ON OS.STAFF_ID = OSJ.STAFF_ID
+	INNER JOIN OAAS_USER_STAFF AS OUS ON OUS.STAFF_ID = OS.STAFF_ID
+	WHERE 
+		OUS.USER_ID = #{userId,jdbcType=DECIMAL}
+  </select>
+  
+    <select id="selectJobByUserIdCompany" resultMap="BaseResultMap" >
+	 SELECT OO.ORG_ID,OO.ORG_CODE,OO.ORG_NAME, OO.CODE_PATH AS ORG_CODE_PATH,OO.NAME_PATH AS ORG_NAME_PATH, OA.AREA_ID,OA.CODE_PATH AS AREA_CODE_PATH,OA.AREA_CODE, OA.AREA_NAME,OA.NAME_PATH AS AREA_NAME_PATH,OJ.*,OSJ.DEFAULT_JOB 
+	 FROM OAAS_STAFF_JOB AS OSJ
+	 LEFT JOIN OAAS_JOB AS OJ  ON OSJ.JOB_ID = OJ.JOB_ID 
+	 LEFT JOIN OAAS_ORG AS OO  ON OJ.ORG_ID = OO.ORG_ID        
+	 LEFT JOIN OAAS_ORG_COMPANY AS OC ON OC.ORG_ID = OO.ORG_ID
+	 LEFT JOIN OAAS_COMPANY AS C ON C.COMPANY_ID = OC.COMPANY_ID 
+	 LEFT JOIN OAAS_AREA AS OA  ON OO.AREA_ID = OA.AREA_ID 
+	 LEFT JOIN OAAS_STAFF AS OS ON OS.STAFF_ID = OSJ.STAFF_ID 
+	 LEFT JOIN OAAS_USER_STAFF AS OUS ON OUS.STAFF_ID = OS.STAFF_ID
+	 WHERE 
+		OUS.USER_ID = #{userId,jdbcType=DECIMAL}
+		<if test="companyId!=null">
+		 	AND C.COMPANY_ID =  #{companyId,jdbcType=DECIMAL}
+		</if>
+  </select>
+  
+  <select id="selectJobByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  	SELECT
+		OO.ORG_ID,OO.ORG_CODE,OO.ORG_NAME,
+		OO.CODE_PATH AS ORG_CODE_PATH,OO.NAME_PATH AS ORG_NAME_PATH,OO.PARENT_ORG_ID,
+		OA.AREA_ID,OA.CODE_PATH AS AREA_CODE_PATH,OA.AREA_CODE,
+		OA.AREA_NAME,OA.NAME_PATH AS AREA_NAME_PATH,OJ.*,OSJ.DEFAULT_JOB
+	FROM
+	OAAS_AREA AS OA
+	INNER JOIN OAAS_ORG AS OO ON OO.AREA_ID = OA.AREA_ID
+	INNER JOIN OAAS_JOB AS OJ ON OJ.ORG_ID = OO.ORG_ID
+	INNER JOIN OAAS_STAFF_JOB AS OSJ ON OSJ.JOB_ID = OJ.JOB_ID
+	INNER JOIN OAAS_STAFF AS OS ON OS.STAFF_ID = OSJ.STAFF_ID
+	INNER JOIN OAAS_USER_STAFF AS OUS ON OUS.STAFF_ID = OS.STAFF_ID
+	WHERE 
+		OUS.USER_ID = #{userId,jdbcType=DECIMAL}
+  </select>
+  
+   <select id="selectByJob" parameterType="com.basic.oaas.model.Job" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM OAAS_JOB
+    <where>
+    	<if test="jobCode != null">
+        	JOB_CODE = #{jobCode,jdbcType=VARCHAR}
+     	 </if>
+     	 <if test="jobType != null">
+        	AND JOB_TYPE = #{jobType,jdbcType=VARCHAR}
+     	 </if>
+     	 <if test="jobName != null">
+        	AND JOB_NAME = #{jobName,jdbcType=VARCHAR}
+     	 </if>
+      </where>
+  </select>
+  
+  <select id="qryJobStaffCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+	 SELECT COUNT(0) FROM OAAS_STAFF S
+		LEFT JOIN OAAS_STAFF_JOB SJ ON  S.STAFF_ID = SJ.STAFF_ID
+	LEFT JOIN  OAAS_JOB JOB  ON JOB.JOB_ID = SJ.JOB_ID 
+	<where>
+	S.STATE = "10A"
+	AND JOB.STATE = "10A"
+	 JOB.JOB_CODE = #{jobCode,jdbcType=VARCHAR}
+	 </where>
+  </select>
+  
+   <select id="selectJobAndOrgByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+	SELECT
+		OO.ORG_ID,OO.ORG_CODE,OO.ORG_NAME,
+		OO.CODE_PATH AS ORG_CODE_PATH,OO.NAME_PATH AS ORG_NAME_PATH,OJ.*,OSJ.DEFAULT_JOB
+	FROM
+	OAAS_ORG AS OO
+	LEFT JOIN OAAS_JOB AS OJ ON OJ.ORG_ID = OO.ORG_ID
+	LEFT JOIN OAAS_STAFF_JOB AS OSJ ON OSJ.JOB_ID = OJ.JOB_ID AND OSJ.DEFAULT_JOB = 1
+	LEFT JOIN OAAS_STAFF AS OS ON OS.STAFF_ID = OSJ.STAFF_ID
+	LEFT JOIN OAAS_USER_STAFF AS OUS ON OUS.STAFF_ID = OS.STAFF_ID
+	WHERE 
+		OO.STATE = "10A"
+		AND OJ.STATE = "10A"
+		AND OS.STATE = "10A"
+		AND OUS.USER_ID = #{userId,jdbcType=DECIMAL}
+  </select>
+  
+   <select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">
+	SELECT JOB.*,ORG.ORG_NAME,
+	OU1.USER_TEXT 'createUserName',OU2.USER_TEXT 'modifyUserName'
+	FROM OAAS_JOB JOB
+	LEFT JOIN OAAS_ORG ORG ON ORG.ORG_ID = JOB.ORG_ID
+	LEFT JOIN OAAS_USER OU1  ON  OU1.USER_ID = JOB.CREATE_USER_ID
+	LEFT JOIN OAAS_USER OU2  ON  OU2.USER_ID = JOB.MODIFY_USER_ID
+	<where>
+	    JOB.state = '10A'
+	    <if test="whereSql!=null">
+	        AND ${whereSql}
+	    </if>
+	</where>
+	<if test="orderBySql!=null">
+	    ORDER BY ${orderBySql}
+	</if>
+	<if test="orderBySql==null">
+	    ORDER BY JOB.DISPLAY_INDEX ASC
+	</if>
+  </select>
+  
+   <select id="queryJobOrgUserRels" parameterType="java.util.Map" resultMap="BaseResultMap">
+	SELECT JOB.*,SJ.DEFAULT_JOB 'defaultJob',ORG.ORG_CODE 'orgCode',STAFF.EIP_ACCOUNT 'account' FROM OAAS_JOB JOB
+	LEFT JOIN OAAS_ORG ORG ON JOB.ORG_ID = ORG.ORG_ID
+	LEFT JOIN OAAS_STAFF_JOB SJ ON SJ.JOB_ID = JOB.JOB_ID 
+	LEFT JOIN OAAS_STAFF STAFF ON STAFF.STAFF_ID = SJ.STAFF_ID
+	WHERE JOB.STATE =  '10A' AND ORG.STATE = '10A' AND STAFF.STATE = '10A'
+	<if test="orgIds != null">
+	    AND JOB.ORG_ID IN 
+	     <foreach collection="orgIds" index="index" item="item" open="(" separator="," close=")">
+                #{item}       
+        </foreach>    
+	</if>
+  </select>
+  
+  	<select id="countJob" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM OAAS_JOB 
+		WHERE 1=1
+		<if test="code!=null">
+			AND JOB_CODE = #{code}
+		</if>
+		<if test="source!=null">
+			AND SOURCE = #{source}
+		</if>
+	</select>
+  
+</mapper>

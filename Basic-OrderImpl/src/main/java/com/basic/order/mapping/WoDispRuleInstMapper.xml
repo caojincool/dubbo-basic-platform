@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.WoDispRuleInstMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.order.model.WoDispRuleInst" >
+    <id column="RULE_INST_ID" property="ruleInstId" jdbcType="DECIMAL" />
+    <result column="RULE_ID" property="ruleId" jdbcType="DECIMAL" />
+    <result column="RULE_TYPE" property="ruleType" jdbcType="VARCHAR" />
+    <result column="CONDITION_ID" property="conditionId" jdbcType="VARCHAR" />
+    <result column="PARTY_ID" property="partyId" jdbcType="DECIMAL" />
+    <result column="PARTY_TYPE" property="partyType" jdbcType="VARCHAR" />
+    <result column="PARTY_NAME" property="partyName" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="DECIMAL" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+    
+    <result column="TACHE_NAME" property="tacheName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RULE_INST_ID, RULE_ID, RULE_TYPE, CONDITION_ID, PARTY_ID, PARTY_TYPE, PARTY_NAME, 
+    STATE, CREATE_USER_ID, CREATE_TIME, MODIFY_USER_ID, MODIFY_TIME, REMARKS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from PF_WO_DISP_RULE_INST
+    where RULE_INST_ID = #{ruleInstId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from PF_WO_DISP_RULE_INST
+    where RULE_INST_ID = #{ruleInstId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.order.model.WoDispRuleInst" >
+    insert into PF_WO_DISP_RULE_INST (RULE_INST_ID, RULE_ID, RULE_TYPE, 
+      CONDITION_ID, PARTY_ID, PARTY_TYPE, 
+      PARTY_NAME, STATE, CREATE_USER_ID, 
+      CREATE_TIME, MODIFY_USER_ID, MODIFY_TIME, 
+      REMARKS)
+    values (#{ruleInstId,jdbcType=DECIMAL}, #{ruleId,jdbcType=DECIMAL}, #{ruleType,jdbcType=VARCHAR}, 
+      #{conditionId,jdbcType=VARCHAR}, #{partyId,jdbcType=DECIMAL}, #{partyType,jdbcType=VARCHAR}, 
+      #{partyName,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{createUserId,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=DECIMAL}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.order.model.WoDispRuleInst" >
+    insert into PF_WO_DISP_RULE_INST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ruleInstId != null" >
+        RULE_INST_ID,
+      </if>
+      <if test="ruleId != null" >
+        RULE_ID,
+      </if>
+      <if test="ruleType != null" >
+        RULE_TYPE,
+      </if>
+      <if test="conditionId != null" >
+        CONDITION_ID,
+      </if>
+      <if test="partyId != null" >
+        PARTY_ID,
+      </if>
+      <if test="partyType != null" >
+        PARTY_TYPE,
+      </if>
+      <if test="partyName != null" >
+        PARTY_NAME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyUserId != null" >
+        MODIFY_USER_ID,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="remarks != null" >
+        REMARKS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ruleInstId != null" >
+        #{ruleInstId,jdbcType=DECIMAL},
+      </if>
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=DECIMAL},
+      </if>
+      <if test="ruleType != null" >
+        #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionId != null" >
+        #{conditionId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null" >
+        #{partyId,jdbcType=DECIMAL},
+      </if>
+      <if test="partyType != null" >
+        #{partyType,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null" >
+        #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.WoDispRuleInst" >
+    update PF_WO_DISP_RULE_INST
+    <set >
+      <if test="ruleId != null" >
+        RULE_ID = #{ruleId,jdbcType=DECIMAL},
+      </if>
+      <if test="ruleType != null" >
+        RULE_TYPE = #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionId != null" >
+        CONDITION_ID = #{conditionId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null" >
+        PARTY_ID = #{partyId,jdbcType=DECIMAL},
+      </if>
+      <if test="partyType != null" >
+        PARTY_TYPE = #{partyType,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null" >
+        PARTY_NAME = #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RULE_INST_ID = #{ruleInstId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.order.model.WoDispRuleInst" >
+    update PF_WO_DISP_RULE_INST
+    set RULE_ID = #{ruleId,jdbcType=DECIMAL},
+      RULE_TYPE = #{ruleType,jdbcType=VARCHAR},
+      CONDITION_ID = #{conditionId,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=DECIMAL},
+      PARTY_TYPE = #{partyType,jdbcType=VARCHAR},
+      PARTY_NAME = #{partyName,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      REMARKS = #{remarks,jdbcType=VARCHAR}
+    where RULE_INST_ID = #{ruleInstId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 查询按区域派单的任务派发规则实例 -->
+  <select id="selectForArea" resultMap="BaseResultMap" parameterType="com.basic.order.bean.WoDispRuleInstIbean" >
+	SELECT PWDRI.* FROM PF_WO_DISP_RULE_INST PWDRI
+	JOIN PF_WO_DISP_RULE PWDR ON PWDR.RULE_ID = PWDRI.RULE_ID AND PWDR.STATE = '10A'
+	JOIN OF_ORDER OO ON OO.AREA_ID = PWDRI.CONDITION_ID
+	WHERE PWDRI.STATE = '10A'
+	AND PWDRI.RULE_ID = #{ruleId,jdbcType=DECIMAL}
+	AND PWDRI.RULE_TYPE = #{ruleType,jdbcType=VARCHAR}
+	AND OO.ORDER_ID = #{orderId,jdbcType=DECIMAL}
+  </select>
+  
+  <!-- 查询按组织派单的任务派发规则实例 -->
+  <select id="selectForOrg" resultMap="BaseResultMap" parameterType="com.basic.order.bean.WoDispRuleInstIbean" >
+	SELECT PWDRI.* FROM PF_WO_DISP_RULE_INST PWDRI
+	JOIN PF_WO_DISP_RULE PWDR ON PWDR.RULE_ID = PWDRI.RULE_ID AND PWDR.STATE = '10A'
+	JOIN OF_ORDER OO ON OO.CREATE_ORG_ID = PWDRI.CONDITION_ID
+	WHERE PWDRI.STATE = '10A'
+	AND PWDRI.RULE_ID = #{ruleId,jdbcType=DECIMAL}
+	AND PWDRI.RULE_TYPE = #{ruleType,jdbcType=VARCHAR}
+	AND OO.ORDER_ID = #{orderId,jdbcType=DECIMAL}
+  </select>
+  
+  <!-- 查询按用户派单的任务派发规则实例 -->
+  <select id="selectForUser" resultMap="BaseResultMap" parameterType="com.basic.order.bean.WoDispRuleInstIbean" >
+	SELECT PWDRI.* FROM PF_WO_DISP_RULE_INST PWDRI
+	JOIN PF_WO_DISP_RULE PWDR ON PWDR.RULE_ID = PWDRI.RULE_ID AND PWDR.STATE = '10A'
+	JOIN OF_ORDER OO ON OO.CREATE_USER_ID = PWDRI.CONDITION_ID
+	WHERE PWDRI.STATE = '10A'
+	AND PWDRI.RULE_ID = #{ruleId,jdbcType=DECIMAL}
+	AND PWDRI.RULE_TYPE = #{ruleType,jdbcType=VARCHAR}
+	AND OO.ORDER_ID = #{orderId,jdbcType=DECIMAL}
+  </select>
+  
+  <!-- 查询按员工派单的任务派发规则实例 -->
+  <select id="selectForStaff" resultMap="BaseResultMap" parameterType="com.basic.order.bean.WoDispRuleInstIbean" >
+	SELECT PWDRI.* FROM PF_WO_DISP_RULE_INST PWDRI
+	JOIN PF_WO_DISP_RULE PWDR ON PWDR.RULE_ID = PWDRI.RULE_ID AND PWDR.STATE = '10A'
+	JOIN OAAS_USER_STAFF OUS ON OUS.STAFF_ID = PWDRI.CONDITION_ID
+	JOIN OF_ORDER OO ON OO.CREATE_USER_ID = OUS.USER_ID
+	WHERE PWDRI.STATE = '10A'
+	AND PWDRI.RULE_ID = #{ruleId,jdbcType=DECIMAL}
+	AND PWDRI.RULE_TYPE = #{ruleType,jdbcType=VARCHAR}
+	AND OO.ORDER_ID = #{orderId,jdbcType=DECIMAL}
+  </select>
+
+
+  <!-- 根据参数查询 -->
+  <select id="selectWoDispRuleInstList" resultMap="BaseResultMap" parameterType="com.basic.order.bean.WoDispRuleInstPageIbean" >
+    SELECT 
+    PWDRI.*, PT.TACHE_NAME
+    FROM PF_WO_DISP_RULE_INST PWDRI
+    JOIN PF_WO_DISP_RULE PWDR ON PWDR.RULE_ID = PWDRI.RULE_ID AND PWDR.STATE = '10A'
+    JOIN PF_TACHE PT ON PT.TACHE_ID = PWDR.TACHE_ID AND PT.STATE = '10A'
+      <where>
+      PWDRI.STATE = '10A'
+      <if test="ruleId != null" >
+        AND PWDRI.RULE_ID = #{ruleId,jdbcType=DECIMAL}
+      </if>
+      <if test="partyType != null and partyType != ''" >
+        AND PWDRI.PARTY_TYPE = #{partyType,jdbcType=VARCHAR}
+      </if>
+      <if test="partyName != null and partyName != ''" >
+        <![CDATA[
+        AND INSTR(PWDRI.PARTY_NAME, #{partyName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>  
+	  </where>
+      <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+      </if>
+  </select>
+  
+  <!-- 根据参数查询的总数 -->
+  <select id="selectWoDispRuleInstListCount" resultType="java.lang.Long" parameterType="com.basic.order.bean.WoDispRuleInstPageIbean" >
+    SELECT 
+	COUNT(0)
+    FROM PF_WO_DISP_RULE_INST PWDRI
+    JOIN PF_WO_DISP_RULE PWDR ON PWDR.RULE_ID = PWDRI.RULE_ID AND PWDR.STATE = '10A'
+    JOIN PF_TACHE PT ON PT.TACHE_ID = PWDR.TACHE_ID AND PT.STATE = '10A'
+      <where>
+      PWDRI.STATE = '10A'
+      <if test="ruleId != null" >
+        AND PWDRI.RULE_ID = #{ruleId,jdbcType=DECIMAL}
+      </if>
+      <if test="partyType != null and partyType != ''" >
+        AND PWDRI.PARTY_TYPE = #{partyType,jdbcType=VARCHAR}
+      </if>
+      <if test="partyName != null and partyName != ''" >
+        <![CDATA[
+        AND INSTR(PWDRI.PARTY_NAME, #{partyName,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>  
+	  </where>
+  </select> 
+  
+  <!-- 批量修改状态 -->
+  <update id="updateBatchStateByRuleInstIds" parameterType="com.basic.order.model.WoDispRuleInst">
+  	UPDATE PF_WO_DISP_RULE_INST
+  	<set>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserId != null" >
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+  	WHERE RULE_INST_ID IN
+  	<foreach collection="ruleInstIds" item="ruleInstId" index="index"
+            open="(" close=")" separator=",">
+               #{ruleInstId,jdbcType=VARCHAR}         
+    </foreach>
+  </update>
+    
+</mapper>

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.oaas.dao.PrivateMenuMapper">
+  <resultMap id="BaseResultMap" type="com.basic.oaas.model.PrivateMenu">
+    <id column="MENU_ID" jdbcType="DECIMAL" property="menuId" />
+    <result column="MENU_CODE" jdbcType="VARCHAR" property="menuCode" />
+    <result column="MENU_NAME" jdbcType="VARCHAR" property="menuName" />
+    <result column="PRIVATE_ID" jdbcType="DECIMAL" property="privateId" />
+    <result column="PARENT_MENU_ID" jdbcType="DECIMAL" property="parentMenuId" />
+    <result column="MENU_URL" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="MENU_ICON" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="DISPLAY_INDEX" jdbcType="DECIMAL" property="displayIndex" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="CREATE_USER_ID" jdbcType="DECIMAL" property="createUserId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_USER_ID" jdbcType="DECIMAL" property="modifyUserId" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    
+    <result column="CREATEUSERNAME" jdbcType="VARCHAR" property="createUserName" />
+    <result column="MODIFYUSERNAME" jdbcType="VARCHAR" property="modifyUserName" />
+    
+    <result column="OPEN_STATUS" property="openStatus" jdbcType="NUMERIC" />
+	<result column="OPEN_DATE" property="openDate" jdbcType="TIMESTAMP" />
+	<result column="STOP_DATE" property="stopDate" jdbcType="TIMESTAMP" />
+    <result column="ID_PATH" jdbcType="VARCHAR" property="idPath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MENU_ID, MENU_CODE, MENU_NAME,PARENT_MENU_ID, PRIVATE_ID,  MENU_URL, MENU_ICON, DISPLAY_INDEX, 
+    STATE, CREATE_USER_ID, CREATE_TIME, MODIFY_USER_ID, MODIFY_TIME, REMARKS,OPEN_STATUS,OPEN_DATE,STOP_DATE,
+    ID_PATH
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select MENU.*,OU1.USER_TEXT 'createUserName',OU2.USER_TEXT 'modifyUserName'  FROM OAAS_PRIV_MENU MENU
+    LEFT JOIN OAAS_USER OU1  ON  OU1.USER_ID = MENU.CREATE_USER_ID
+	LEFT JOIN OAAS_USER OU2  ON  OU2.USER_ID = MENU.MODIFY_USER_ID
+    where MENU.MENU_ID = #{menuId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from OAAS_PRIV_MENU
+    where MENU_ID = #{menuId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.oaas.model.PrivateMenu">
+    insert into OAAS_PRIV_MENU (MENU_ID, MENU_CODE, MENU_NAME, 
+      PRIVATE_ID, MENU_URL, 
+      MENU_ICON, DISPLAY_INDEX, STATE, 
+      CREATE_USER_ID, CREATE_TIME, MODIFY_USER_ID, 
+      MODIFY_TIME, REMARKS,OPEN_STATUS,OPEN_DATE,STOP_DATE,
+      PARENT_MENU_ID,ID_PATH)
+    values (#{menuId,jdbcType=DECIMAL}, #{menuCode,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, 
+      #{privateId,jdbcType=DECIMAL},  #{menuUrl,jdbcType=VARCHAR}, 
+      #{menuIcon,jdbcType=VARCHAR}, #{displayIndex,jdbcType=DECIMAL}, #{state,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=DECIMAL}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR},#{openStatus,jdbcType=NUMERIC},
+      #{openDate,jdbcType=TIMESTAMP},#{stopDate,jdbcType=TIMESTAMP},#{parentMenuId,jdbcType=DECIMAL},
+      #{idPath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.oaas.model.PrivateMenu">
+    insert into OAAS_PRIV_MENU
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menuId != null">
+        MENU_ID,
+      </if>
+      <if test="menuCode != null">
+        MENU_CODE,
+      </if>
+      <if test="menuName != null">
+        MENU_NAME,
+      </if>
+      <if test="privateId != null">
+        PRIVATE_ID,
+      </if>
+      <if test="menuUrl != null">
+        MENU_URL,
+      </if>
+      <if test="menuIcon != null">
+        MENU_ICON,
+      </if>
+      <if test="displayIndex != null">
+        DISPLAY_INDEX,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="remarks != null">
+        REMARKS,
+      </if>
+      <if test="openStatus != null">
+      	OPEN_STATUS,
+      </if>
+      <if test="openDate != null">
+      	OPEN_DATE,
+      </if>
+      <if test="stopDate != null">
+      	STOP_DATE,
+      </if>
+      <if test="parentMenuId != null">
+      	PARENT_MENU_ID,
+      </if>
+      <if test="idPath != null">
+      	ID_PATH
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menuId != null">
+        #{menuId,jdbcType=DECIMAL},
+      </if>
+      <if test="menuCode != null">
+        #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="privateId != null">
+        #{privateId,jdbcType=DECIMAL},
+      </if>
+      <if test="menuUrl != null">
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIcon != null">
+        #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="displayIndex != null">
+        #{displayIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="openStatus != null">
+      	 #{openStatus,jdbcType=NUMERIC},
+      </if>
+      <if test="openDate != null">
+      	 #{openDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopDate != null">
+      	 #{stopDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parentMenuId != null">
+      	  #{parentMenuId,jdbcType=DECIMAL},
+      </if>
+      <if test="idPath != null">
+      	  #{idPath,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.oaas.model.PrivateMenu">
+    update OAAS_PRIV_MENU
+    <set>
+      <if test="menuCode != null">
+        MENU_CODE = #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        MENU_NAME = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="privateId != null">
+        PRIVATE_ID = #{privateId,jdbcType=DECIMAL},
+      </if>
+      <if test="menuUrl != null">
+        MENU_URL = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIcon != null">
+        MENU_ICON = #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="displayIndex != null">
+        DISPLAY_INDEX = #{displayIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="openStatus != null">
+      	 OPEN_STATUS = #{openStatus,jdbcType=NUMERIC},
+      </if>
+      <if test="openDate != null">
+      	 OPEN_DATE = #{openDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopDate != null">
+      	 STOP_DATE = #{stopDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parentMenuId != null">
+      	 PARENT_MENU_ID = #{parentMenuId,jdbcType=DECIMAL},
+      </if>
+      <if test="idPath != null">
+      	 ID_PATH = #{idPath,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where MENU_ID = #{menuId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.oaas.model.PrivateMenu">
+    UPDATE OAAS_PRIV_MENU
+    SET MENU_CODE = #{menuCode,jdbcType=VARCHAR},
+        MENU_NAME = #{menuName,jdbcType=VARCHAR},
+        PRIVATE_ID = #{privateId,jdbcType=DECIMAL},
+        MENU_URL = #{menuUrl,jdbcType=VARCHAR},
+        MENU_ICON = #{menuIcon,jdbcType=VARCHAR},
+        DISPLAY_INDEX = #{displayIndex,jdbcType=DECIMAL},
+        STATE = #{state,jdbcType=VARCHAR},
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+	   	OPEN_STATUS = #{openStatus,jdbcType=NUMERIC},
+	   	OPEN_DATE = #{openDate,jdbcType=TIMESTAMP},
+	   	STOP_DATE = #{stopDate,jdbcType=TIMESTAMP},
+	   	PARENT_MENU_ID = #{parentMenuId,jdbcType=DECIMAL},
+	   	ID_PATH = #{idPath,jdbcType=VARCHAR}
+    where MENU_ID = #{menuId,jdbcType=DECIMAL}
+  </update>
+  
+  
+  <!-- 批量删除 -->
+  <delete id="deleteBatchByMenuIds">
+  	 DELETE FROM OAAS_PRIV_MENU
+    WHERE MENU_ID IN
+		<foreach collection="array" item="menuId" index="index"
+            open="(" close=")" separator=",">
+               #{menuId,jdbcType=DECIMAL}         
+        </foreach>  
+  </delete>
+  <!-- 批量修改 -->
+  <update id="updateBatchByMenuIds">
+  	UPDATE OAAS_PRIV_MENU
+  	SET STATE = '10X'
+  	WHERE MENU_ID IN
+		<foreach collection="array" item="menuId" index="index"
+            open="(" close=")" separator=",">
+               #{menuId,jdbcType=DECIMAL}         
+        </foreach>
+  </update>
+  
+  
+  <select id="selectMenuByCode" parameterType="java.util.List" resultMap="BaseResultMap" >
+  	SELECT
+		OPM.*
+	FROM
+	OAAS_PRIV_MENU AS OPM
+	where OPM.STATE = '10A' 
+	<if test="list != null and list.size >0">
+		 AND  OPM.MENU_CODE IN 
+		<foreach collection="list" item="code" index="index"
+	            open="(" close=")" separator=",">
+	               #{code,jdbcType=VARCHAR}         
+	    </foreach>
+    </if>
+    <if test="list == null or list.size ==0">
+		 AND  1=2
+    </if>
+    ORDER BY OPM.DISPLAY_INDEX
+  </select>
+  
+   <select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT MENU.*,
+        (CASE (SELECT COUNT(1) FROM OAAS_PRIV_MENU WHERE PARENT_MENU_ID = MENU.MENU_ID) WHEN 0 THEN FALSE ELSE TRUE END) 'isParent',
+        OU1.USER_TEXT 'createUserName',OU2.USER_TEXT 'modifyUserName'  
+        FROM OAAS_PRIV_MENU MENU
+        LEFT JOIN OAAS_USER OU1  ON  OU1.USER_ID = MENU.CREATE_USER_ID
+		LEFT JOIN OAAS_USER OU2  ON  OU2.USER_ID = MENU.MODIFY_USER_ID
+        <where>
+            MENU.state = '10A'
+            <if test="whereSql!=null">
+                AND ${whereSql}
+            </if>
+        </where>
+        <if test="orderBySql!=null">
+            ORDER BY ${orderBySql}
+        </if>
+        <if test="orderBySql==null">
+            ORDER BY MENU.DISPLAY_INDEX ASC
+        </if>
+    </select>
+    
+    <select id="selectFindInSet" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT *
+		FROM OAAS_PRIV_MENU WHERE STATE = '10A' AND 
+		FIND_IN_SET(${value},${column})>0
+	</select>
+	
+    <select id="getPrivateMenus" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	SELECT * FROM 
+    	(
+			SELECT
+				MENU.*,OUR.USER_ID AS USER_ID,
+				(CASE (SELECT COUNT(1) FROM OAAS_PRIV_MENU WHERE PARENT_MENU_ID = MENU.MENU_ID AND STATE = '10A' AND OPEN_STATUS = 1) WHEN 0 THEN FALSE ELSE TRUE END) 'isParent'
+			FROM OAAS_PRIVATE OP
+			JOIN OAAS_PRIV_MENU MENU ON MENU.PRIVATE_ID = OP.PRIVATE_ID
+			JOIN OAAS_ROLE_PRIVATE AS ORP ON ORP.PRIVATE_ID = OP.PRIVATE_ID
+			JOIN OAAS_USER_ROLE AS OUR ON OUR.ROLE_ID = ORP.ROLE_ID
+			LEFT JOIN OAAS_PRIV_MENU PMENU ON PMENU.MENU_ID = MENU.PARENT_MENU_ID
+			WHERE OP.STATE = '10A' AND MENU.STATE = '10A' AND MENU.OPEN_STATUS = 1 AND IF( PMENU.MENU_ID != -1,PMENU.OPEN_STATUS = 1,1=1)
+			
+			UNION ALL
+			
+			SELECT
+				MENU.*,OUP.USER_ID AS USER_ID,
+				(CASE (SELECT COUNT(1) FROM OAAS_PRIV_MENU WHERE PARENT_MENU_ID = MENU.MENU_ID AND STATE = '10A' AND OPEN_STATUS = 1) WHEN 0 THEN FALSE ELSE TRUE END) 'isParent'
+			FROM OAAS_PRIVATE OP
+			JOIN OAAS_PRIV_MENU MENU ON MENU.PRIVATE_ID = OP.PRIVATE_ID
+			JOIN OAAS_USER_PRIVATE AS OUP ON OUP.PRIVATE_ID = OP.PRIVATE_ID
+			LEFT JOIN OAAS_PRIV_MENU PMENU ON PMENU.MENU_ID = MENU.PARENT_MENU_ID
+			WHERE OP.STATE = '10A' AND MENU.STATE = '10A' AND MENU.OPEN_STATUS = 1 AND IF( PMENU.MENU_ID != -1,PMENU.OPEN_STATUS = 1,1=1)
+		) RES
+		<where>
+			1=1
+			<if test="userId != null and userId !=''">
+				AND RES.USER_ID = #{userId,jdbcType=DECIMAL}
+			</if>
+			<if test="menuId != null and menuId !=''">
+				AND RES.MENU_ID = #{menuId,jdbcType=DECIMAL}
+			</if>
+		</where>
+		GROUP BY RES.MENU_ID
+		ORDER BY RES.DISPLAY_INDEX ASC
+	</select>
+    
+</mapper>

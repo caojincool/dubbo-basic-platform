@@ -1,0 +1,980 @@
+2017-11-02 16:31:23 ERROR [main] (BeanFactoryUtils.java:20) - Spring init......begin
+2017-11-02 16:31:23 DEBUG [main] (MutablePropertySources.java:110) - Adding [systemProperties] PropertySource with lowest search precedence
+2017-11-02 16:31:23 DEBUG [main] (MutablePropertySources.java:110) - Adding [systemEnvironment] PropertySource with lowest search precedence
+2017-11-02 16:31:23 DEBUG [main] (AbstractEnvironment.java:126) - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2017-11-02 16:31:23 INFO  [main] (AbstractApplicationContext.java:513) - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7c5fec5a: startup date [Thu Nov 02 16:31:23 GMT+08:00 2017]; root of context hierarchy
+2017-11-02 16:31:23 DEBUG [main] (MutablePropertySources.java:110) - Adding [systemProperties] PropertySource with lowest search precedence
+2017-11-02 16:31:23 DEBUG [main] (MutablePropertySources.java:110) - Adding [systemEnvironment] PropertySource with lowest search precedence
+2017-11-02 16:31:23 DEBUG [main] (AbstractEnvironment.java:126) - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2017-11-02 16:31:23 INFO  [main] (XmlBeanDefinitionReader.java:316) - Loading XML bean definitions from class path resource [config/spring/application-busiservice-context.xml]
+2017-11-02 16:31:23 DEBUG [main] (DefaultDocumentLoader.java:73) - Using JAXP provider [com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl]
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:141) - Loading schema mappings from [META-INF/spring.schemas]
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:147) - Loaded schema mappings: {http://www.springframework.org/schema/tx/spring-tx-2.5.xsd=org/springframework/transaction/config/spring-tx-2.5.xsd, http://www.springframework.org/schema/context/spring-context-3.1.xsd=org/springframework/context/config/spring-context-3.1.xsd, http://www.springframework.org/schema/jms/spring-jms-2.5.xsd=org/springframework/jms/config/spring-jms-2.5.xsd, http://www.springframework.org/schema/util/spring-util-3.0.xsd=org/springframework/beans/factory/xml/spring-util-3.0.xsd, http://mybatis.org/schema/mybatis-spring-1.2.xsd=org/mybatis/spring/config/mybatis-spring-1.2.xsd, http://www.springframework.org/schema/tool/spring-tool.xsd=org/springframework/beans/factory/xml/spring-tool-4.0.xsd, http://www.springframework.org/schema/aop/spring-aop-3.2.xsd=org/springframework/aop/config/spring-aop-3.2.xsd, http://www.springframework.org/schema/redis/spring-redis.xsd=org/springframework/data/redis/config/spring-redis-1.0.xsd, http://www.springframework.org/schema/context/spring-context-4.0.xsd=org/springframework/context/config/spring-context-4.0.xsd, http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd=org/springframework/web/servlet/config/spring-mvc-3.2.xsd, http://www.springframework.org/schema/lang/spring-lang-3.2.xsd=org/springframework/scripting/config/spring-lang-3.2.xsd, http://www.springframework.org/schema/cache/spring-cache-3.2.xsd=org/springframework/cache/config/spring-cache-3.2.xsd, http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd=org/springframework/jdbc/config/spring-jdbc-3.1.xsd, http://www.springframework.org/schema/util/spring-util-2.0.xsd=org/springframework/beans/factory/xml/spring-util-2.0.xsd, http://www.springframework.org/schema/tool/spring-tool-3.2.xsd=org/springframework/beans/factory/xml/spring-tool-3.2.xsd, http://www.springframework.org/schema/context/spring-context.xsd=org/springframework/context/config/spring-context-4.0.xsd, http://www.springframework.org/schema/aop/spring-aop-4.0.xsd=org/springframework/aop/config/spring-aop-4.0.xsd, http://www.springframework.org/schema/jee/spring-jee-3.2.xsd=org/springframework/ejb/config/spring-jee-3.2.xsd, http://www.springframework.org/schema/context/spring-context-3.0.xsd=org/springframework/context/config/spring-context-3.0.xsd, http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd=org/springframework/jdbc/config/spring-jdbc-4.0.xsd, http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd=org/springframework/web/servlet/config/spring-mvc-4.0.xsd, http://www.springframework.org/schema/util/spring-util-2.5.xsd=org/springframework/beans/factory/xml/spring-util-2.5.xsd, http://www.springframework.org/schema/beans/spring-beans-3.2.xsd=org/springframework/beans/factory/xml/spring-beans-3.2.xsd, http://www.springframework.org/schema/aop/spring-aop-3.1.xsd=org/springframework/aop/config/spring-aop-3.1.xsd, http://www.springframework.org/schema/lang/spring-lang-4.0.xsd=org/springframework/scripting/config/spring-lang-4.0.xsd, http://www.springframework.org/schema/mvc/spring-mvc.xsd=org/springframework/web/servlet/config/spring-mvc-4.0.xsd, http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd=org/springframework/web/servlet/config/spring-mvc-3.1.xsd, http://www.springframework.org/schema/redis/spring-redis-1.0.xsd=org/springframework/data/redis/config/spring-redis-1.0.xsd, http://www.springframework.org/schema/tool/spring-tool-4.0.xsd=org/springframework/beans/factory/xml/spring-tool-4.0.xsd, http://www.springframework.org/schema/lang/spring-lang-3.1.xsd=org/springframework/scripting/config/spring-lang-3.1.xsd, http://www.springframework.org/schema/tx/spring-tx-3.2.xsd=org/springframework/transaction/config/spring-tx-3.2.xsd, http://www.springframework.org/schema/cache/spring-cache-3.1.xsd=org/springframework/cache/config/spring-cache-3.1.xsd, http://www.springframework.org/schema/jee/spring-jee-4.0.xsd=org/springframework/ejb/config/spring-jee-4.0.xsd, http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd=org/springframework/jdbc/config/spring-jdbc-3.0.xsd, http://www.springframework.org/schema/jdbc/spring-jdbc.xsd=org/springframework/jdbc/config/spring-jdbc-4.0.xsd, http://www.springframework.org/schema/tool/spring-tool-3.1.xsd=org/springframework/beans/factory/xml/spring-tool-3.1.xsd, http://www.springframework.org/schema/cache/spring-cache-4.0.xsd=org/springframework/cache/config/spring-cache-4.0.xsd, http://www.springframework.org/schema/jee/spring-jee-3.1.xsd=org/springframework/ejb/config/spring-jee-3.1.xsd, http://www.springframework.org/schema/task/spring-task-3.2.xsd=org/springframework/scheduling/config/spring-task-3.2.xsd, http://www.springframework.org/schema/beans/spring-beans-3.1.xsd=org/springframework/beans/factory/xml/spring-beans-3.1.xsd, http://www.springframework.org/schema/util/spring-util.xsd=org/springframework/beans/factory/xml/spring-util-4.0.xsd, http://www.springframework.org/schema/aop/spring-aop-3.0.xsd=org/springframework/aop/config/spring-aop-3.0.xsd, http://www.springframework.org/schema/jms/spring-jms-3.2.xsd=org/springframework/jms/config/spring-jms-3.2.xsd, http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd=org/springframework/web/servlet/config/spring-mvc-3.0.xsd, http://www.springframework.org/schema/beans/spring-beans-4.0.xsd=org/springframework/beans/factory/xml/spring-beans-4.0.xsd, http://www.springframework.org/schema/beans/spring-beans.xsd=org/springframework/beans/factory/xml/spring-beans-4.0.xsd, http://mybatis.org/schema/mybatis-spring.xsd=org/mybatis/spring/config/mybatis-spring-1.2.xsd, http://www.springframework.org/schema/lang/spring-lang-3.0.xsd=org/springframework/scripting/config/spring-lang-3.0.xsd, http://www.springframework.org/schema/tx/spring-tx-3.1.xsd=org/springframework/transaction/config/spring-tx-3.1.xsd, http://www.springframework.org/schema/context/spring-context-2.5.xsd=org/springframework/context/config/spring-context-2.5.xsd, http://www.springframework.org/schema/task/spring-task-4.0.xsd=org/springframework/scheduling/config/spring-task-4.0.xsd, http://www.springframework.org/schema/tool/spring-tool-3.0.xsd=org/springframework/beans/factory/xml/spring-tool-3.0.xsd, http://www.springframework.org/schema/tx/spring-tx-4.0.xsd=org/springframework/transaction/config/spring-tx-4.0.xsd, http://www.springframework.org/schema/aop/spring-aop-2.0.xsd=org/springframework/aop/config/spring-aop-2.0.xsd, http://www.springframework.org/schema/jee/spring-jee-3.0.xsd=org/springframework/ejb/config/spring-jee-3.0.xsd, http://www.springframework.org/schema/task/spring-task-3.1.xsd=org/springframework/scheduling/config/spring-task-3.1.xsd, http://www.springframework.org/schema/beans/spring-beans-3.0.xsd=org/springframework/beans/factory/xml/spring-beans-3.0.xsd, http://www.springframework.org/schema/jee/spring-jee.xsd=org/springframework/ejb/config/spring-jee-4.0.xsd, http://www.springframework.org/schema/aop/spring-aop-2.5.xsd=org/springframework/aop/config/spring-aop-2.5.xsd, http://www.springframework.org/schema/jms/spring-jms.xsd=org/springframework/jms/config/spring-jms-4.0.xsd, http://www.springframework.org/schema/lang/spring-lang-2.0.xsd=org/springframework/scripting/config/spring-lang-2.0.xsd, http://www.springframework.org/schema/jms/spring-jms-3.1.xsd=org/springframework/jms/config/spring-jms-3.1.xsd, http://www.springframework.org/schema/util/spring-util-3.2.xsd=org/springframework/beans/factory/xml/spring-util-3.2.xsd, http://www.springframework.org/schema/task/spring-task.xsd=org/springframework/scheduling/config/spring-task-4.0.xsd, http://www.springframework.org/schema/tool/spring-tool-2.0.xsd=org/springframework/beans/factory/xml/spring-tool-2.0.xsd, http://www.springframework.org/schema/tx/spring-tx-3.0.xsd=org/springframework/transaction/config/spring-tx-3.0.xsd, http://www.springframework.org/schema/lang/spring-lang-2.5.xsd=org/springframework/scripting/config/spring-lang-2.5.xsd, http://www.springframework.org/schema/jee/spring-jee-2.0.xsd=org/springframework/ejb/config/spring-jee-2.0.xsd, http://www.springframework.org/schema/jms/spring-jms-4.0.xsd=org/springframework/jms/config/spring-jms-4.0.xsd, http://www.springframework.org/schema/tool/spring-tool-2.5.xsd=org/springframework/beans/factory/xml/spring-tool-2.5.xsd, http://www.springframework.org/schema/jee/spring-jee-2.5.xsd=org/springframework/ejb/config/spring-jee-2.5.xsd, http://www.springframework.org/schema/util/spring-util-4.0.xsd=org/springframework/beans/factory/xml/spring-util-4.0.xsd, http://www.springframework.org/schema/task/spring-task-3.0.xsd=org/springframework/scheduling/config/spring-task-3.0.xsd, http://www.springframework.org/schema/lang/spring-lang.xsd=org/springframework/scripting/config/spring-lang-4.0.xsd, http://www.springframework.org/schema/context/spring-context-3.2.xsd=org/springframework/context/config/spring-context-3.2.xsd, http://www.springframework.org/schema/jms/spring-jms-3.0.xsd=org/springframework/jms/config/spring-jms-3.0.xsd, http://www.springframework.org/schema/util/spring-util-3.1.xsd=org/springframework/beans/factory/xml/spring-util-3.1.xsd, http://www.springframework.org/schema/beans/spring-beans-2.0.xsd=org/springframework/beans/factory/xml/spring-beans-2.0.xsd, http://www.springframework.org/schema/cache/spring-cache.xsd=org/springframework/cache/config/spring-cache-4.0.xsd, http://www.springframework.org/schema/tx/spring-tx.xsd=org/springframework/transaction/config/spring-tx-4.0.xsd, http://www.springframework.org/schema/beans/spring-beans-2.5.xsd=org/springframework/beans/factory/xml/spring-beans-2.5.xsd, http://www.springframework.org/schema/tx/spring-tx-2.0.xsd=org/springframework/transaction/config/spring-tx-2.0.xsd, http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd=org/springframework/jdbc/config/spring-jdbc-3.2.xsd, http://www.springframework.org/schema/aop/spring-aop.xsd=org/springframework/aop/config/spring-aop-4.0.xsd}
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:119) - Found XML schema [http://www.springframework.org/schema/beans/spring-beans.xsd] in classpath: org/springframework/beans/factory/xml/spring-beans-4.0.xsd
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:119) - Found XML schema [http://www.springframework.org/schema/aop/spring-aop.xsd] in classpath: org/springframework/aop/config/spring-aop-4.0.xsd
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:119) - Found XML schema [http://www.springframework.org/schema/tool/spring-tool-4.0.xsd] in classpath: org/springframework/beans/factory/xml/spring-tool-4.0.xsd
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:119) - Found XML schema [http://www.springframework.org/schema/context/spring-context.xsd] in classpath: org/springframework/context/config/spring-context-4.0.xsd
+2017-11-02 16:31:24 DEBUG [main] (DefaultBeanDefinitionDocumentReader.java:108) - Loading bean definitions
+2017-11-02 16:31:24 DEBUG [main] (DefaultNamespaceHandlerResolver.java:157) - Loaded NamespaceHandler mappings: {http://www.springframework.org/schema/p=org.springframework.beans.factory.xml.SimplePropertyNamespaceHandler, http://www.springframework.org/schema/mvc=org.springframework.web.servlet.config.MvcNamespaceHandler, http://www.springframework.org/schema/util=org.springframework.beans.factory.xml.UtilNamespaceHandler, http://www.springframework.org/schema/jee=org.springframework.ejb.config.JeeNamespaceHandler, http://www.springframework.org/schema/aop=org.springframework.aop.config.AopNamespaceHandler, http://www.springframework.org/schema/jdbc=org.springframework.jdbc.config.JdbcNamespaceHandler, http://www.springframework.org/schema/redis=org.springframework.data.redis.config.RedisNamespaceHandler, http://www.springframework.org/schema/cache=org.springframework.cache.config.CacheNamespaceHandler, http://mybatis.org/schema/mybatis-spring=org.mybatis.spring.config.NamespaceHandler, http://www.springframework.org/schema/c=org.springframework.beans.factory.xml.SimpleConstructorNamespaceHandler, http://www.springframework.org/schema/tx=org.springframework.transaction.config.TxNamespaceHandler, http://www.springframework.org/schema/task=org.springframework.scheduling.config.TaskNamespaceHandler, http://www.springframework.org/schema/jms=org.springframework.jms.config.JmsNamespaceHandler, http://www.springframework.org/schema/lang=org.springframework.scripting.config.LangNamespaceHandler, http://www.springframework.org/schema/context=org.springframework.context.config.ContextNamespaceHandler}
+2017-11-02 16:31:24 INFO  [main] (XmlBeanDefinitionReader.java:316) - Loading XML bean definitions from class path resource [config/spring/application-datasource.xml]
+2017-11-02 16:31:24 DEBUG [main] (DefaultDocumentLoader.java:73) - Using JAXP provider [com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl]
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:119) - Found XML schema [http://www.springframework.org/schema/beans/spring-beans-4.0.xsd] in classpath: org/springframework/beans/factory/xml/spring-beans-4.0.xsd
+2017-11-02 16:31:24 DEBUG [main] (DefaultBeanDefinitionDocumentReader.java:108) - Loading bean definitions
+2017-11-02 16:31:24 DEBUG [main] (DefaultBeanDefinitionDocumentReader.java:267) - Imported 2 bean definitions from relative location [./application-datasource.xml]
+2017-11-02 16:31:24 INFO  [main] (XmlBeanDefinitionReader.java:316) - Loading XML bean definitions from class path resource [config/spring/application-mybatis.xml]
+2017-11-02 16:31:24 DEBUG [main] (DefaultDocumentLoader.java:73) - Using JAXP provider [com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl]
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:119) - Found XML schema [http://www.springframework.org/schema/beans/spring-beans.xsd] in classpath: org/springframework/beans/factory/xml/spring-beans-4.0.xsd
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:119) - Found XML schema [http://www.springframework.org/schema/tx/spring-tx-4.0.xsd] in classpath: org/springframework/transaction/config/spring-tx-4.0.xsd
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:119) - Found XML schema [http://www.springframework.org/schema/tool/spring-tool-4.0.xsd] in classpath: org/springframework/beans/factory/xml/spring-tool-4.0.xsd
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:119) - Found XML schema [http://www.springframework.org/schema/aop/spring-aop-4.0.xsd] in classpath: org/springframework/aop/config/spring-aop-4.0.xsd
+2017-11-02 16:31:24 DEBUG [main] (DefaultBeanDefinitionDocumentReader.java:108) - Loading bean definitions
+2017-11-02 16:31:24 DEBUG [main] (BeanDefinitionParserDelegate.java:495) - Neither XML 'id' nor 'name' specified - using generated bean name [org.mybatis.spring.mapper.MapperScannerConfigurer#0]
+2017-11-02 16:31:24 DEBUG [main] (BeanDefinitionParserDelegate.java:495) - Neither XML 'id' nor 'name' specified - using generated bean name [org.mybatis.spring.mapper.MapperScannerConfigurer#1]
+2017-11-02 16:31:24 DEBUG [main] (DefaultBeanDefinitionDocumentReader.java:267) - Imported 12 bean definitions from relative location [./application-mybatis.xml]
+2017-11-02 16:31:24 INFO  [main] (XmlBeanDefinitionReader.java:316) - Loading XML bean definitions from class path resource [config/spring/application-workflow-engine.xml]
+2017-11-02 16:31:24 DEBUG [main] (DefaultDocumentLoader.java:73) - Using JAXP provider [com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl]
+2017-11-02 16:31:24 DEBUG [main] (PluggableSchemaResolver.java:119) - Found XML schema [http://www.springframework.org/schema/beans/spring-beans.xsd] in classpath: org/springframework/beans/factory/xml/spring-beans-4.0.xsd
+2017-11-02 16:31:24 DEBUG [main] (DefaultBeanDefinitionDocumentReader.java:108) - Loading bean definitions
+2017-11-02 16:31:24 DEBUG [main] (DefaultBeanDefinitionDocumentReader.java:267) - Imported 8 bean definitions from relative location [./application-workflow-engine.xml]
+2017-11-02 16:31:24 DEBUG [main] (MutablePropertySources.java:110) - Adding [systemProperties] PropertySource with lowest search precedence
+2017-11-02 16:31:24 DEBUG [main] (MutablePropertySources.java:110) - Adding [systemEnvironment] PropertySource with lowest search precedence
+2017-11-02 16:31:24 DEBUG [main] (AbstractEnvironment.java:126) - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:242) - JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\test-classes\com\ruizhisoft\framework]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\test-classes\com\ruizhisoft\framework] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/test-classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\test-classes\com\ruizhisoft\framework\common] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/test-classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\test-classes\com\ruizhisoft\framework\workflow] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/test-classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\test-classes\com\ruizhisoft\framework\workflow\test] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/test-classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\demo] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\demo\service] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflow] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflow\bean] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflow\controller] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\dao] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\mapping] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\model] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\service] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\dao] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\mapping] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\model] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\service] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework] for files matching pattern [D:/NeonProject/RuiZhi-Common/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common] for files matching pattern [D:/NeonProject/RuiZhi-Common/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\model] for files matching pattern [D:/NeonProject/RuiZhi-Common/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils] for files matching pattern [D:/NeonProject/RuiZhi-Common/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\datatype] for files matching pattern [D:/NeonProject/RuiZhi-Common/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\ftp] for files matching pattern [D:/NeonProject/RuiZhi-Common/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework] for files matching pattern [D:/NeonProject/Ruizhi-WebFrame/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo] for files matching pattern [D:/NeonProject/Ruizhi-WebFrame/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller] for files matching pattern [D:/NeonProject/Ruizhi-WebFrame/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\dao] for files matching pattern [D:/NeonProject/Ruizhi-WebFrame/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\mapping] for files matching pattern [D:/NeonProject/Ruizhi-WebFrame/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model] for files matching pattern [D:/NeonProject/Ruizhi-WebFrame/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\service] for files matching pattern [D:/NeonProject/Ruizhi-WebFrame/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web] for files matching pattern [D:/NeonProject/Ruizhi-WebFrame/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\api] for files matching pattern [D:/NeonProject/Ruizhi-WebFrame/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\model] for files matching pattern [D:/NeonProject/Ruizhi-WebFrame/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework] for files matching pattern [D:/NeonProject/RuiZhi-MessageQueueProducer/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue] for files matching pattern [D:/NeonProject/RuiZhi-MessageQueueProducer/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\dao] for files matching pattern [D:/NeonProject/RuiZhi-MessageQueueProducer/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\impl] for files matching pattern [D:/NeonProject/RuiZhi-MessageQueueProducer/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\modal] for files matching pattern [D:/NeonProject/RuiZhi-MessageQueueProducer/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\service] for files matching pattern [D:/NeonProject/RuiZhi-MessageQueueProducer/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework] for files matching pattern [D:/NeonProject/RuiZhi-Cache/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache] for files matching pattern [D:/NeonProject/RuiZhi-Cache/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache\impl] for files matching pattern [D:/NeonProject/RuiZhi-Cache/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache\model] for files matching pattern [D:/NeonProject/RuiZhi-Cache/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache\service] for files matching pattern [D:/NeonProject/RuiZhi-Cache/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-JettyServer\target\classes\com\ruizhisoft\framework]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-JettyServer\target\classes\com\ruizhisoft\framework] for files matching pattern [D:/NeonProject/RuiZhi-JettyServer/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-JettyServer\target\classes\com\ruizhisoft\framework\server] for files matching pattern [D:/NeonProject/RuiZhi-JettyServer/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineApi/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineApi/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\busi] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineApi/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\define] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineApi/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\exception] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineApi/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\model] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineApi/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-GidClient\target\classes\com\ruizhisoft\framework]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-GidClient\target\classes\com\ruizhisoft\framework] for files matching pattern [D:/NeonProject/RuiZhi-GidClient/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-GidClient\target\classes\com\ruizhisoft\framework\gid] for files matching pattern [D:/NeonProject/RuiZhi-GidClient/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-GidClient\target\classes\com\ruizhisoft\framework\gid\utils] for files matching pattern [D:/NeonProject/RuiZhi-GidClient/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-GidClient\target\classes\com\ruizhisoft\framework\gid\utils\sequence] for files matching pattern [D:/NeonProject/RuiZhi-GidClient/target/classes/com/basic.framework/**/*.class]
+2017-11-02 16:31:24 DEBUG [main] (PathMatchingResourcePatternResolver.java:357) - Resolved location pattern [classpath*:com/basic.framework/**/*.class] to resources [file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\test-classes\com\ruizhisoft\framework\common\BeanFactoryUtils.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\test-classes\com\ruizhisoft\framework\workflow\test\WorkflowEngineTest.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\demo\service\UserPrivateServiceImpl.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflow\bean\WorkflowIbean.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflow\controller\WorkflowEngineMonitorController.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\dao\CliWorkflowCommandMapper.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\dao\CliWorkflowNoticeExecMapper.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\model\CliWorkflowCommand.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\model\CliWorkflowNoticeExec.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\service\CliWorkflowCommandService.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\service\CliWorkflowCommandServiceImpl.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\service\CliWorkflowNoticeExecService.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\service\CliWorkflowNoticeExecServiceImpl.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\dao\SerWorkflowCommandExecMapper.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\dao\SerWorkflowNoticeMapper.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\model\SerWorkflowCommandExec.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\model\SerWorkflowNotice.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\service\SerWorkflowCommandExecService.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\service\SerWorkflowCommandExecServiceImpl.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\service\SerWorkflowNoticeService.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\service\SerWorkflowNoticeServiceImpl.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\model\DealResult.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\model\FTPConfig.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\model\PageBean.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\model\TreeBean.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\Arith.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\Collections3.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\CompareIdList.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\ConverUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\datatype\DateUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\datatype\DoubleUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\datatype\IntegerUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\datatype\JsonUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\datatype\LongUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\datatype\MyDateFormatDeserializer.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\datatype\ObjectUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\datatype\StringUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\EncodeUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\Exceptions.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\FileUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\ftp\FTPClientUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\HttpUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\OracleSQLUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\PropertiesUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\ReflectUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\StreamUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\TreeUtils.class], file [D:\NeonProject\RuiZhi-Common\target\classes\com\ruizhisoft\framework\common\utils\VerifyCodeUtils.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoAjaxController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoBlankController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoExcelController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoFileController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoFormController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoGridCheckController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoGridController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoGridPageController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoMapController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoMsgPush.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoOpenWinController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoPageLayout.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoPlanController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoTabController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoZTreeController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\dao\DemoMapper.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\dao\DemoOrgMapper.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\Demo.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoBlankBean.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoCacheOrg.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoCacheUser.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoCatalog.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoGridBean.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoGridCheckQryCondBean.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoGridPageQryCondBean.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoGridQryCondBean.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoGridTreeBean.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoGridTreeQryCondBean.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoMenu.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\DemoOrg.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\PageBean.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\PlanBaseBean.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\model\TreeBean.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\service\DemoCache.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\service\DemoCacheImpl.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\service\DemoOrgService.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\service\DemoOrgServiceImpl.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\service\DemoService.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\service\DemoServiceImpl.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\service\GidServiceImpl.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\service\UserDetailServiceImpl.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\service\UserPrivateServiceImpl.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\service\VerifyServiceImpl.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\api\GidService.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\api\UserDetailService.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\api\UserPrivateService.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\api\VerifyService.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\BaseController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\CommonController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\ErrorController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\IndexController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\LoginController.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\model\DateNow.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\model\JobOrgArea.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\model\Private.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\model\Role.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\model\UserDetail.class], file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\model\VerifyUniqueCode.class], file [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\dao\MsgInfoProducerDao.class], file [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\impl\MessageSenderActiveMQ$1.class], file [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\impl\MessageSenderActiveMQ$2.class], file [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\impl\MessageSenderActiveMQ.class], file [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\modal\MqGroupSender.class], file [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\modal\MsgInfoProducer.class], file [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\service\MessageSender.class], file [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache\Cache.class], file [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache\CacheRedis.class], file [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache\impl\EhcacheJettyServiceImpl.class], file [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache\impl\EhcacheServiceImpl.class], file [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache\model\EhcacheBean.class], file [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache\model\RedisCache.class], file [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache\model\RedisTemplateScopeConfig.class], file [D:\NeonProject\RuiZhi-Cache\target\classes\com\ruizhisoft\framework\cache\service\EhcacheService.class], file [D:\NeonProject\RuiZhi-JettyServer\target\classes\com\ruizhisoft\framework\server\JettyServerHandler.class], file [D:\NeonProject\RuiZhi-JettyServer\target\classes\com\ruizhisoft\framework\server\JettyServerMain.class], file [D:\NeonProject\RuiZhi-JettyServer\target\classes\com\ruizhisoft\framework\server\JettyServiceInterface.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\busi\ProcessCompleteNotice.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\busi\ProcessReturnFinishNotice.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\busi\ProcessStartNotice.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\busi\TaskCreateNotice.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\define\CommandExecFlag.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\define\CommandQueueCode.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\define\CommandSendFlag.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\define\CommandType.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\define\GidCodes.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\define\NoticeExecFlag.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\define\NoticeQueueCode.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\define\NoticeSendFlag.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\define\NoticeType.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\define\WorkflowError.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\exception\WorkflowException.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\model\WorkflowCommandBean.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\model\WorkflowCommandExecBean.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\model\WorkflowNoticeBean.class], file [D:\NeonProject\RuiZhi-WorkflowEngineApi\target\classes\com\ruizhisoft\framework\workflow\model\WorkflowNoticeExecBean.class], file [D:\NeonProject\RuiZhi-GidClient\target\classes\com\ruizhisoft\framework\gid\utils\sequence\GidClientManager$FillerThread.class], file [D:\NeonProject\RuiZhi-GidClient\target\classes\com\ruizhisoft\framework\gid\utils\sequence\GidClientManager$GidVo.class], file [D:\NeonProject\RuiZhi-GidClient\target\classes\com\ruizhisoft\framework\gid\utils\sequence\GidClientManager.class], file [D:\NeonProject\RuiZhi-GidClient\target\classes\com\ruizhisoft\framework\gid\utils\sequence\GidClientUtils.class]]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflow\controller\WorkflowEngineMonitorController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\service\CliWorkflowCommandServiceImpl.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\service\CliWorkflowNoticeExecServiceImpl.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\service\SerWorkflowCommandExecServiceImpl.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\service\SerWorkflowNoticeServiceImpl.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoAjaxController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoBlankController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoExcelController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoFileController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoFormController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoGridCheckController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoGridController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoGridPageController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoMapController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoMsgPush.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoOpenWinController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoPageLayout.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoPlanController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoTabController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\demo\controller\DemoZTreeController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\CommonController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\ErrorController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\IndexController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\Ruizhi-WebFrame\target\classes\com\ruizhisoft\framework\web\LoginController.class]
+2017-11-02 16:31:24 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\RuiZhi-MessageQueueProducer\target\classes\com\ruizhisoft\framework\messagequeue\dao\MsgInfoProducerDao.class]
+2017-11-02 16:31:24 DEBUG [main] (AbstractBeanDefinitionReader.java:223) - Loaded 53 bean definitions from location pattern [config/spring/application-busiservice-context.xml]
+2017-11-02 16:31:24 DEBUG [main] (AbstractApplicationContext.java:543) - Bean factory for org.springframework.context.support.ClassPathXmlApplicationContext@7c5fec5a: org.springframework.beans.factory.support.DefaultListableBeanFactory@2e0fad0: defining beans [properties,org.springframework.aop.config.internalAutoProxyCreator,dataSourceSer,dataSourceCli,sqlSessionFactorySer,org.mybatis.spring.mapper.MapperScannerConfigurer#0,sqlSessionFactoryCli,org.mybatis.spring.mapper.MapperScannerConfigurer#1,transactionManagerSer,transactionManagerCli,txAdviceSer,txAdviceCli,pointCutSer,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,pointCutCli,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1,processEngineConfiguration,processEngine,repositoryService,runtimeService,taskService,historyService,identityService,managementService,workflowEngineMonitorController,cliWorkflowCommandService,cliWorkflowNoticeExecService,serWorkflowCommandExecService,serWorkflowNoticeService,demoAjaxController,demoBlankController,demoExcelController,demoFileController,demoFormController,demoGridCheckController,demoGridController,demoGridPageController,demoMapController,demoMsgPush,demoOpenWinController,demoPageLayout,demoPlanController,demoTabController,demoZTreeController,commonController,errorController,indexController,loginController,msgInfoProducerDao,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor]; root of factory hierarchy
+2017-11-02 16:31:24 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2017-11-02 16:31:24 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2017-11-02 16:31:24 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor' to allow for resolving potential circular references
+2017-11-02 16:31:24 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'org.mybatis.spring.mapper.MapperScannerConfigurer#0'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'org.mybatis.spring.mapper.MapperScannerConfigurer#0'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'org.mybatis.spring.mapper.MapperScannerConfigurer#0' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:1595) - Invoking afterPropertiesSet() on bean with name 'org.mybatis.spring.mapper.MapperScannerConfigurer#0'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'org.mybatis.spring.mapper.MapperScannerConfigurer#0'
+2017-11-02 16:31:25 DEBUG [main] (MutablePropertySources.java:110) - Adding [systemProperties] PropertySource with lowest search precedence
+2017-11-02 16:31:25 DEBUG [main] (MutablePropertySources.java:110) - Adding [systemEnvironment] PropertySource with lowest search precedence
+2017-11-02 16:31:25 DEBUG [main] (AbstractEnvironment.java:126) - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2017-11-02 16:31:25 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\dao]
+2017-11-02 16:31:25 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\dao] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowser/dao/**/*.class]
+2017-11-02 16:31:25 DEBUG [main] (PathMatchingResourcePatternResolver.java:357) - Resolved location pattern [classpath*:com/basic.framework/workflowser/dao/**/*.class] to resources [file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\dao\SerWorkflowCommandExecMapper.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\dao\SerWorkflowNoticeMapper.class]]
+2017-11-02 16:31:25 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\dao\SerWorkflowCommandExecMapper.class]
+2017-11-02 16:31:25 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\dao\SerWorkflowNoticeMapper.class]
+2017-11-02 16:31:25 DEBUG [main] (ClassPathMapperScanner.java:164) - Creating MapperFactoryBean with name 'serWorkflowCommandExecMapper' and 'com.basic.framework.workflowser.dao.SerWorkflowCommandExecMapper' mapperInterface
+2017-11-02 16:31:25 DEBUG [main] (ClassPathMapperScanner.java:164) - Creating MapperFactoryBean with name 'serWorkflowNoticeMapper' and 'com.basic.framework.workflowser.dao.SerWorkflowNoticeMapper' mapperInterface
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'org.mybatis.spring.mapper.MapperScannerConfigurer#1'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'org.mybatis.spring.mapper.MapperScannerConfigurer#1'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'org.mybatis.spring.mapper.MapperScannerConfigurer#1' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:1595) - Invoking afterPropertiesSet() on bean with name 'org.mybatis.spring.mapper.MapperScannerConfigurer#1'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'org.mybatis.spring.mapper.MapperScannerConfigurer#1'
+2017-11-02 16:31:25 DEBUG [main] (MutablePropertySources.java:110) - Adding [systemProperties] PropertySource with lowest search precedence
+2017-11-02 16:31:25 DEBUG [main] (MutablePropertySources.java:110) - Adding [systemEnvironment] PropertySource with lowest search precedence
+2017-11-02 16:31:25 DEBUG [main] (AbstractEnvironment.java:126) - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2017-11-02 16:31:25 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\dao]
+2017-11-02 16:31:25 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\dao] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowcli/dao/**/*.class]
+2017-11-02 16:31:25 DEBUG [main] (PathMatchingResourcePatternResolver.java:357) - Resolved location pattern [classpath*:com/basic.framework/workflowcli/dao/**/*.class] to resources [file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\dao\CliWorkflowCommandMapper.class], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\dao\CliWorkflowNoticeExecMapper.class]]
+2017-11-02 16:31:25 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\dao\CliWorkflowCommandMapper.class]
+2017-11-02 16:31:25 DEBUG [main] (ClassPathScanningCandidateComponentProvider.java:284) - Identified candidate component class: file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\dao\CliWorkflowNoticeExecMapper.class]
+2017-11-02 16:31:25 DEBUG [main] (ClassPathMapperScanner.java:164) - Creating MapperFactoryBean with name 'cliWorkflowCommandMapper' and 'com.basic.framework.workflowcli.dao.CliWorkflowCommandMapper' mapperInterface
+2017-11-02 16:31:25 DEBUG [main] (ClassPathMapperScanner.java:164) - Creating MapperFactoryBean with name 'cliWorkflowNoticeExecMapper' and 'com.basic.framework.workflowcli.dao.CliWorkflowNoticeExecMapper' mapperInterface
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'properties'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'properties'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'properties' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'properties'
+2017-11-02 16:31:25 INFO  [main] (PropertiesLoaderSupport.java:172) - Loading properties file from class path resource [config/properties/datasource.properties]
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor'
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor'
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'org.springframework.aop.config.internalAutoProxyCreator' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2017-11-02 16:31:25 DEBUG [main] (AbstractApplicationContext.java:649) - Unable to locate MessageSource with name 'messageSource': using default [org.springframework.context.support.DelegatingMessageSource@311e2a2d]
+2017-11-02 16:31:25 DEBUG [main] (AbstractApplicationContext.java:673) - Unable to locate ApplicationEventMulticaster with name 'applicationEventMulticaster': using default [org.springframework.context.event.SimpleApplicationEventMulticaster@48bc9948]
+2017-11-02 16:31:25 DEBUG [main] (DefaultListableBeanFactory.java:672) - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@2e0fad0: defining beans [properties,org.springframework.aop.config.internalAutoProxyCreator,dataSourceSer,dataSourceCli,sqlSessionFactorySer,org.mybatis.spring.mapper.MapperScannerConfigurer#0,sqlSessionFactoryCli,org.mybatis.spring.mapper.MapperScannerConfigurer#1,transactionManagerSer,transactionManagerCli,txAdviceSer,txAdviceCli,pointCutSer,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,pointCutCli,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1,processEngineConfiguration,processEngine,repositoryService,runtimeService,taskService,historyService,identityService,managementService,workflowEngineMonitorController,cliWorkflowCommandService,cliWorkflowNoticeExecService,serWorkflowCommandExecService,serWorkflowNoticeService,demoAjaxController,demoBlankController,demoExcelController,demoFileController,demoFormController,demoGridCheckController,demoGridController,demoGridPageController,demoMapController,demoMsgPush,demoOpenWinController,demoPageLayout,demoPlanController,demoTabController,demoZTreeController,commonController,errorController,indexController,loginController,msgInfoProducerDao,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor,serWorkflowCommandExecMapper,serWorkflowNoticeMapper,cliWorkflowCommandMapper,cliWorkflowNoticeExecMapper]; root of factory hierarchy
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'properties'
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'dataSourceSer'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'dataSourceSer'
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'pointCutSer'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'pointCutSer'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'pointCutCli'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'pointCutCli'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'dataSourceSer' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'dataSourceSer'
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'dataSourceCli'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'dataSourceCli'
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'dataSourceCli' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'dataSourceCli'
+2017-11-02 16:31:25 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'sqlSessionFactorySer'
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'sqlSessionFactorySer'
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:25 DEBUG [main] (LogFactory.java:124) - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'sqlSessionFactorySer' to allow for resolving potential circular references
+2017-11-02 16:31:25 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'dataSourceSer'
+2017-11-02 16:31:25 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\mapping]
+2017-11-02 16:31:25 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\mapping] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowser/mapping/*.xml]
+2017-11-02 16:31:25 DEBUG [main] (PathMatchingResourcePatternResolver.java:357) - Resolved location pattern [classpath*:com/basic.framework/workflowser/mapping/*.xml] to resources [file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\mapping\SerWorkflowCommandExecMapper.xml], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\mapping\SerWorkflowNoticeMapper.xml]]
+2017-11-02 16:31:25 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:1595) - Invoking afterPropertiesSet() on bean with name 'sqlSessionFactorySer'
+2017-11-02 16:31:25 DEBUG [main] (SqlSessionFactoryBean.java:362) - Property 'configLocation' not specified, using default MyBatis Configuration
+2017-11-02 16:31:25 DEBUG [main] (VFS.java:101) - Class not found: org.jboss.vfs.VFS
+2017-11-02 16:31:25 DEBUG [main] (JBoss6VFS.java:137) - JBoss 6 VFS API is not available in this environment.
+2017-11-02 16:31:25 DEBUG [main] (VFS.java:101) - Class not found: org.jboss.vfs.VirtualFile
+2017-11-02 16:31:25 DEBUG [main] (VFS.java:68) - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2017-11-02 16:31:25 DEBUG [main] (VFS.java:80) - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2017-11-02 16:31:25 DEBUG [main] (DefaultVFS.java:197) - Find JAR URL: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowser/model
+2017-11-02 16:31:25 DEBUG [main] (DefaultVFS.java:217) - Not a JAR: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowser/model
+2017-11-02 16:31:25 DEBUG [main] (DefaultVFS.java:94) - Reader entry: SerWorkflowCommandExec.class
+2017-11-02 16:31:25 DEBUG [main] (DefaultVFS.java:94) - Reader entry: SerWorkflowNotice.class
+2017-11-02 16:31:25 DEBUG [main] (DefaultVFS.java:103) - Listing file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowser/model
+2017-11-02 16:31:25 DEBUG [main] (DefaultVFS.java:197) - Find JAR URL: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowser/model/SerWorkflowCommandExec.class
+2017-11-02 16:31:25 DEBUG [main] (DefaultVFS.java:217) - Not a JAR: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowser/model/SerWorkflowCommandExec.class
+2017-11-02 16:31:25 DEBUG [main] (DefaultVFS.java:94) - Reader entry: ����   3 Z  Acom/basic.framework/workflowser/model/SerWorkflowCommandExec  java/lang/Object execId Ljava/lang/Long; 	commandId serialNo processDefineKey Ljava/lang/String; busiOrderId taskId 
+2017-11-02 16:31:25 DEBUG [main] (DefaultVFS.java:197) - Find JAR URL: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowser/model/SerWorkflowNotice.class
+2017-11-02 16:31:25 DEBUG [main] (DefaultVFS.java:217) - Not a JAR: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowser/model/SerWorkflowNotice.class
+2017-11-02 16:31:25 DEBUG [main] (DefaultVFS.java:94) - Reader entry: ����   3 K  <com/basic.framework/workflowser/model/SerWorkflowNotice  java/lang/Object noticeId Ljava/lang/Long; 
+2017-11-02 16:31:25 DEBUG [main] (ResolverUtil.java:250) - Checking to see if class com.basic.framework.workflowser.model.SerWorkflowCommandExec matches criteria [is assignable to Object]
+2017-11-02 16:31:25 DEBUG [main] (ResolverUtil.java:250) - Checking to see if class com.basic.framework.workflowser.model.SerWorkflowNotice matches criteria [is assignable to Object]
+2017-11-02 16:31:25 DEBUG [main] (SqlSessionFactoryBean.java:383) - Scanned package: 'com.basic.framework.workflowser.model' for aliases
+2017-11-02 16:31:32 ERROR [main] (VendorDatabaseIdProvider.java:51) - Could not get a databaseId from dataSource
+org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Could not create connection to database server. Attempted reconnect 3 times. Giving up.)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1549)
+	at org.apache.commons.dbcp.BasicDataSource.createDataSource(BasicDataSource.java:1388)
+	at org.apache.commons.dbcp.BasicDataSource.getConnection(BasicDataSource.java:1044)
+	at org.apache.ibatis.mapping.VendorDatabaseIdProvider.getDatabaseProductName(VendorDatabaseIdProvider.java:76)
+	at org.apache.ibatis.mapping.VendorDatabaseIdProvider.getDatabaseName(VendorDatabaseIdProvider.java:61)
+	at org.apache.ibatis.mapping.VendorDatabaseIdProvider.getDatabaseId(VendorDatabaseIdProvider.java:49)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:449)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:340)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1612)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1549)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:539)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:298)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:684)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at com.basic.framework.common.BeanFactoryUtils.<clinit>(BeanFactoryUtils.java:21)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.qryByKeyOrId(WorkflowEngineTest.java:72)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.main(WorkflowEngineTest.java:133)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:989)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:975)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:920)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2395)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2316)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:347)
+	at org.apache.commons.dbcp.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:38)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:582)
+	at org.apache.commons.dbcp.BasicDataSource.validateConnectionFactory(BasicDataSource.java:1556)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1545)
+	... 23 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1129)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:358)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2489)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2334)
+	... 37 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:69)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:157)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:391)
+	at java.net.Socket.connect(Socket.java:579)
+	at java.net.Socket.connect(Socket.java:528)
+	at java.net.Socket.<init>(Socket.java:425)
+	at java.net.Socket.<init>(Socket.java:241)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:256)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:308)
+	... 39 more
+2017-11-02 16:31:33 DEBUG [main] (SqlSessionFactoryBean.java:472) - Parsed mapper file: 'file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\mapping\SerWorkflowCommandExecMapper.xml]'
+2017-11-02 16:31:33 DEBUG [main] (SqlSessionFactoryBean.java:472) - Parsed mapper file: 'file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowser\mapping\SerWorkflowNoticeMapper.xml]'
+2017-11-02 16:31:33 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:33 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:33 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:33 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:33 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'sqlSessionFactorySer'
+2017-11-02 16:31:33 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.mybatis.spring.mapper.MapperScannerConfigurer#0'
+2017-11-02 16:31:33 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'sqlSessionFactoryCli'
+2017-11-02 16:31:33 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'sqlSessionFactoryCli'
+2017-11-02 16:31:33 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:33 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:33 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'sqlSessionFactoryCli' to allow for resolving potential circular references
+2017-11-02 16:31:33 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'dataSourceCli'
+2017-11-02 16:31:33 DEBUG [main] (PathMatchingResourcePatternResolver.java:556) - Looking for matching resources in directory tree [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\mapping]
+2017-11-02 16:31:33 DEBUG [main] (PathMatchingResourcePatternResolver.java:618) - Searching directory [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\mapping] for files matching pattern [D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowcli/mapping/*.xml]
+2017-11-02 16:31:33 DEBUG [main] (PathMatchingResourcePatternResolver.java:357) - Resolved location pattern [classpath*:com/basic.framework/workflowcli/mapping/*.xml] to resources [file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\mapping\CliWorkflowCommandMapper.xml], file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\mapping\CliWorkflowNoticeExecMapper.xml]]
+2017-11-02 16:31:33 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:1595) - Invoking afterPropertiesSet() on bean with name 'sqlSessionFactoryCli'
+2017-11-02 16:31:33 DEBUG [main] (SqlSessionFactoryBean.java:362) - Property 'configLocation' not specified, using default MyBatis Configuration
+2017-11-02 16:31:33 DEBUG [main] (DefaultVFS.java:197) - Find JAR URL: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowcli/model
+2017-11-02 16:31:33 DEBUG [main] (DefaultVFS.java:217) - Not a JAR: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowcli/model
+2017-11-02 16:31:33 DEBUG [main] (DefaultVFS.java:94) - Reader entry: CliWorkflowCommand.class
+2017-11-02 16:31:33 DEBUG [main] (DefaultVFS.java:94) - Reader entry: CliWorkflowNoticeExec.class
+2017-11-02 16:31:33 DEBUG [main] (DefaultVFS.java:103) - Listing file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowcli/model
+2017-11-02 16:31:33 DEBUG [main] (DefaultVFS.java:197) - Find JAR URL: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowcli/model/CliWorkflowCommand.class
+2017-11-02 16:31:33 DEBUG [main] (DefaultVFS.java:217) - Not a JAR: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowcli/model/CliWorkflowCommand.class
+2017-11-02 16:31:33 DEBUG [main] (DefaultVFS.java:94) - Reader entry: ����   3 U  =com/basic.framework/workflowcli/model/CliWorkflowCommand  java/lang/Object 	commandId Ljava/lang/Long; serialNo processDefineKey Ljava/lang/String; busiOrderId taskId 
+2017-11-02 16:31:33 DEBUG [main] (DefaultVFS.java:197) - Find JAR URL: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowcli/model/CliWorkflowNoticeExec.class
+2017-11-02 16:31:33 DEBUG [main] (DefaultVFS.java:217) - Not a JAR: file:/D:/NeonProject/RuiZhi-WorkflowEngineMonitor/target/classes/com/basic.framework/workflowcli/model/CliWorkflowNoticeExec.class
+2017-11-02 16:31:33 DEBUG [main] (DefaultVFS.java:94) - Reader entry: ����   3 P  @com/basic.framework/workflowcli/model/CliWorkflowNoticeExec  java/lang/Object execId Ljava/lang/Long; noticeId 
+2017-11-02 16:31:33 DEBUG [main] (ResolverUtil.java:250) - Checking to see if class com.basic.framework.workflowcli.model.CliWorkflowCommand matches criteria [is assignable to Object]
+2017-11-02 16:31:33 DEBUG [main] (ResolverUtil.java:250) - Checking to see if class com.basic.framework.workflowcli.model.CliWorkflowNoticeExec matches criteria [is assignable to Object]
+2017-11-02 16:31:33 DEBUG [main] (SqlSessionFactoryBean.java:383) - Scanned package: 'com.basic.framework.workflowcli.model' for aliases
+2017-11-02 16:31:40 ERROR [main] (VendorDatabaseIdProvider.java:51) - Could not get a databaseId from dataSource
+org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Could not create connection to database server. Attempted reconnect 3 times. Giving up.)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1549)
+	at org.apache.commons.dbcp.BasicDataSource.createDataSource(BasicDataSource.java:1388)
+	at org.apache.commons.dbcp.BasicDataSource.getConnection(BasicDataSource.java:1044)
+	at org.apache.ibatis.mapping.VendorDatabaseIdProvider.getDatabaseProductName(VendorDatabaseIdProvider.java:76)
+	at org.apache.ibatis.mapping.VendorDatabaseIdProvider.getDatabaseName(VendorDatabaseIdProvider.java:61)
+	at org.apache.ibatis.mapping.VendorDatabaseIdProvider.getDatabaseId(VendorDatabaseIdProvider.java:49)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:449)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:340)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1612)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1549)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:539)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:298)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:684)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at com.basic.framework.common.BeanFactoryUtils.<clinit>(BeanFactoryUtils.java:21)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.qryByKeyOrId(WorkflowEngineTest.java:72)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.main(WorkflowEngineTest.java:133)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:989)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:975)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:920)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2395)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2316)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:347)
+	at org.apache.commons.dbcp.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:38)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:582)
+	at org.apache.commons.dbcp.BasicDataSource.validateConnectionFactory(BasicDataSource.java:1556)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1545)
+	... 23 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1129)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:358)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2489)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2334)
+	... 37 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:69)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:157)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:391)
+	at java.net.Socket.connect(Socket.java:579)
+	at java.net.Socket.connect(Socket.java:528)
+	at java.net.Socket.<init>(Socket.java:425)
+	at java.net.Socket.<init>(Socket.java:241)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:256)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:308)
+	... 39 more
+2017-11-02 16:31:40 DEBUG [main] (SqlSessionFactoryBean.java:472) - Parsed mapper file: 'file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\mapping\CliWorkflowCommandMapper.xml]'
+2017-11-02 16:31:40 DEBUG [main] (SqlSessionFactoryBean.java:472) - Parsed mapper file: 'file [D:\NeonProject\RuiZhi-WorkflowEngineMonitor\target\classes\com\ruizhisoft\framework\workflowcli\mapping\CliWorkflowNoticeExecMapper.xml]'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'sqlSessionFactoryCli'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.mybatis.spring.mapper.MapperScannerConfigurer#1'
+2017-11-02 16:31:40 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'transactionManagerSer'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'transactionManagerSer'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'transactionManagerSer' to allow for resolving potential circular references
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'dataSourceSer'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:1595) - Invoking afterPropertiesSet() on bean with name 'transactionManagerSer'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'transactionManagerSer'
+2017-11-02 16:31:40 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'transactionManagerCli'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'transactionManagerCli'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'transactionManagerCli' to allow for resolving potential circular references
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'dataSourceCli'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:1595) - Invoking afterPropertiesSet() on bean with name 'transactionManagerCli'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'transactionManagerCli'
+2017-11-02 16:31:40 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'txAdviceSer'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'txAdviceSer'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'txAdviceSer' to allow for resolving potential circular references
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'transactionManagerSer'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean '(inner bean)#3b87cd6a'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [insert*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [delete*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [update*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [create*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [remove*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [modify*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean '(inner bean)#3b87cd6a'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:1595) - Invoking afterPropertiesSet() on bean with name 'txAdviceSer'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'txAdviceSer'
+2017-11-02 16:31:40 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'txAdviceCli'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'txAdviceCli'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'txAdviceCli' to allow for resolving potential circular references
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'transactionManagerCli'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean '(inner bean)#106510ce'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [insert*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [delete*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [update*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [create*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [remove*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (NameMatchTransactionAttributeSource.java:96) - Adding transactional method [modify*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception]
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean '(inner bean)#106510ce'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:1595) - Invoking afterPropertiesSet() on bean with name 'txAdviceCli'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'txAdviceCli'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'processEngineConfiguration'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'processEngineConfiguration'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'processEngineConfiguration' to allow for resolving potential circular references
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'dataSourceSer'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'transactionManagerSer'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'processEngineConfiguration'
+2017-11-02 16:31:40 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'processEngine'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'processEngine'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:523) - Eagerly caching bean 'processEngine' to allow for resolving potential circular references
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'processEngineConfiguration'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:477) - Finished creating instance of bean 'processEngine'
+2017-11-02 16:31:40 DEBUG [main] (DefaultSingletonBeanRegistry.java:220) - Creating shared instance of singleton bean 'repositoryService'
+2017-11-02 16:31:40 DEBUG [main] (AbstractAutowireCapableBeanFactory.java:449) - Creating instance of bean 'repositoryService'
+2017-11-02 16:31:40 DEBUG [main] (AbstractBeanFactory.java:247) - Returning cached instance of singleton bean 'processEngine'
+2017-11-02 16:31:40 DEBUG [main] (DataSourceUtils.java:110) - Fetching JDBC Connection from DataSource
+2017-11-02 16:31:48 ERROR [main] (ProcessEngineConfigurationImpl.java:847) - Exception while initializing Database connection
+org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Could not create connection to database server. Attempted reconnect 3 times. Giving up.)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1549)
+	at org.apache.commons.dbcp.BasicDataSource.createDataSource(BasicDataSource.java:1388)
+	at org.apache.commons.dbcp.BasicDataSource.getConnection(BasicDataSource.java:1044)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+	at org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy$TransactionAwareInvocationHandler.invoke(TransactionAwareDataSourceProxy.java:225)
+	at com.sun.proxy.$Proxy16.getMetaData(Unknown Source)
+	at org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl.initDatabaseType(ProcessEngineConfigurationImpl.java:837)
+	at org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl.initDataSource(ProcessEngineConfigurationImpl.java:786)
+	at org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl.init(ProcessEngineConfigurationImpl.java:602)
+	at org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl.buildProcessEngine(ProcessEngineConfigurationImpl.java:590)
+	at org.activiti.spring.SpringProcessEngineConfiguration.buildProcessEngine(SpringProcessEngineConfiguration.java:65)
+	at org.activiti.spring.ProcessEngineFactoryBean.getObject(ProcessEngineFactoryBean.java:60)
+	at org.activiti.spring.ProcessEngineFactoryBean.getObject(ProcessEngineFactoryBean.java:32)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:168)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getObjectFromFactoryBean(FactoryBeanRegistrySupport.java:103)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getObjectForBeanInstance(AbstractBeanFactory.java:1512)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:250)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:370)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1094)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:989)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:298)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:703)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at com.basic.framework.common.BeanFactoryUtils.<clinit>(BeanFactoryUtils.java:21)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.qryByKeyOrId(WorkflowEngineTest.java:72)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.main(WorkflowEngineTest.java:133)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:989)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:975)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:920)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2395)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2316)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:347)
+	at org.apache.commons.dbcp.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:38)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:582)
+	at org.apache.commons.dbcp.BasicDataSource.validateConnectionFactory(BasicDataSource.java:1556)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1545)
+	... 34 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1129)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:358)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2489)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2334)
+	... 48 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:69)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:157)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:391)
+	at java.net.Socket.connect(Socket.java:579)
+	at java.net.Socket.connect(Socket.java:528)
+	at java.net.Socket.<init>(Socket.java:425)
+	at java.net.Socket.<init>(Socket.java:241)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:256)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:308)
+	... 50 more
+2017-11-02 16:31:49 DEBUG [main] (LogInterceptor.java:33) - 
+
+2017-11-02 16:31:49 DEBUG [main] (LogInterceptor.java:34) - --- starting SchemaOperationsProcessEngineBuild --------------------------------------------------------
+2017-11-02 16:31:49 DEBUG [main] (SpringTransactionInterceptor.java:40) - Running command with propagation NOT_SUPPORTED
+2017-11-02 16:31:49 DEBUG [main] (ManagedTransaction.java:82) - Opening JDBC Connection
+2017-11-02 16:31:49 DEBUG [main] (DataSourceUtils.java:110) - Fetching JDBC Connection from DataSource
+2017-11-02 16:31:56 DEBUG [main] (CommandContext.java:171) - Error while closing command context
+org.activiti.engine.ActivitiException: couldn't check if tables are already present using metadata: Cannot create PoolableConnectionFactory (Could not create connection to database server. Attempted reconnect 3 times. Giving up.)
+	at org.activiti.engine.impl.db.DbSqlSession.isTablePresent(DbSqlSession.java:1203)
+	at org.activiti.engine.impl.db.DbSqlSession.isEngineTablePresent(DbSqlSession.java:1153)
+	at org.activiti.engine.impl.db.DbSqlSession.dbSchemaUpdate(DbSqlSession.java:1086)
+	at org.activiti.engine.impl.db.DbSqlSession.performSchemaOperationsProcessEngineBuild(DbSqlSession.java:1481)
+	at org.activiti.engine.impl.SchemaOperationsProcessEngineBuild.execute(SchemaOperationsProcessEngineBuild.java:27)
+	at org.activiti.engine.impl.interceptor.CommandInvoker.execute(CommandInvoker.java:24)
+	at org.activiti.engine.impl.interceptor.CommandContextInterceptor.execute(CommandContextInterceptor.java:57)
+	at org.activiti.spring.SpringTransactionInterceptor$1.doInTransaction(SpringTransactionInterceptor.java:47)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:133)
+	at org.activiti.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:45)
+	at org.activiti.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:37)
+	at org.activiti.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:40)
+	at org.activiti.engine.impl.ProcessEngineImpl.<init>(ProcessEngineImpl.java:80)
+	at org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl.buildProcessEngine(ProcessEngineConfigurationImpl.java:591)
+	at org.activiti.spring.SpringProcessEngineConfiguration.buildProcessEngine(SpringProcessEngineConfiguration.java:65)
+	at org.activiti.spring.ProcessEngineFactoryBean.getObject(ProcessEngineFactoryBean.java:60)
+	at org.activiti.spring.ProcessEngineFactoryBean.getObject(ProcessEngineFactoryBean.java:32)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:168)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getObjectFromFactoryBean(FactoryBeanRegistrySupport.java:103)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getObjectForBeanInstance(AbstractBeanFactory.java:1512)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:250)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:370)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1094)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:989)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:298)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:703)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at com.basic.framework.common.BeanFactoryUtils.<clinit>(BeanFactoryUtils.java:21)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.qryByKeyOrId(WorkflowEngineTest.java:72)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.main(WorkflowEngineTest.java:133)
+Caused by: org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Could not create connection to database server. Attempted reconnect 3 times. Giving up.)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1549)
+	at org.apache.commons.dbcp.BasicDataSource.createDataSource(BasicDataSource.java:1388)
+	at org.apache.commons.dbcp.BasicDataSource.getConnection(BasicDataSource.java:1044)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+	at org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy$TransactionAwareInvocationHandler.invoke(TransactionAwareDataSourceProxy.java:225)
+	at com.sun.proxy.$Proxy16.getMetaData(Unknown Source)
+	at org.activiti.engine.impl.db.DbSqlSession.isTablePresent(DbSqlSession.java:1172)
+	... 38 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:989)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:975)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:920)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2395)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2316)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:347)
+	at org.apache.commons.dbcp.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:38)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:582)
+	at org.apache.commons.dbcp.BasicDataSource.validateConnectionFactory(BasicDataSource.java:1556)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1545)
+	... 44 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.GeneratedConstructorAccessor12.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1129)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:358)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2489)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2334)
+	... 58 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:69)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:157)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:391)
+	at java.net.Socket.connect(Socket.java:579)
+	at java.net.Socket.connect(Socket.java:528)
+	at java.net.Socket.<init>(Socket.java:425)
+	at java.net.Socket.<init>(Socket.java:241)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:256)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:308)
+	... 60 more
+2017-11-02 16:31:56 DEBUG [main] (AbstractPlatformTransactionManager.java:367) - Creating new transaction with name [null]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2017-11-02 16:32:03 ERROR [main] (CommandContext.java:233) - masked exception in command context. for root cause, see below as it will be rethrown later.
+org.springframework.transaction.CannotCreateTransactionException: Could not open JDBC Connection for transaction; nested exception is org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Could not create connection to database server. Attempted reconnect 3 times. Giving up.)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:242)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:373)
+	at org.activiti.spring.SpringTransactionContext.rollback(SpringTransactionContext.java:64)
+	at org.activiti.engine.impl.interceptor.CommandContext.close(CommandContext.java:174)
+	at org.activiti.engine.impl.interceptor.CommandContextInterceptor.execute(CommandContextInterceptor.java:66)
+	at org.activiti.spring.SpringTransactionInterceptor$1.doInTransaction(SpringTransactionInterceptor.java:47)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:133)
+	at org.activiti.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:45)
+	at org.activiti.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:37)
+	at org.activiti.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:40)
+	at org.activiti.engine.impl.ProcessEngineImpl.<init>(ProcessEngineImpl.java:80)
+	at org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl.buildProcessEngine(ProcessEngineConfigurationImpl.java:591)
+	at org.activiti.spring.SpringProcessEngineConfiguration.buildProcessEngine(SpringProcessEngineConfiguration.java:65)
+	at org.activiti.spring.ProcessEngineFactoryBean.getObject(ProcessEngineFactoryBean.java:60)
+	at org.activiti.spring.ProcessEngineFactoryBean.getObject(ProcessEngineFactoryBean.java:32)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:168)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getObjectFromFactoryBean(FactoryBeanRegistrySupport.java:103)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getObjectForBeanInstance(AbstractBeanFactory.java:1512)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:250)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:370)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1094)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:989)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:298)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:703)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at com.basic.framework.common.BeanFactoryUtils.<clinit>(BeanFactoryUtils.java:21)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.qryByKeyOrId(WorkflowEngineTest.java:72)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.main(WorkflowEngineTest.java:133)
+Caused by: org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Could not create connection to database server. Attempted reconnect 3 times. Giving up.)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1549)
+	at org.apache.commons.dbcp.BasicDataSource.createDataSource(BasicDataSource.java:1388)
+	at org.apache.commons.dbcp.BasicDataSource.getConnection(BasicDataSource.java:1044)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:204)
+	... 36 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:989)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:975)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:920)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2395)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2316)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:347)
+	at org.apache.commons.dbcp.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:38)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:582)
+	at org.apache.commons.dbcp.BasicDataSource.validateConnectionFactory(BasicDataSource.java:1556)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1545)
+	... 39 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.GeneratedConstructorAccessor12.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1129)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:358)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2489)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2334)
+	... 53 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:69)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:157)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:391)
+	at java.net.Socket.connect(Socket.java:579)
+	at java.net.Socket.connect(Socket.java:528)
+	at java.net.Socket.<init>(Socket.java:425)
+	at java.net.Socket.<init>(Socket.java:241)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:256)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:308)
+	... 55 more
+2017-11-02 16:32:03 DEBUG [main] (ManagedTransaction.java:74) - Closing JDBC Connection [Transaction-aware proxy for target Connection  from DataSource [org.apache.commons.dbcp.BasicDataSource@13d20ed4]]
+2017-11-02 16:32:03 DEBUG [main] (TransactionTemplate.java:162) - Initiating transaction rollback on application exception
+org.activiti.engine.ActivitiException: couldn't check if tables are already present using metadata: Cannot create PoolableConnectionFactory (Could not create connection to database server. Attempted reconnect 3 times. Giving up.)
+	at org.activiti.engine.impl.db.DbSqlSession.isTablePresent(DbSqlSession.java:1203)
+	at org.activiti.engine.impl.db.DbSqlSession.isEngineTablePresent(DbSqlSession.java:1153)
+	at org.activiti.engine.impl.db.DbSqlSession.dbSchemaUpdate(DbSqlSession.java:1086)
+	at org.activiti.engine.impl.db.DbSqlSession.performSchemaOperationsProcessEngineBuild(DbSqlSession.java:1481)
+	at org.activiti.engine.impl.SchemaOperationsProcessEngineBuild.execute(SchemaOperationsProcessEngineBuild.java:27)
+	at org.activiti.engine.impl.interceptor.CommandInvoker.execute(CommandInvoker.java:24)
+	at org.activiti.engine.impl.interceptor.CommandContextInterceptor.execute(CommandContextInterceptor.java:57)
+	at org.activiti.spring.SpringTransactionInterceptor$1.doInTransaction(SpringTransactionInterceptor.java:47)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:133)
+	at org.activiti.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:45)
+	at org.activiti.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:37)
+	at org.activiti.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:40)
+	at org.activiti.engine.impl.ProcessEngineImpl.<init>(ProcessEngineImpl.java:80)
+	at org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl.buildProcessEngine(ProcessEngineConfigurationImpl.java:591)
+	at org.activiti.spring.SpringProcessEngineConfiguration.buildProcessEngine(SpringProcessEngineConfiguration.java:65)
+	at org.activiti.spring.ProcessEngineFactoryBean.getObject(ProcessEngineFactoryBean.java:60)
+	at org.activiti.spring.ProcessEngineFactoryBean.getObject(ProcessEngineFactoryBean.java:32)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:168)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getObjectFromFactoryBean(FactoryBeanRegistrySupport.java:103)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getObjectForBeanInstance(AbstractBeanFactory.java:1512)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:250)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:370)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1094)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:989)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:298)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:703)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at com.basic.framework.common.BeanFactoryUtils.<clinit>(BeanFactoryUtils.java:21)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.qryByKeyOrId(WorkflowEngineTest.java:72)
+	at com.basic.framework.workflow.test.WorkflowEngineTest.main(WorkflowEngineTest.java:133)
+Caused by: org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Could not create connection to database server. Attempted reconnect 3 times. Giving up.)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1549)
+	at org.apache.commons.dbcp.BasicDataSource.createDataSource(BasicDataSource.java:1388)
+	at org.apache.commons.dbcp.BasicDataSource.getConnection(BasicDataSource.java:1044)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+	at org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy$TransactionAwareInvocationHandler.invoke(TransactionAwareDataSourceProxy.java:225)
+	at com.sun.proxy.$Proxy16.getMetaData(Unknown Source)
+	at org.activiti.engine.impl.db.DbSqlSession.isTablePresent(DbSqlSession.java:1172)
+	... 38 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:989)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:975)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:920)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2395)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2316)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:347)
+	at org.apache.commons.dbcp.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:38)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:582)
+	at org.apache.commons.dbcp.BasicDataSource.validateConnectionFactory(BasicDataSource.java:1556)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1545)
+	... 44 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.GeneratedConstructorAccessor12.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1129)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:358)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2489)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2334)
+	... 58 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:69)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:157)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:391)
+	at java.net.Socket.connect(Socket.java:579)
+	at java.net.Socket.connect(Socket.java:528)
+	at java.net.Socket.<init>(Socket.java:425)
+	at java.net.Socket.<init>(Socket.java:241)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:256)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:308)
+	... 60 more
+2017-11-02 16:32:03 DEBUG [main] (AbstractPlatformTransactionManager.java:865) - Should roll back transaction but cannot - no transaction available
+2017-11-02 16:32:03 DEBUG [main] (LogInterceptor.java:40) - --- SchemaOperationsProcessEngineBuild finished --------------------------------------------------------
+2017-11-02 16:32:03 DEBUG [main] (LogInterceptor.java:41) - 
+
+2017-11-02 16:32:03 DEBUG [main] (DefaultSingletonBeanRegistry.java:474) - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@2e0fad0: defining beans [properties,org.springframework.aop.config.internalAutoProxyCreator,dataSourceSer,dataSourceCli,sqlSessionFactorySer,org.mybatis.spring.mapper.MapperScannerConfigurer#0,sqlSessionFactoryCli,org.mybatis.spring.mapper.MapperScannerConfigurer#1,transactionManagerSer,transactionManagerCli,txAdviceSer,txAdviceCli,pointCutSer,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,pointCutCli,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#1,processEngineConfiguration,processEngine,repositoryService,runtimeService,taskService,historyService,identityService,managementService,workflowEngineMonitorController,cliWorkflowCommandService,cliWorkflowNoticeExecService,serWorkflowCommandExecService,serWorkflowNoticeService,demoAjaxController,demoBlankController,demoExcelController,demoFileController,demoFormController,demoGridCheckController,demoGridController,demoGridPageController,demoMapController,demoMsgPush,demoOpenWinController,demoPageLayout,demoPlanController,demoTabController,demoZTreeController,commonController,errorController,indexController,loginController,msgInfoProducerDao,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor,serWorkflowCommandExecMapper,serWorkflowNoticeMapper,cliWorkflowCommandMapper,cliWorkflowNoticeExecMapper]; root of factory hierarchy
+2017-11-02 16:32:03 DEBUG [main] (DisposableBeanAdapter.java:245) - Invoking destroy() on bean with name 'processEngine'
+2017-11-02 16:32:03 DEBUG [main] (DefaultSingletonBeanRegistry.java:530) - Retrieved dependent beans for bean '(inner bean)#106510ce': [txAdviceCli]
+2017-11-02 16:32:03 DEBUG [main] (DefaultSingletonBeanRegistry.java:530) - Retrieved dependent beans for bean '(inner bean)#3b87cd6a': [txAdviceSer]
+2017-11-02 16:32:03 DEBUG [main] (DisposableBeanAdapter.java:323) - Invoking destroy method 'close' on bean with name 'dataSourceCli'
+2017-11-02 16:32:03 DEBUG [main] (DisposableBeanAdapter.java:323) - Invoking destroy method 'close' on bean with name 'dataSourceSer'

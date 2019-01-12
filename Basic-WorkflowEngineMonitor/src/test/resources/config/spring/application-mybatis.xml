@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd ">
+	<!-- MyBatis配置 -->
+	<bean id="sqlSessionFactorySer" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceSer" />
+		<!-- 配置扫描Domain的包路径 -->
+		<property name="typeAliasesPackage" value="com.basic.framework.workflowser.model" />
+		<!-- 配置扫描Mapper XML的位置 -->
+		<property name="mapperLocations"
+			value="classpath*:com/basic.framework/workflowser/mapping/*.xml" />
+		<!-- 对应configuration的settings配置 -->
+		<property name="configurationProperties">
+			<props>
+				<prop key="logImpl">LOG4J</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 配置扫描Mapper接口的包路径 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 指定Mapper接口文件所在的基包 -->
+		<property name="basePackage" value="com.basic.framework.workflowser.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactorySer" />
+	</bean>
+	
+	
+	<!-- MyBatis配置 -->
+	<bean id="sqlSessionFactoryCli" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceCli" />
+		<!-- 配置扫描Domain的包路径 -->
+		<property name="typeAliasesPackage" value="com.basic.framework.workflowcli.model" />
+		<!-- 配置扫描Mapper XML的位置 -->
+		<property name="mapperLocations"
+			value="classpath*:com/basic.framework/workflowcli/mapping/*.xml" />
+		<!-- 对应configuration的settings配置 -->
+		<property name="configurationProperties">
+			<props>
+				<prop key="logImpl">LOG4J</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 配置扫描Mapper接口的包路径 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 指定Mapper接口文件所在的基包 -->
+		<property name="basePackage" value="com.basic.framework.workflowcli.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryCli" />
+	</bean>
+
+	<bean id="transactionManagerSer"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceSer" />
+	</bean>
+	
+	<bean id="transactionManagerCli"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceCli" />
+	</bean>
+	<!-- 配置事务控制，其实是有jdbc主要是查询，不需要事务控制 -->
+	<tx:advice id="txAdviceSer" transaction-manager="transactionManagerSer">
+		<tx:attributes>
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="create*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="remove*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="modify*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+	<tx:advice id="txAdviceCli" transaction-manager="transactionManagerCli">
+		<tx:attributes>
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="create*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="remove*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="modify*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<!-- 配置切点为service层 -->
+		<aop:pointcut id="pointCutSer"
+			expression="execution(public * com.basic.framework.*.service.*.*(..))" />
+		<aop:advisor pointcut-ref="pointCutSer" advice-ref="txAdviceSer" />
+	</aop:config>
+	
+	<aop:config>
+		<!-- 配置切点为service层 -->
+		<aop:pointcut id="pointCutCli"
+			expression="execution(public * com.basic.framework.*.service.*.*(..))" />
+		<aop:advisor pointcut-ref="pointCutCli" advice-ref="txAdviceCli" />
+	</aop:config>
+</beans>

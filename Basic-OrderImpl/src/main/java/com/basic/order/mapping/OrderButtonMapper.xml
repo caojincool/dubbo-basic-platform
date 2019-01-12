@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.OrderButtonMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.order.model.OrderButton" >
+    <id column="ORDER_BUTTON_ID" property="orderButtonId" jdbcType="DECIMAL" />
+    <result column="BUTTON_ID" property="buttonId" jdbcType="DECIMAL" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ORDER_BUTTON_ID, BUTTON_ID, ORDER_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from PF_ORDER_BUTTON
+    where ORDER_BUTTON_ID = #{orderButtonId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from PF_ORDER_BUTTON
+    where ORDER_BUTTON_ID = #{orderButtonId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.order.model.OrderButton" >
+    insert into PF_ORDER_BUTTON (ORDER_BUTTON_ID, BUTTON_ID, ORDER_TYPE
+      )
+    values (#{orderButtonId,jdbcType=DECIMAL}, #{buttonId,jdbcType=DECIMAL}, #{orderType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.order.model.OrderButton" >
+    insert into PF_ORDER_BUTTON
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderButtonId != null" >
+        ORDER_BUTTON_ID,
+      </if>
+      <if test="buttonId != null" >
+        BUTTON_ID,
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderButtonId != null" >
+        #{orderButtonId,jdbcType=DECIMAL},
+      </if>
+      <if test="buttonId != null" >
+        #{buttonId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.OrderButton" >
+    update PF_ORDER_BUTTON
+    <set >
+      <if test="buttonId != null" >
+        BUTTON_ID = #{buttonId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE = #{orderType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORDER_BUTTON_ID = #{orderButtonId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.order.model.OrderButton" >
+    update PF_ORDER_BUTTON
+    set BUTTON_ID = #{buttonId,jdbcType=DECIMAL},
+      ORDER_TYPE = #{orderType,jdbcType=VARCHAR}
+    where ORDER_BUTTON_ID = #{orderButtonId,jdbcType=DECIMAL}
+  </update>
+</mapper>

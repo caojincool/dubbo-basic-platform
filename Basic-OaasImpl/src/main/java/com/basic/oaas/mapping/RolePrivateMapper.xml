@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.oaas.dao.RolePrivateMapper">
+  <resultMap id="BaseResultMap" type="com.basic.oaas.model.RolePrivate">
+    <id column="ROLE_PRIVATE_ID" jdbcType="DECIMAL" property="rolePrivateId" />
+    <result column="ROLE_ID" jdbcType="DECIMAL" property="roleId" />
+    <result column="PRIVATE_ID" jdbcType="DECIMAL" property="privateId" />
+    <result column="EMPOWER_FLAG" jdbcType="DECIMAL" property="empowerFlag" />
+    <result column="CREATE_USER_ID" jdbcType="DECIMAL" property="createUserId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    
+    <result column="PRIVATE_CODE" jdbcType="VARCHAR" property="privateCode" />
+    <result column="PRIVATE_TYPE" jdbcType="VARCHAR" property="privateType" />
+    <result column="PRIVATE_NAME" jdbcType="VARCHAR" property="privateName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLE_PRIVATE_ID, ROLE_ID, PRIVATE_ID, EMPOWER_FLAG,CREATE_USER_ID,CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from OAAS_ROLE_PRIVATE
+    where ROLE_PRIVATE_ID = #{rolePrivateId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from OAAS_ROLE_PRIVATE
+    where ROLE_PRIVATE_ID = #{rolePrivateId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.oaas.model.RolePrivate">
+    insert into OAAS_ROLE_PRIVATE (ROLE_PRIVATE_ID, ROLE_ID, PRIVATE_ID, 
+      EMPOWER_FLAG,CREATE_USER_ID,CREATE_TIME)
+    values (#{rolePrivateId,jdbcType=DECIMAL}, #{roleId,jdbcType=DECIMAL}, #{privateId,jdbcType=DECIMAL}, 
+      #{empowerFlag,jdbcType=DECIMAL},#{createUserId,jdbcType=DECIMAL},#{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.oaas.model.RolePrivate">
+    insert into OAAS_ROLE_PRIVATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rolePrivateId != null">
+        ROLE_PRIVATE_ID,
+      </if>
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="privateId != null">
+        PRIVATE_ID,
+      </if>
+      <if test="empowerFlag != null">
+        EMPOWER_FLAG,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rolePrivateId != null">
+        #{rolePrivateId,jdbcType=DECIMAL},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=DECIMAL},
+      </if>
+      <if test="privateId != null">
+        #{privateId,jdbcType=DECIMAL},
+      </if>
+      <if test="empowerFlag != null">
+        #{empowerFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.oaas.model.RolePrivate">
+    update OAAS_ROLE_PRIVATE
+    <set>
+      <if test="roleId != null">
+        ROLE_ID = #{roleId,jdbcType=DECIMAL},
+      </if>
+      <if test="privateId != null">
+        PRIVATE_ID = #{privateId,jdbcType=DECIMAL},
+      </if>
+      <if test="empowerFlag != null">
+        EMPOWER_FLAG = #{empowerFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where ROLE_PRIVATE_ID = #{rolePrivateId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.oaas.model.RolePrivate">
+    update OAAS_ROLE_PRIVATE
+    set ROLE_ID = #{roleId,jdbcType=DECIMAL},
+        PRIVATE_ID = #{privateId,jdbcType=DECIMAL},
+        EMPOWER_FLAG = #{empowerFlag,jdbcType=DECIMAL},
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ROLE_PRIVATE_ID = #{rolePrivateId,jdbcType=DECIMAL}
+  </update>
+  
+  <delete id="deleteBatchByRoleId">
+  	DELETE FROM OAAS_ROLE_PRIVATE
+    WHERE ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </delete>
+   
+  <insert id="insertBatchRolePrivate" parameterType="java.util.List">
+  	INSERT INTO OAAS_ROLE_PRIVATE (
+    <include refid="Base_Column_List" /> 
+    ) VALUES
+     <foreach collection="list" item="item" index="index" separator="," >
+      ( 
+      #{item.rolePrivateId,jdbcType=DECIMAL}, 
+      #{item.roleId,jdbcType=DECIMAL}, 
+      #{item.privateId,jdbcType=DECIMAL}, 
+      #{item.empowerFlag,jdbcType=DECIMAL},
+      #{item.createUserId,jdbcType=DECIMAL},
+      #{item.createTime,jdbcType=TIMESTAMP}
+       )
+    </foreach>
+       ON DUPLICATE KEY UPDATE 
+       ROLE_ID = VALUES(ROLE_ID),
+       PRIVATE_ID = VALUES(PRIVATE_ID)
+  </insert>
+  
+  <select id="selectRolePrivateByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	SELECT
+		ORP.ROLE_PRIVATE_ID,ORP.ROLE_ID,ORP.PRIVATE_ID,
+		ORP.EMPOWER_FLAG
+	FROM
+	OAAS_ROLE_PRIVATE AS ORP
+
+	WHERE ORP.ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </select>
+  
+  <delete id="deleteBatchByRolePrivateIds">
+  	DELETE FROM OAAS_ROLE_PRIVATE
+    WHERE ROLE_PRIVATE_ID IN 
+   	 	<foreach collection="array" item="rolePrivate" index="index"
+            open="(" close=")" separator=",">
+               #{rolePrivate,jdbcType=DECIMAL}         
+        </foreach>
+  </delete>
+  
+  <select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT 
+            RES.*,
+            OP.PRIVATE_CODE,
+			OP.PRIVATE_TYPE,
+			OP.PRIVATE_NAME, 
+			OU.USER_TEXT 'createUserName'
+		FROM (
+		SELECT
+        	ORP.*,MENU.MENU_ID 'menuId',
+			MENU.OPEN_STATUS AS OPEN_STATUS
+		FROM
+			OAAS_PRIV_MENU MENU
+		JOIN  OAAS_ROLE_PRIVATE AS ORP ON MENU.PRIVATE_ID = ORP.PRIVATE_ID AND MENU.STATE = '10A'
+		UNION ALL
+		SELECT
+			ORP.*,FUNC.MENU_ID 'menuId',
+			FUNC.OPEN_STATUS AS OPEN_STATUS
+		FROM
+			OAAS_PRIV_FUNC FUNC
+		JOIN  OAAS_ROLE_PRIVATE AS ORP ON FUNC.PRIVATE_ID = ORP.PRIVATE_ID AND FUNC.STATE = '10A'
+		UNION ALL
+		SELECT
+			ORP.*,ATTR.MENU_ID 'menuId',
+			ATTR.OPEN_STATUS AS OPEN_STATUS
+		FROM
+			OAAS_PRIV_ATTR ATTR
+		JOIN OAAS_ROLE_PRIVATE AS ORP ON ATTR.PRIVATE_ID = ORP.PRIVATE_ID AND ATTR.STATE = '10A'
+		) RES
+		LEFT JOIN OAAS_PRIVATE AS OP ON RES.PRIVATE_ID = OP.PRIVATE_ID
+		LEFT JOIN OAAS_USER OU ON OU.USER_ID = RES.CREATE_USER_ID
+        <where>
+        	OP.STATE = '10A' 
+            <if test="whereSql!=null">
+                AND ${whereSql}
+            </if>
+        </where>
+        <if test="orderBySql!=null">
+            ORDER BY ${orderBySql}
+        </if>
+        <if test="orderBySql==null">
+            ORDER BY RES.ROLE_PRIVATE_ID DESC
+        </if>
+    </select>
+</mapper>

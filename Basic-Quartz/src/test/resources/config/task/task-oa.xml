@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd ">
+
+	<!-- 从OA同步用户的任务配置 -->
+	<!-- 定时执行 -->
+	<bean id="oaOrgTask" class="com.basic.oaManager.service.OaOrgServiceImpl"></bean>
+	<bean id="oaUserTask" class="com.basic.oaManager.service.OaUserServiceImpl"></bean>
+	<bean id="oaJobTask" class="com.basic.oaManager.service.OaJobServiceImpl"></bean>
+
+
+	<!-- Quartz -->
+	<!-- 同步组织架构 -->
+	<!-- job的配置开始 -->
+	<bean id="oaOrg"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 需要被执行的类路径 -->
+		<property name="targetObject">
+			<ref bean="oaOrgTask" />
+		</property>
+		<!-- 需要被执行的类的方法 -->
+		<property name="targetMethod">
+			<value>orgAscTiming</value>
+		</property>
+		<!--false表示等上一个任务执行完后再开启新的任务 -->
+		<property name="concurrent" value="false" />
+	</bean>
+	<!-- 定时计划 -->
+	<bean id="oaOrgTigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="oaOrg" />
+		</property>
+		<property name="cronExpression">
+			<!-- 每天的00:00:00，触发 -->
+			<!-- <value>0 0 0 * * ?</value>  -->
+			<value>0 51 16 19 * ? </value>
+			<!-- cron将时间设置成无限长 -->
+			<!-- <value>1 0 0 1 1 ? 2099</value> -->
+		</property>
+	</bean>
+	
+
+	<bean id="oaUser"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 需要被执行的类路径 -->
+		<property name="targetObject">
+			<ref bean="oaUserTask" />
+		</property>
+		<!-- 需要被执行的类的方法 -->
+		<property name="targetMethod">
+			<value>userAscTiming</value>
+		</property>
+		<!--false表示等上一个任务执行完后再开启新的任务 -->
+		<property name="concurrent" value="false" />
+	</bean>
+	
+	<bean id="oaUserTigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="oaUser" />
+		</property>
+		<property name="cronExpression">
+			<!-- 每天的00:00:00，触发 -->
+			<value>0 0 0 * * ?</value> 
+			<!-- <value>0 46 16 * * ?</value> -->
+			<!-- cron将时间设置成无限长 -->
+			<!-- <value>1 0 0 1 1 ? 2099</value> -->
+		</property>
+	</bean>
+	
+	<!-- 同步岗位 -->
+	<bean id="oaJob"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 需要被执行的类路径 -->
+		<property name="targetObject">
+			<ref bean="oaJobTask" />
+		</property>
+		<!-- 需要被执行的类的方法 -->
+		<property name="targetMethod">
+			<value>jobAscTiming</value>
+		</property>
+		<!--false表示等上一个任务执行完后再开启新的任务 -->
+		<property name="concurrent" value="false" />
+	</bean>
+	
+	<bean id="oaJobTigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="oaJob" />
+		</property>
+		<property name="cronExpression">
+			<!-- 每天的00:00:00，触发 -->
+			<value>0 0 0 * * ?</value> 
+			<!-- <value>0 46 16 * * ?</value> -->
+			<!-- cron将时间设置成无限长 -->
+			<!-- <value>1 0 0 1 1 ? 2099</value> -->
+		</property>
+	</bean>
+	
+	<!-- <bean id="quartzTestServiceImplTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"> 
+		<property name="jobDetail" ref="quartzTestServiceImplJob"/> <property name="startDelay" 
+		value="10000"/> 延迟10s <property name="repeatInterval" value="0"/> 每60s启动一次 
+		<property name="repeatCount" value="0"/> 重复一次 </bean> 触发器的配置结束 -->
+
+</beans>

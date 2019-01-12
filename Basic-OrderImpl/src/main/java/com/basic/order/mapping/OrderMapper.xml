@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.order.model.Order" >
+    <id column="ORDER_ID" property="orderId" jdbcType="DECIMAL" />
+    <result column="ORDER_CODE" property="orderCode" jdbcType="VARCHAR" />
+    <result column="ORDER_TITLE" property="orderTitle" jdbcType="VARCHAR" />
+    <result column="PROCESS_INSTANCE_ID" property="processInstanceId" jdbcType="DECIMAL" />
+    <result column="SERVICE_ID" property="serviceId" jdbcType="DECIMAL" />
+    <result column="SERVICE_CODE" property="serviceCode" jdbcType="VARCHAR" />
+    <result column="SERVICE_NAME" property="serviceName" jdbcType="VARCHAR" />
+    <result column="SCOPE_ID" property="scopeId" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="STATE_TIME" property="stateTime" jdbcType="TIMESTAMP" />
+    <result column="ORDER_STATE" property="orderState" jdbcType="VARCHAR" />
+    
+    <result column="ORDER_STATE_NAME" property="orderStateName" jdbcType="VARCHAR" />
+    
+    <result column="ORDER_PRIORITY" property="orderPriority" jdbcType="DECIMAL" />
+    <result column="ORDER_PRIORITY_NAME" property="orderPriorityName" jdbcType="VARCHAR" />
+    <result column="SERVICE_ORDER_ID" property="serviceOrderId" jdbcType="DECIMAL" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+    <result column="ORDER_TYPE_NAME" property="orderTypeName" jdbcType="VARCHAR" />
+    <result column="PARENT_ORDER_ID" property="parentOrderId" jdbcType="DECIMAL" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="DECIMAL" />
+    <result column="CREATE_USER_TEXT" property="createUserText" jdbcType="VARCHAR" />
+    <result column="CREATE_ORG_ID" property="createOrgId" jdbcType="DECIMAL" />
+    <result column="CREATE_ORG_NAME" property="createOrgName" jdbcType="VARCHAR" />
+    <result column="AREA_ID" property="areaId" jdbcType="DECIMAL" />
+    <result column="AREA_NAME" property="areaName" jdbcType="VARCHAR" />
+    <result column="COST_TIME" property="costTime" jdbcType="DECIMAL" />
+    <result column="COST_WORK_TIME" property="costWorkTime" jdbcType="DECIMAL" />
+    <result column="ERROR_CODE" property="errorCode" jdbcType="VARCHAR" />
+    <result column="ERR_INFO" property="errInfo" jdbcType="VARCHAR" />
+    <result column="ORDER_COMMENTS" property="orderComments" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ORDER_ID, ORDER_CODE, ORDER_TITLE, PROCESS_INSTANCE_ID, SERVICE_ID, SERVICE_CODE, 
+    SERVICE_NAME, SCOPE_ID, CREATE_TIME, STATE_TIME, ORDER_STATE, ORDER_PRIORITY, ORDER_PRIORITY_NAME, SERVICE_ORDER_ID,
+    ORDER_TYPE, ORDER_TYPE_NAME, PARENT_ORDER_ID, CREATE_USER_ID, CREATE_USER_TEXT, CREATE_ORG_ID, 
+    CREATE_ORG_NAME, AREA_ID, AREA_NAME, COST_TIME, COST_WORK_TIME, ERROR_CODE, ERR_INFO, 
+    ORDER_COMMENTS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from OF_ORDER
+    where ORDER_ID = #{orderId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from OF_ORDER
+    where ORDER_ID = #{orderId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.order.model.Order" >
+    insert into OF_ORDER (ORDER_ID, ORDER_CODE, ORDER_TITLE, 
+      PROCESS_INSTANCE_ID, SERVICE_ID, SERVICE_CODE, 
+      SERVICE_NAME, SCOPE_ID, CREATE_TIME, 
+      STATE_TIME, ORDER_STATE, ORDER_PRIORITY, 
+      ORDER_PRIORITY_NAME, SERVICE_ORDER_ID, ORDER_TYPE, ORDER_TYPE_NAME, 
+      PARENT_ORDER_ID, CREATE_USER_ID, CREATE_USER_TEXT, 
+      CREATE_ORG_ID, CREATE_ORG_NAME, AREA_ID, 
+      AREA_NAME, COST_TIME, COST_WORK_TIME, 
+      ERROR_CODE, ERR_INFO, ORDER_COMMENTS
+      )
+    values (#{orderId,jdbcType=DECIMAL}, #{orderCode,jdbcType=VARCHAR}, #{orderTitle,jdbcType=VARCHAR}, 
+      #{processInstanceId,jdbcType=DECIMAL}, #{serviceId,jdbcType=DECIMAL}, #{serviceCode,jdbcType=VARCHAR}, 
+      #{serviceName,jdbcType=VARCHAR}, #{scopeId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{stateTime,jdbcType=TIMESTAMP}, #{orderState,jdbcType=VARCHAR}, #{orderPriority,jdbcType=DECIMAL}, 
+      #{orderPriorityName,jdbcType=VARCHAR}, #{serviceOrderId,jdbcType=DECIMAL}, #{orderType,jdbcType=VARCHAR}, #{orderTypeName,jdbcType=VARCHAR}, 
+      #{parentOrderId,jdbcType=DECIMAL}, #{createUserId,jdbcType=DECIMAL}, #{createUserText,jdbcType=VARCHAR}, 
+      #{createOrgId,jdbcType=DECIMAL}, #{createOrgName,jdbcType=VARCHAR}, #{areaId,jdbcType=DECIMAL}, 
+      #{areaName,jdbcType=VARCHAR}, #{costTime,jdbcType=DECIMAL}, #{costWorkTime,jdbcType=DECIMAL}, 
+      #{errorCode,jdbcType=VARCHAR}, #{errInfo,jdbcType=VARCHAR}, #{orderComments,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.order.model.Order" >
+    insert into OF_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="orderCode != null" >
+        ORDER_CODE,
+      </if>
+      <if test="orderTitle != null" >
+        ORDER_TITLE,
+      </if>
+      <if test="processInstanceId != null" >
+        PROCESS_INSTANCE_ID,
+      </if>
+      <if test="serviceId != null" >
+        SERVICE_ID,
+      </if>
+      <if test="serviceCode != null" >
+        SERVICE_CODE,
+      </if>
+      <if test="serviceName != null" >
+        SERVICE_NAME,
+      </if>
+      <if test="scopeId != null" >
+        SCOPE_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="stateTime != null" >
+        STATE_TIME,
+      </if>
+      <if test="orderState != null" >
+        ORDER_STATE,
+      </if>
+      <if test="orderPriority != null" >
+        ORDER_PRIORITY,
+      </if>
+      <if test="orderPriorityName != null" >
+        ORDER_PRIORITY_NAME,
+      </if>
+      <if test="serviceOrderId != null" >
+        SERVICE_ORDER_ID,
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE,
+      </if>
+      <if test="orderTypeName != null" >
+        ORDER_TYPE_NAME,
+      </if>
+      <if test="parentOrderId != null" >
+        PARENT_ORDER_ID,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createUserText != null" >
+        CREATE_USER_TEXT,
+      </if>
+      <if test="createOrgId != null" >
+        CREATE_ORG_ID,
+      </if>
+      <if test="createOrgName != null" >
+        CREATE_ORG_NAME,
+      </if>
+      <if test="areaId != null" >
+        AREA_ID,
+      </if>
+      <if test="areaName != null" >
+        AREA_NAME,
+      </if>
+      <if test="costTime != null" >
+        COST_TIME,
+      </if>
+      <if test="costWorkTime != null" >
+        COST_WORK_TIME,
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE,
+      </if>
+      <if test="errInfo != null" >
+        ERR_INFO,
+      </if>
+      <if test="orderComments != null" >
+        ORDER_COMMENTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTitle != null" >
+        #{orderTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null" >
+        #{processInstanceId,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceCode != null" >
+        #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null" >
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="scopeId != null" >
+        #{scopeId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stateTime != null" >
+        #{stateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPriority != null" >
+        #{orderPriority,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPriorityName != null" >
+        #{orderPriorityName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceOrderId != null" >
+        #{serviceOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTypeName != null" >
+        #{orderTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentOrderId != null" >
+        #{parentOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createUserText != null" >
+        #{createUserText,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null" >
+        #{createOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="createOrgName != null" >
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=DECIMAL},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="costTime != null" >
+        #{costTime,jdbcType=DECIMAL},
+      </if>
+      <if test="costWorkTime != null" >
+        #{costWorkTime,jdbcType=DECIMAL},
+      </if>
+      <if test="errorCode != null" >
+        #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errInfo != null" >
+        #{errInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderComments != null" >
+        #{orderComments,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.Order" >
+    update OF_ORDER
+    <set >
+      <if test="orderCode != null" >
+        ORDER_CODE = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTitle != null" >
+        ORDER_TITLE = #{orderTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null" >
+        PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceId != null" >
+        SERVICE_ID = #{serviceId,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceCode != null" >
+        SERVICE_CODE = #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null" >
+        SERVICE_NAME = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="scopeId != null" >
+        SCOPE_ID = #{scopeId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stateTime != null" >
+        STATE_TIME = #{stateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderState != null" >
+        ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPriority != null" >
+        ORDER_PRIORITY = #{orderPriority,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPriorityName != null" >
+        ORDER_PRIORITY_NAME = #{orderPriorityName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceOrderId != null" >
+        SERVICE_ORDER_ID = #{serviceOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTypeName != null" >
+        ORDER_TYPE_NAME = #{orderTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentOrderId != null" >
+        PARENT_ORDER_ID = #{parentOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createUserText != null" >
+        CREATE_USER_TEXT = #{createUserText,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null" >
+        CREATE_ORG_ID = #{createOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="createOrgName != null" >
+        CREATE_ORG_NAME = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        AREA_ID = #{areaId,jdbcType=DECIMAL},
+      </if>
+      <if test="areaName != null" >
+        AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="costTime != null" >
+        COST_TIME = #{costTime,jdbcType=DECIMAL},
+      </if>
+      <if test="costWorkTime != null" >
+        COST_WORK_TIME = #{costWorkTime,jdbcType=DECIMAL},
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errInfo != null" >
+        ERR_INFO = #{errInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderComments != null" >
+        ORDER_COMMENTS = #{orderComments,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.order.model.Order" >
+    update OF_ORDER
+    set ORDER_CODE = #{orderCode,jdbcType=VARCHAR},
+      ORDER_TITLE = #{orderTitle,jdbcType=VARCHAR},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=DECIMAL},
+      SERVICE_ID = #{serviceId,jdbcType=DECIMAL},
+      SERVICE_CODE = #{serviceCode,jdbcType=VARCHAR},
+      SERVICE_NAME = #{serviceName,jdbcType=VARCHAR},
+      SCOPE_ID = #{scopeId,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATE_TIME = #{stateTime,jdbcType=TIMESTAMP},
+      ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+      ORDER_PRIORITY = #{orderPriority,jdbcType=DECIMAL},
+      ORDER_PRIORITY_NAME = #{orderPriorityName,jdbcType=VARCHAR},
+      SERVICE_ORDER_ID = #{serviceOrderId,jdbcType=DECIMAL},
+      ORDER_TYPE = #{orderType,jdbcType=VARCHAR},
+      ORDER_TYPE_NAME = #{orderTypeName,jdbcType=VARCHAR},
+      PARENT_ORDER_ID = #{parentOrderId,jdbcType=DECIMAL},
+      CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      CREATE_USER_TEXT = #{createUserText,jdbcType=VARCHAR},
+      CREATE_ORG_ID = #{createOrgId,jdbcType=DECIMAL},
+      CREATE_ORG_NAME = #{createOrgName,jdbcType=VARCHAR},
+      AREA_ID = #{areaId,jdbcType=DECIMAL},
+      AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      COST_TIME = #{costTime,jdbcType=DECIMAL},
+      COST_WORK_TIME = #{costWorkTime,jdbcType=DECIMAL},
+      ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      ERR_INFO = #{errInfo,jdbcType=VARCHAR},
+      ORDER_COMMENTS = #{orderComments,jdbcType=VARCHAR}
+    where ORDER_ID = #{orderId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 根据参数查询 -->
+  <select id="selectOrderList" resultMap="BaseResultMap" parameterType="com.basic.order.bean.OrderIbean" >
+    SELECT 
+    OO.*, POS.ORDER_STATE_NAME
+    FROM OF_ORDER OO
+    JOIN PF_ORDER_STATE POS ON POS.ORDER_STATE = OO.ORDER_STATE AND POS.STATE = '10A'
+      <where>
+      OO.ORDER_STATE != '10X'
+      <if test="orderCode != null and orderCode != ''" >
+        AND OO.ORDER_CODE = #{orderCode,jdbcType=VARCHAR}
+      </if>
+      <if test="orderState != null and orderState != ''" >
+        AND OO.ORDER_STATE = #{orderState,jdbcType=VARCHAR}
+      </if>
+      <if test="createTimeStart != null" >
+      	<![CDATA[
+        AND OO.CREATE_TIME >= #{createTimeStart,jdbcType=TIMESTAMP}
+        ]]>
+      </if>
+      <if test="createTimeEnd != null" >
+      	<![CDATA[
+        AND OO.CREATE_TIME <= #{createTimeEnd,jdbcType=TIMESTAMP}
+        ]]>
+      </if>
+      <if test="createOrgId != null" >
+        AND OO.CREATE_ORG_ID = #{createOrgId,jdbcType=DECIMAL}
+      </if>
+      <if test="areaId != null" >
+        AND OO.AREA_ID = #{areaId,jdbcType=DECIMAL}
+      </if>
+	  </where>
+      <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+      </if>
+  </select>
+  
+  <!-- 根据参数查询的总数 -->
+  <select id="selectOrderListCount" resultType="java.lang.Long" parameterType="com.basic.order.bean.OrderIbean" >
+    SELECT 
+	COUNT(0)
+    FROM OF_ORDER OO
+    JOIN PF_ORDER_STATE POS ON POS.ORDER_STATE = OO.ORDER_STATE AND POS.STATE = '10A'
+      <where>
+      OO.ORDER_STATE != '10X'
+      <if test="orderCode != null and orderCode != ''" >
+        AND OO.ORDER_CODE = #{orderCode,jdbcType=VARCHAR}
+      </if>
+      <if test="orderState != null and orderState != ''" >
+        AND OO.ORDER_STATE = #{orderState,jdbcType=VARCHAR}
+      </if>
+      <if test="createTimeStart != null" >
+      	<![CDATA[
+        AND OO.CREATE_TIME >= #{createTimeStart,jdbcType=TIMESTAMP}
+        ]]>
+      </if>
+      <if test="createTimeEnd != null" >
+      	<![CDATA[
+        AND OO.CREATE_TIME <= #{createTimeEnd,jdbcType=TIMESTAMP}
+        ]]>
+      </if>
+      <if test="createOrgId != null" >
+        AND OO.CREATE_ORG_ID = #{createOrgId,jdbcType=DECIMAL}
+      </if>
+      <if test="areaId != null" >
+        AND OO.AREA_ID = #{areaId,jdbcType=DECIMAL}
+      </if>
+	  </where>
+  </select>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    SELECT 
+    OO.*, POS.ORDER_STATE_NAME
+    FROM OF_ORDER OO
+    JOIN PF_ORDER_STATE POS ON POS.ORDER_STATE = OO.ORDER_STATE AND POS.STATE = '10A'
+    WHERE ORDER_ID = #{orderId,jdbcType=DECIMAL}
+  </select>
+    
+</mapper>

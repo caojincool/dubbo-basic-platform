@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+		">
+
+	
+	<!-- 流程单据 -->
+	<dubbo:service ref="orderFollowUserService" interface="com.basic.order.service.OrderFollowUserService"/>
+	<dubbo:service ref="orderOperService" interface="com.basic.order.service.OrderOperService"/>
+	<dubbo:service ref="orderPriorityService" interface="com.basic.order.service.OrderPriorityService"/>
+	<dubbo:service ref="orderService" interface="com.basic.order.service.OrderService"/>
+	<dubbo:service ref="orderServiceService" interface="com.basic.order.service.OrderServiceService"/>
+	<dubbo:service ref="orderStateComponentService" interface="com.basic.order.service.OrderStateComponentService"/>
+	<dubbo:service ref="orderStateService" interface="com.basic.order.service.OrderStateService"/>
+	<dubbo:service ref="orderTypeService" interface="com.basic.order.service.OrderTypeService"/>
+	<dubbo:service ref="processOrderManageService" interface="com.basic.order.service.ProcessOrderManageService"/>
+	<dubbo:service ref="processRuleService" interface="com.basic.order.service.ProcessRuleService"/>
+	<dubbo:service ref="processWorkOrderManageService" interface="com.basic.order.service.ProcessWorkOrderManageService"/>
+	<dubbo:service ref="tacheCatalogService" interface="com.basic.order.service.TacheCatalogService"/>
+	<dubbo:service ref="tacheService" interface="com.basic.order.service.TacheService"/>
+	<dubbo:service ref="woComponentService" interface="com.basic.order.service.WoComponentService"/>
+	<dubbo:service ref="woDispRuleInstService" interface="com.basic.order.service.WoDispRuleInstService"/>
+	<dubbo:service ref="woDispRuleService" interface="com.basic.order.service.WoDispRuleService"/>
+	<dubbo:service ref="workOrderOperService" interface="com.basic.order.service.WorkOrderOperService"/>
+	<dubbo:service ref="workOrderService" interface="com.basic.order.service.WorkOrderService"/>
+	<dubbo:service ref="workOrderStateService" interface="com.basic.order.service.WorkOrderStateService"/>
+	<dubbo:service ref="buttonService" interface="com.basic.order.service.ButtonService"/>
+	<dubbo:service ref="orderButtonService" interface="com.basic.order.service.OrderButtonService"/>
+	<dubbo:service ref="woButtonService" interface="com.basic.order.service.WoButtonService"/>
+	
+</beans>

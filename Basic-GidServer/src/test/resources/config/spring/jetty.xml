@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+	<Set name="ThreadPool">
+		<New class="org.eclipse.jetty.util.thread.QueuedThreadPool">
+			<!-- specify a bounded queue -->
+			<Arg>
+				<New class="java.util.concurrent.ArrayBlockingQueue">
+					<Arg type="int">12000</Arg>
+				</New>
+			</Arg>
+			<Set name="minThreads">100</Set>
+			<Set name="maxThreads">500</Set>
+			<Set name="detailedDump">false</Set>
+			<Set name="name">jetty-selector-</Set>
+		</New>
+	</Set>
+
+	<Call name="addConnector">
+		<Arg>
+			<New class="org.eclipse.jetty.server.nio.SelectChannelConnector">
+				<Set name="port">
+					<SystemProperty name="jetty.port" default="10188" />
+				</Set>
+				<Set name="maxIdleTime">300000</Set>
+				<Set name="Acceptors">2</Set>
+				<Set name="statsOn">false</Set>
+				<Set name="confidentialPort">9493</Set>
+				<Set name="lowResourcesConnections">20000</Set>
+				<Set name="lowResourcesMaxIdleTime">5000</Set>
+				<!-- add -->
+				<Set name="acceptQueueSize">3000</Set>
+				<Set name="requestBufferSize">600</Set>
+				<Set name="responseBufferSize">800</Set>
+			</New>
+		</Arg>
+	</Call>
+
+	<Set name="handler">
+		<New id="Handlers" class="org.eclipse.jetty.server.handler.HandlerCollection">
+			<Set name="handlers">
+				<Array type="org.eclipse.jetty.server.Handler">
+					<Item>
+						<New id="Contexts"
+							class="org.eclipse.jetty.server.handler.ContextHandlerCollection" />
+					</Item>
+					<Item>
+						<New id="DefaultHandler" class="com.basic.framework.gid.server.GidHandler" />
+					</Item>
+				</Array>
+			</Set>
+		</New>
+	</Set>
+
+	<Set name="stopAtShutdown">true</Set>
+	<Set name="sendServerVersion">true</Set>
+	<Set name="sendDateHeader">true</Set>
+	<Set name="gracefulShutdown">1000</Set>
+	<Set name="dumpAfterStart">false</Set>
+	<Set name="dumpBeforeStop">false</Set>
+
+</Configure>

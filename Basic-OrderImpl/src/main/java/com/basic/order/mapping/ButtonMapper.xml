@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.ButtonMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.order.model.Button" >
+    <id column="BUTTON_ID" property="buttonId" jdbcType="DECIMAL" />
+    <result column="BUTTON_NAME" property="buttonName" jdbcType="VARCHAR" />
+    <result column="JS_FILE" property="jsFile" jdbcType="VARCHAR" />
+    <result column="JS_METHOD" property="jsMethod" jdbcType="VARCHAR" />
+    <result column="BUTTO_STATE" property="buttoState" jdbcType="VARCHAR" />
+    <result column="PRIVATE_CODE" property="privateCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BUTTON_ID, BUTTON_NAME, JS_FILE, JS_METHOD, BUTTO_STATE, PRIVATE_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from PF_BUTTON
+    where BUTTON_ID = #{buttonId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from PF_BUTTON
+    where BUTTON_ID = #{buttonId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.order.model.Button" >
+    insert into PF_BUTTON (BUTTON_ID, BUTTON_NAME, JS_FILE, 
+      JS_METHOD, BUTTO_STATE, PRIVATE_CODE
+      )
+    values (#{buttonId,jdbcType=DECIMAL}, #{buttonName,jdbcType=VARCHAR}, #{jsFile,jdbcType=VARCHAR}, 
+      #{jsMethod,jdbcType=VARCHAR}, #{buttoState,jdbcType=VARCHAR}, #{privateCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.order.model.Button" >
+    insert into PF_BUTTON
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buttonId != null" >
+        BUTTON_ID,
+      </if>
+      <if test="buttonName != null" >
+        BUTTON_NAME,
+      </if>
+      <if test="jsFile != null" >
+        JS_FILE,
+      </if>
+      <if test="jsMethod != null" >
+        JS_METHOD,
+      </if>
+      <if test="buttoState != null" >
+        BUTTO_STATE,
+      </if>
+      <if test="privateCode != null" >
+        PRIVATE_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buttonId != null" >
+        #{buttonId,jdbcType=DECIMAL},
+      </if>
+      <if test="buttonName != null" >
+        #{buttonName,jdbcType=VARCHAR},
+      </if>
+      <if test="jsFile != null" >
+        #{jsFile,jdbcType=VARCHAR},
+      </if>
+      <if test="jsMethod != null" >
+        #{jsMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="buttoState != null" >
+        #{buttoState,jdbcType=VARCHAR},
+      </if>
+      <if test="privateCode != null" >
+        #{privateCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.Button" >
+    update PF_BUTTON
+    <set >
+      <if test="buttonName != null" >
+        BUTTON_NAME = #{buttonName,jdbcType=VARCHAR},
+      </if>
+      <if test="jsFile != null" >
+        JS_FILE = #{jsFile,jdbcType=VARCHAR},
+      </if>
+      <if test="jsMethod != null" >
+        JS_METHOD = #{jsMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="buttoState != null" >
+        BUTTO_STATE = #{buttoState,jdbcType=VARCHAR},
+      </if>
+      <if test="privateCode != null" >
+        PRIVATE_CODE = #{privateCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BUTTON_ID = #{buttonId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.order.model.Button" >
+    update PF_BUTTON
+    set BUTTON_NAME = #{buttonName,jdbcType=VARCHAR},
+      JS_FILE = #{jsFile,jdbcType=VARCHAR},
+      JS_METHOD = #{jsMethod,jdbcType=VARCHAR},
+      BUTTO_STATE = #{buttoState,jdbcType=VARCHAR},
+      PRIVATE_CODE = #{privateCode,jdbcType=VARCHAR}
+    where BUTTON_ID = #{buttonId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 根据参数查询单据按钮 -->
+  <select id="selectOrderButtonList" resultMap="BaseResultMap" parameterType="com.basic.order.bean.ButtonIbean" >
+    SELECT 
+    PB.*
+    FROM PF_BUTTON PB
+    JOIN PF_ORDER_BUTTON POB ON POB.BUTTON_ID = PB.BUTTON_ID
+      <where>
+      PB.BUTTO_STATE = '10A'
+      <if test="orderType != null and orderType != ''" >
+        AND POB.ORDER_TYPE = #{orderType,jdbcType=VARCHAR}
+      </if>
+	  </where>
+  </select>
+  
+  <!-- 根据参数查询任务按钮 -->
+  <select id="selectWoButtonList" resultMap="BaseResultMap" parameterType="com.basic.order.bean.ButtonIbean" >
+    SELECT 
+    PB.*
+    FROM PF_BUTTON PB
+    JOIN PF_WO_BUTTON PWB ON PWB.BUTTON_ID = PB.BUTTON_ID
+      <where>
+      PB.BUTTO_STATE = '10A'
+      <if test="tacheId != null and tacheId != ''" >
+        AND PWB.TACHE_ID = #{tacheId,jdbcType=VARCHAR}
+      </if>
+	  </where>
+  </select>
+  
+</mapper>

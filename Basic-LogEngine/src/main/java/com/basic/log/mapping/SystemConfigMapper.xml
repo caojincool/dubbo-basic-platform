@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.log.dao.SystemConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.log.model.SystemConfig" >
+    <id column="CONFIG_ID" property="configId" jdbcType="DECIMAL" />
+    <result column="REQUEST_URL" property="requestUrl" jdbcType="VARCHAR" />
+    <result column="REQUEST_FLAG" property="requestFlag" jdbcType="VARCHAR" />
+    <result column="REQUEST_CONTENT_FLAG" property="requestContentFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CONFIG_ID, REQUEST_URL, REQUEST_FLAG, REQUEST_CONTENT_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from PUB_SYSTEM_CONFIG
+    where CONFIG_ID = #{configId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from PUB_SYSTEM_CONFIG
+    where CONFIG_ID = #{configId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.log.model.SystemConfig" >
+    insert into PUB_SYSTEM_CONFIG (CONFIG_ID, REQUEST_URL, REQUEST_FLAG, 
+      REQUEST_CONTENT_FLAG)
+    values (#{configId,jdbcType=DECIMAL}, #{requestUrl,jdbcType=VARCHAR}, #{requestFlag,jdbcType=VARCHAR}, 
+      #{requestContentFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.log.model.SystemConfig" >
+    insert into PUB_SYSTEM_CONFIG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="configId != null" >
+        CONFIG_ID,
+      </if>
+      <if test="requestUrl != null" >
+        REQUEST_URL,
+      </if>
+      <if test="requestFlag != null" >
+        REQUEST_FLAG,
+      </if>
+      <if test="requestContentFlag != null" >
+        REQUEST_CONTENT_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="configId != null" >
+        #{configId,jdbcType=DECIMAL},
+      </if>
+      <if test="requestUrl != null" >
+        #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="requestFlag != null" >
+        #{requestFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="requestContentFlag != null" >
+        #{requestContentFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.log.model.SystemConfig" >
+    update PUB_SYSTEM_CONFIG
+    <set >
+      <if test="requestUrl != null" >
+        REQUEST_URL = #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="requestFlag != null" >
+        REQUEST_FLAG = #{requestFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="requestContentFlag != null" >
+        REQUEST_CONTENT_FLAG = #{requestContentFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CONFIG_ID = #{configId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.log.model.SystemConfig" >
+    update PUB_SYSTEM_CONFIG
+    set REQUEST_URL = #{requestUrl,jdbcType=VARCHAR},
+      REQUEST_FLAG = #{requestFlag,jdbcType=VARCHAR},
+      REQUEST_CONTENT_FLAG = #{requestContentFlag,jdbcType=VARCHAR}
+    where CONFIG_ID = #{configId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 根据参数查询 -->
+  <select id="selectSystemConfigList" resultMap="BaseResultMap" parameterType="com.basic.log.bean.SystemConfigIbean" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PUB_SYSTEM_CONFIG
+      <where>
+      <if test="requestUrl != null and requestUrl != ''" >
+        <![CDATA[
+        AND INSTR(REQUEST_URL, #{requestUrl,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>  
+	  </where>
+      <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+      </if>
+  </select>
+  
+  <!-- 根据参数查询的总数 -->
+  <select id="selectSystemConfigListCount" resultType="java.lang.Long" parameterType="com.basic.log.bean.SystemConfigIbean" >
+    SELECT 
+	COUNT(0)
+    FROM PUB_SYSTEM_CONFIG
+      <where>
+      <if test="requestUrl != null and requestUrl != ''" >
+        <![CDATA[
+        AND INSTR(REQUEST_URL, #{requestUrl,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>  
+	  </where>
+  </select> 
+  
+  <!-- 批量删除，正常情况下，别的模块只修改状态 -->
+  <delete id="deleteBatchByConfigIds">
+    DELETE FROM PUB_SYSTEM_CONFIG
+    WHERE CONFIG_ID IN
+		<foreach collection="array" item="configId" index="index"
+            open="(" close=")" separator=",">
+               #{configId,jdbcType=DECIMAL}         
+        </foreach>  		 
+  </delete>
+  
+  <select id="selectByRequestUrl" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PUB_SYSTEM_CONFIG
+    WHERE REQUEST_URL = #{requestUrl,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

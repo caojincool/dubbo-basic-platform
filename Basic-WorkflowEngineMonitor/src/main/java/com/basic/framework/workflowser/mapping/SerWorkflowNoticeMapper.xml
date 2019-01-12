@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.framework.workflowser.dao.SerWorkflowNoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.framework.workflowser.model.SerWorkflowNotice" >
+    <id column="NOTICE_ID" property="noticeId" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="VARCHAR" />
+    <result column="BUSI_ORDER_ID" property="busiOrderId" jdbcType="DECIMAL" />
+    <result column="PROCESS_INSTANCE_ID" property="processInstanceId" jdbcType="VARCHAR" />
+    <result column="TASK_ID" property="taskId" jdbcType="VARCHAR" />
+    <result column="TASK_DEFINITION_KEY" property="taskDefinitionKey" jdbcType="VARCHAR" />
+    <result column="ERROR_CODE" property="errorCode" jdbcType="VARCHAR" />
+    <result column="SEND_FLAG" property="sendFlag" jdbcType="VARCHAR" />
+    <result column="SEND_RESULT" property="sendResult" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    NOTICE_ID, CREATE_TIME, NOTICE_TYPE, BUSI_ORDER_ID, PROCESS_INSTANCE_ID, TASK_ID, 
+    TASK_DEFINITION_KEY, ERROR_CODE, SEND_FLAG, SEND_RESULT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from WFE_SER_WORKFLOW_NOTICE
+    where NOTICE_ID = #{noticeId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from WFE_SER_WORKFLOW_NOTICE
+    where NOTICE_ID = #{noticeId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.framework.workflowser.model.SerWorkflowNotice" >
+    insert into WFE_SER_WORKFLOW_NOTICE (NOTICE_ID, CREATE_TIME, NOTICE_TYPE, 
+      BUSI_ORDER_ID, PROCESS_INSTANCE_ID, TASK_ID, 
+      TASK_DEFINITION_KEY, ERROR_CODE, SEND_FLAG, 
+      SEND_RESULT)
+    values (#{noticeId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{noticeType,jdbcType=VARCHAR}, 
+      #{busiOrderId,jdbcType=DECIMAL}, #{processInstanceId,jdbcType=VARCHAR}, #{taskId,jdbcType=VARCHAR}, 
+      #{taskDefinitionKey,jdbcType=VARCHAR}, #{errorCode,jdbcType=VARCHAR}, #{sendFlag,jdbcType=VARCHAR}, 
+      #{sendResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.framework.workflowser.model.SerWorkflowNotice" >
+    insert into WFE_SER_WORKFLOW_NOTICE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="noticeId != null" >
+        NOTICE_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="noticeType != null" >
+        NOTICE_TYPE,
+      </if>
+      <if test="busiOrderId != null" >
+        BUSI_ORDER_ID,
+      </if>
+      <if test="processInstanceId != null" >
+        PROCESS_INSTANCE_ID,
+      </if>
+      <if test="taskId != null" >
+        TASK_ID,
+      </if>
+      <if test="taskDefinitionKey != null" >
+        TASK_DEFINITION_KEY,
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE,
+      </if>
+      <if test="sendFlag != null" >
+        SEND_FLAG,
+      </if>
+      <if test="sendResult != null" >
+        SEND_RESULT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="noticeId != null" >
+        #{noticeId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeType != null" >
+        #{noticeType,jdbcType=VARCHAR},
+      </if>
+      <if test="busiOrderId != null" >
+        #{busiOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null" >
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDefinitionKey != null" >
+        #{taskDefinitionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sendFlag != null" >
+        #{sendFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sendResult != null" >
+        #{sendResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.framework.workflowser.model.SerWorkflowNotice" >
+    update WFE_SER_WORKFLOW_NOTICE
+    <set >
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeType != null" >
+        NOTICE_TYPE = #{noticeType,jdbcType=VARCHAR},
+      </if>
+      <if test="busiOrderId != null" >
+        BUSI_ORDER_ID = #{busiOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null" >
+        PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        TASK_ID = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDefinitionKey != null" >
+        TASK_DEFINITION_KEY = #{taskDefinitionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sendFlag != null" >
+        SEND_FLAG = #{sendFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sendResult != null" >
+        SEND_RESULT = #{sendResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where NOTICE_ID = #{noticeId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.framework.workflowser.model.SerWorkflowNotice" >
+    update WFE_SER_WORKFLOW_NOTICE
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      NOTICE_TYPE = #{noticeType,jdbcType=VARCHAR},
+      BUSI_ORDER_ID = #{busiOrderId,jdbcType=DECIMAL},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      TASK_ID = #{taskId,jdbcType=VARCHAR},
+      TASK_DEFINITION_KEY = #{taskDefinitionKey,jdbcType=VARCHAR},
+      ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      SEND_FLAG = #{sendFlag,jdbcType=VARCHAR},
+      SEND_RESULT = #{sendResult,jdbcType=VARCHAR}
+    where NOTICE_ID = #{noticeId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 根据参数查询 -->
+  <select id="selectSerWorkflowNoticeList" resultMap="BaseResultMap" parameterType="com.basic.framework.workflow.bean.WorkflowIbean" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM WFE_SER_WORKFLOW_NOTICE
+      <where>
+      <if test="processInstanceId != null and processInstanceId != ''" >
+        AND PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR}
+      </if>
+	  </where>
+	  ORDER BY CREATE_TIME ASC
+  </select>
+  
+</mapper>

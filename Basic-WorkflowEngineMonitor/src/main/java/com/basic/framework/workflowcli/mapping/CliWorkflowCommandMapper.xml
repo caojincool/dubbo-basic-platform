@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.framework.workflowcli.dao.CliWorkflowCommandMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.framework.workflowcli.model.CliWorkflowCommand" >
+    <id column="COMMAND_ID" property="commandId" jdbcType="DECIMAL" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="PROCESS_DEFINE_KEY" property="processDefineKey" jdbcType="VARCHAR" />
+    <result column="BUSI_ORDER_ID" property="busiOrderId" jdbcType="DECIMAL" />
+    <result column="TASK_ID" property="taskId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="PARAM" property="param" jdbcType="VARCHAR" />
+    <result column="ERROR_CODE" property="errorCode" jdbcType="VARCHAR" />
+    <result column="SEND_FLAG" property="sendFlag" jdbcType="VARCHAR" />
+    <result column="SEND_RESULT" property="sendResult" jdbcType="VARCHAR" />
+    <result column="COMMAND_TYPE" property="commandType" jdbcType="VARCHAR" />
+    <result column="PROCESS_INSTANCE_ID" property="processInstanceId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COMMAND_ID, SERIAL_NO, PROCESS_DEFINE_KEY, BUSI_ORDER_ID, TASK_ID, CREATE_TIME, PARAM, 
+    ERROR_CODE, SEND_FLAG, SEND_RESULT, COMMAND_TYPE, PROCESS_INSTANCE_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from WFC_CLI_WORKFLOW_COMMAND
+    where COMMAND_ID = #{commandId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from WFC_CLI_WORKFLOW_COMMAND
+    where COMMAND_ID = #{commandId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.framework.workflowcli.model.CliWorkflowCommand" >
+    insert into WFC_CLI_WORKFLOW_COMMAND (COMMAND_ID, SERIAL_NO, PROCESS_DEFINE_KEY, 
+      BUSI_ORDER_ID, TASK_ID, CREATE_TIME, 
+      PARAM, ERROR_CODE, SEND_FLAG, 
+      SEND_RESULT, COMMAND_TYPE, PROCESS_INSTANCE_ID
+      )
+    values (#{commandId,jdbcType=DECIMAL}, #{serialNo,jdbcType=DECIMAL}, #{processDefineKey,jdbcType=VARCHAR}, 
+      #{busiOrderId,jdbcType=DECIMAL}, #{taskId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{param,jdbcType=VARCHAR}, #{errorCode,jdbcType=VARCHAR}, #{sendFlag,jdbcType=VARCHAR}, 
+      #{sendResult,jdbcType=VARCHAR}, #{commandType,jdbcType=VARCHAR}, #{processInstanceId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.framework.workflowcli.model.CliWorkflowCommand" >
+    insert into WFC_CLI_WORKFLOW_COMMAND
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commandId != null" >
+        COMMAND_ID,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="processDefineKey != null" >
+        PROCESS_DEFINE_KEY,
+      </if>
+      <if test="busiOrderId != null" >
+        BUSI_ORDER_ID,
+      </if>
+      <if test="taskId != null" >
+        TASK_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="param != null" >
+        PARAM,
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE,
+      </if>
+      <if test="sendFlag != null" >
+        SEND_FLAG,
+      </if>
+      <if test="sendResult != null" >
+        SEND_RESULT,
+      </if>
+      <if test="commandType != null" >
+        COMMAND_TYPE,
+      </if>
+      <if test="processInstanceId != null" >
+        PROCESS_INSTANCE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commandId != null" >
+        #{commandId,jdbcType=DECIMAL},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="processDefineKey != null" >
+        #{processDefineKey,jdbcType=VARCHAR},
+      </if>
+      <if test="busiOrderId != null" >
+        #{busiOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="param != null" >
+        #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sendFlag != null" >
+        #{sendFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sendResult != null" >
+        #{sendResult,jdbcType=VARCHAR},
+      </if>
+      <if test="commandType != null" >
+        #{commandType,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null" >
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.framework.workflowcli.model.CliWorkflowCommand" >
+    update WFC_CLI_WORKFLOW_COMMAND
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="processDefineKey != null" >
+        PROCESS_DEFINE_KEY = #{processDefineKey,jdbcType=VARCHAR},
+      </if>
+      <if test="busiOrderId != null" >
+        BUSI_ORDER_ID = #{busiOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="taskId != null" >
+        TASK_ID = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="param != null" >
+        PARAM = #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sendFlag != null" >
+        SEND_FLAG = #{sendFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sendResult != null" >
+        SEND_RESULT = #{sendResult,jdbcType=VARCHAR},
+      </if>
+      <if test="commandType != null" >
+        COMMAND_TYPE = #{commandType,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null" >
+        PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COMMAND_ID = #{commandId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.framework.workflowcli.model.CliWorkflowCommand" >
+    update WFC_CLI_WORKFLOW_COMMAND
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      PROCESS_DEFINE_KEY = #{processDefineKey,jdbcType=VARCHAR},
+      BUSI_ORDER_ID = #{busiOrderId,jdbcType=DECIMAL},
+      TASK_ID = #{taskId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      PARAM = #{param,jdbcType=VARCHAR},
+      ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      SEND_FLAG = #{sendFlag,jdbcType=VARCHAR},
+      SEND_RESULT = #{sendResult,jdbcType=VARCHAR},
+      COMMAND_TYPE = #{commandType,jdbcType=VARCHAR},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR}
+    where COMMAND_ID = #{commandId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 根据参数查询 -->
+  <select id="selectCliWorkflowCommandList" resultMap="BaseResultMap" parameterType="com.basic.framework.workflow.bean.WorkflowIbean" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM WFC_CLI_WORKFLOW_COMMAND
+      <where>
+      <if test="processInstanceId != null and processInstanceId != ''" >
+        AND PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR}
+      </if>
+<!--       <if test="processDefineKey != null and processDefineKey != ''" >
+        OR PROCESS_DEFINE_KEY = #{processDefineKey,jdbcType=VARCHAR}
+      </if>   -->
+	  </where>
+	  ORDER BY CREATE_TIME ASC
+  </select>
+  
+</mapper>

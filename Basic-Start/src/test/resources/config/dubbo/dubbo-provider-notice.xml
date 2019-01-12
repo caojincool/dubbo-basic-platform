@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+		">
+
+	
+	<!-- 系统公告 -->
+	<!--<dubbo:service ref="noticeService" interface="com.basic.notice.service.NoticeService" group="platform"/>
+	<dubbo:service ref="noticeReadService" interface="com.basic.notice.service.NoticeReadService" group="platform"/>
+	<dubbo:service ref="noticePartyService" interface="com.basic.notice.service.NoticePartyService" group="platform"/>
+	<dubbo:service ref="noticeFileService" interface="com.basic.notice.service.NoticeFileService" group="platform"/>-->
+</beans>

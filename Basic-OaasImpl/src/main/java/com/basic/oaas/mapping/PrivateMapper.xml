@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.oaas.dao.PrivateMapper">
+  <resultMap id="BaseResultMap" type="com.basic.oaas.model.Private">
+    <id column="PRIVATE_ID" jdbcType="DECIMAL" property="privateId" />
+    <result column="PRIVATE_TYPE" jdbcType="VARCHAR" property="privateType" />
+    <result column="PRIVATE_NAME" jdbcType="VARCHAR" property="privateName" />
+    <result column="PRIVATE_CODE" jdbcType="VARCHAR" property="privateCode" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="CREATE_USER_ID" jdbcType="DECIMAL" property="createUserId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_USER_ID" jdbcType="DECIMAL" property="modifyUserId" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    
+    <result column="CREATEUSERNAME" jdbcType="VARCHAR" property="createUserName" />
+    <result column="MODIFYUSERNAME" jdbcType="VARCHAR" property="modifyUserName" />
+    
+    <result column="ROLE_PRIVATE_ID" jdbcType="DECIMAL" property="rolePrivateId"/>
+    
+    <result column="PRIVATE_SOURCE" jdbcType="VARCHAR" property="privateSource"/>
+    <result column="MENU_ID" jdbcType="DECIMAL" property="menuId"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    PRIVATE_ID,  PRIVATE_TYPE, PRIVATE_NAME, PRIVATE_CODE, STATE, CREATE_USER_ID, 
+    CREATE_TIME, MODIFY_USER_ID, MODIFY_TIME, REMARKS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM OAAS_PRIVATE
+    WHERE PRIVATE_ID = #{privateId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    DELETE FROM OAAS_PRIVATE
+    WHERE PRIVATE_ID = #{privateId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.oaas.model.Private">
+    INSERT INTO OAAS_PRIVATE (PRIVATE_ID,  PRIVATE_TYPE, 
+      PRIVATE_NAME, PRIVATE_CODE, STATE, 
+      CREATE_USER_ID, CREATE_TIME, MODIFY_USER_ID, 
+      MODIFY_TIME, REMARKS)
+    VALUES (#{privateId,jdbcType=DECIMAL},  #{privateType,jdbcType=VARCHAR}, 
+      #{privateName,jdbcType=VARCHAR}, #{privateCode,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=DECIMAL}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.oaas.model.Private">
+    INSERT INTO OAAS_PRIVATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="privateId != null">
+        PRIVATE_ID,
+      </if>
+      <if test="privateType != null">
+        PRIVATE_TYPE,
+      </if>
+      <if test="privateName != null">
+        PRIVATE_NAME,
+      </if>
+      <if test="privateCode != null">
+        PRIVATE_CODE,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="remarks != null">
+        REMARKS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="privateId != null">
+        #{privateId,jdbcType=DECIMAL},
+      </if>
+      <if test="privateType != null">
+        #{privateType,jdbcType=VARCHAR},
+      </if>
+      <if test="privateName != null">
+        #{privateName,jdbcType=VARCHAR},
+      </if>
+      <if test="privateCode != null">
+        #{privateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.oaas.model.Private">
+    UPDATE OAAS_PRIVATE
+    <set>
+      <if test="privateType != null">
+        PRIVATE_TYPE = #{privateType,jdbcType=VARCHAR},
+      </if>
+      <if test="privateName != null">
+        PRIVATE_NAME = #{privateName,jdbcType=VARCHAR},
+      </if>
+      <if test="privateCode != null">
+        PRIVATE_CODE = #{privateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR}
+      </if>
+    </set>
+    WHERE PRIVATE_ID = #{privateId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.oaas.model.Private">
+    UPDATE OAAS_PRIVATE
+    SET 
+        PRIVATE_TYPE = #{privateType,jdbcType=VARCHAR},
+        PRIVATE_NAME = #{privateName,jdbcType=VARCHAR},
+        PRIVATE_CODE = #{privateCode,jdbcType=VARCHAR},
+        STATE = #{state,jdbcType=VARCHAR},
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=DECIMAL},
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+        REMARKS = #{remarks,jdbcType=VARCHAR}
+    WHERE PRIVATE_ID = #{privateId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 批量删除 -->
+  <delete id="deleteBatchByPrivateIds">
+    DELETE FROM OAAS_PRIVATE
+    WHERE PRIVATE_ID IN
+		<foreach collection="array" item="privateId" index="index"
+            open="(" close=")" separator=",">
+               #{privateId,jdbcType=DECIMAL}         
+        </foreach>  		 
+  </delete>
+  
+  <!-- 批量修改 -->
+  <update id="updateBatchByPrivateIds">
+  	UPDATE OAAS_PRIVATE
+  	SET STATE = '10X'
+  	WHERE PRIVATE_ID IN
+		<foreach collection="array" item="privateId" index="index"
+            open="(" close=")" separator=",">
+               #{privateId,jdbcType=DECIMAL}         
+        </foreach>
+  </update>
+  
+  <update id="updateBatchByMenuIds">
+  	UPDATE OAAS_PRIVATE
+  	SET STATE = '10X'
+  	WHERE PRIVATE_ID IN (
+  		SELECT PRIVATE_ID FROM OAAS_PRIV_MENU WHERE MENU_ID IN
+		<foreach collection="array" item="menuId" index="index"
+            open="(" close=")" separator=",">
+               #{menuId,jdbcType=DECIMAL}         
+        </foreach>
+    )
+  </update>
+  
+  <update id="updateBatchByFuncIds">
+  	UPDATE OAAS_PRIVATE
+  	SET STATE = '10X'
+  	WHERE PRIVATE_ID IN (
+  		SELECT PRIVATE_ID FROM OAAS_PRIV_FUNC WHERE FUNC_ID IN
+		<foreach collection="array" item="funcId" index="index"
+            open="(" close=")" separator=",">
+               #{funcId,jdbcType=DECIMAL}         
+        </foreach>
+    )
+  </update>
+  
+  <update id="updateBatchByAttrIds">
+  	UPDATE OAAS_PRIVATE
+  	SET STATE = '10X'
+  	WHERE PRIVATE_ID IN (
+  		SELECT PRIVATE_ID FROM OAAS_PRIV_ATTR WHERE ATTR_ID IN
+		<foreach collection="array" item="attrId" index="index"
+            open="(" close=")" separator=",">
+               #{"attrId",jdbcType=DECIMAL}         
+        </foreach>
+    )
+  </update>
+  
+  <select id="selectPrivateByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	SELECT
+		OP.*
+	FROM
+	OAAS_PRIVATE AS OP
+	INNER JOIN OAAS_USER_PRIVATE AS OUP ON OUP.PRIVATE_ID = OP.PRIVATE_ID
+	WHERE
+	OP.STATE = '10A' AND
+	OUP.USER_ID =  #{userId,jdbcType=DECIMAL}
+  </select>
+  
+  <select id="selectPrivateByUserAndRoleList" resultMap="BaseResultMap" parameterType="com.basic.oaas.bean.PrivateIbean">
+  	SELECT * FROM
+	(
+		SELECT
+			OP.*,
+			'角色' AS privateSource,
+			OUR.USER_ID AS USER_ID
+		FROM
+                (
+			SELECT PRI.*,MENU.MENU_ID 'MENU_ID',MENU.MENU_ICON 'icon',MENU.MENU_URL 'uri',MENU.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+			JOIN OAAS_PRIV_MENU MENU ON MENU.PRIVATE_ID = PRI.PRIVATE_ID AND MENU.STATE = '10A' AND MENU.OPEN_STATUS =1
+			UNION ALL
+			SELECT PRI.*,FUNC.MENU_ID 'MENU_ID',FUNC.FUNC_ICON 'icon',FUNC.FUNC_URL 'uri',FUNC.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+			JOIN OAAS_PRIV_FUNC FUNC ON FUNC.PRIVATE_ID = PRI.PRIVATE_ID AND FUNC.STATE = '10A' AND FUNC.OPEN_STATUS =1
+			UNION ALL
+			SELECT PRI.*,ATTR.MENU_ID 'MENU_ID','icon','uri',ATTR.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+			JOIN OAAS_PRIV_ATTR ATTR ON ATTR.PRIVATE_ID = PRI.PRIVATE_ID AND ATTR.STATE = '10A' AND ATTR.OPEN_STATUS =1
+		) AS OP
+		INNER JOIN OAAS_ROLE_PRIVATE AS ORP ON ORP.PRIVATE_ID = OP.PRIVATE_ID
+		INNER JOIN OAAS_USER_ROLE AS OUR ON OUR.ROLE_ID = ORP.ROLE_ID
+		WHERE OP.STATE = '10A'
+		UNION ALL
+                SELECT
+                        OP.*,
+                        '单独赋权' AS privateSource,
+                        OUP.USER_ID AS USER_ID
+                FROM
+                (
+                        SELECT PRI.*,MENU.MENU_ID 'MENU_ID',MENU.MENU_ICON 'icon',MENU.MENU_URL 'uri',MENU.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+                        JOIN OAAS_PRIV_MENU MENU ON MENU.PRIVATE_ID = PRI.PRIVATE_ID AND MENU.STATE = '10A' AND MENU.OPEN_STATUS =1
+                        UNION ALL
+                        SELECT PRI.*,FUNC.MENU_ID 'MENU_ID',FUNC.FUNC_ICON 'icon',FUNC.FUNC_URL 'uri',FUNC.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+                        JOIN OAAS_PRIV_FUNC FUNC ON FUNC.PRIVATE_ID = PRI.PRIVATE_ID AND FUNC.STATE = '10A' AND FUNC.OPEN_STATUS =1
+                        UNION ALL
+                        SELECT PRI.*,ATTR.MENU_ID 'MENU_ID','icon','uri',ATTR.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+                        JOIN OAAS_PRIV_ATTR ATTR ON ATTR.PRIVATE_ID = PRI.PRIVATE_ID AND ATTR.STATE = '10A' AND ATTR.OPEN_STATUS =1
+                ) AS OP
+                INNER JOIN OAAS_USER_PRIVATE AS OUP ON OUP.PRIVATE_ID = OP.PRIVATE_ID
+                WHERE OP.STATE = '10A'
+	) A
+	<where>
+		A.STATE = '10A'
+		<if test="userId != null and userId !=''">
+			AND A.USER_ID = #{userId,jdbcType=DECIMAL}
+		</if>
+		<if test="privateType != null and privateType !=''">
+			AND A.PRIVATE_TYPE = #{privateType,jdbcType=VARCHAR}
+		</if>
+		<if test="menuId != null and menuId !=''">
+			AND A.MENU_ID = #{menuId,jdbcType=DECIMAL}
+		</if>
+		
+	</where>
+	<if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+    </if>
+  </select>
+  
+  <select id="selectPrivateByRequest" resultType="string" parameterType="string">
+		SELECT 
+			PRIVATE_CODE
+		FROM
+		OAAS_PRIVATE
+		WHERE PRIVATE_ID IN 
+		(	SELECT
+			OPF.PRIVATE_ID
+			FROM
+			OAAS_PRIV_FUNC AS OPF
+			WHERE OPF.FUNC_URL = #{requestUrl,jdbcType=VARCHAR}
+			UNION
+			
+			SELECT
+			OPM.PRIVATE_ID
+			FROM
+			OAAS_PRIV_MENU AS OPM
+			WHERE OPM.MENU_URL = #{requestUrl,jdbcType=VARCHAR}
+		)
+  </select>
+  
+  <select id="selectPrivateByUsername" resultType="string" parameterType="string" >
+  		
+  		SELECT
+			OP.PRIVATE_CODE
+		FROM
+		OAAS_PRIVATE AS OP
+		INNER JOIN OAAS_USER_PRIVATE AS OUP ON OUP.PRIVATE_ID = OP.PRIVATE_ID
+		INNER JOIN OAAS_USER AS OU ON OU.USER_ID = OUP.USER_ID
+		WHERE OU.USERNAME = #{username,jdbcType=VARCHAR}
+		
+		UNION
+		
+		SELECT
+			OP.PRIVATE_CODE
+		FROM
+		OAAS_PRIVATE AS OP
+		INNER JOIN OAAS_ROLE_PRIVATE AS ORP ON ORP.PRIVATE_ID = OP.PRIVATE_ID
+		INNER JOIN OAAS_USER_ROLE AS OUR ON OUR.ROLE_ID = ORP.ROLE_ID
+		INNER JOIN OAAS_USER AS OU ON OU.USER_ID = OUR.USER_ID
+		WHERE OU.USERNAME = #{username,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAllPrivate" resultType="string"  >
+  		SELECT
+			OP.PRIVATE_CODE
+		FROM
+		OAAS_PRIVATE AS OP
+  </select>
+  
+  <select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">		
+		SELECT RES.*,OU1.USER_TEXT 'createUserName',OU2.USER_TEXT 'modifyUserName' FROM
+		(
+			SELECT
+				OP.*
+				<if test="userId != null and userId != ''">
+				,'角色' AS privateSource,
+				OUR.USER_ID AS USER_ID
+				</if>
+			FROM
+	                (
+				SELECT PRI.*,MENU.MENU_ID 'MENU_ID',MENU.MENU_ICON 'icon',MENU.MENU_URL 'uri',MENU.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+				JOIN OAAS_PRIV_MENU MENU ON MENU.PRIVATE_ID = PRI.PRIVATE_ID AND MENU.STATE = '10A' AND MENU.OPEN_STATUS =1
+				UNION ALL
+				SELECT PRI.*,FUNC.MENU_ID 'MENU_ID',FUNC.FUNC_ICON 'icon',FUNC.FUNC_URL 'uri',FUNC.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+				JOIN OAAS_PRIV_FUNC FUNC ON FUNC.PRIVATE_ID = PRI.PRIVATE_ID AND FUNC.STATE = '10A' AND FUNC.OPEN_STATUS =1
+				UNION ALL
+				SELECT PRI.*,ATTR.MENU_ID 'MENU_ID','icon','uri',ATTR.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+				JOIN OAAS_PRIV_ATTR ATTR ON ATTR.PRIVATE_ID = PRI.PRIVATE_ID AND ATTR.STATE = '10A' AND ATTR.OPEN_STATUS =1
+			) AS OP
+			<if test="userId != null and userId != ''">
+				INNER JOIN OAAS_ROLE_PRIVATE AS ORP ON ORP.PRIVATE_ID = OP.PRIVATE_ID
+				INNER JOIN OAAS_USER_ROLE AS OUR ON OUR.ROLE_ID = ORP.ROLE_ID
+			</if>
+			WHERE OP.STATE = '10A'
+			<if test="userId != null and userId != ''">
+			UNION ALL
+	                SELECT
+	                        OP.*,
+	                        '单独赋权' AS privateSource,
+	                        OUP.USER_ID AS USER_ID
+	                FROM
+	                (
+	                        SELECT PRI.*,MENU.MENU_ID 'MENU_ID',MENU.MENU_ICON 'icon',MENU.MENU_URL 'uri',MENU.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+	                        JOIN OAAS_PRIV_MENU MENU ON MENU.PRIVATE_ID = PRI.PRIVATE_ID AND MENU.STATE = '10A' AND MENU.OPEN_STATUS =1
+	                        UNION ALL
+	                        SELECT PRI.*,FUNC.MENU_ID 'MENU_ID',FUNC.FUNC_ICON 'icon',FUNC.FUNC_URL 'uri',FUNC.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+	                        JOIN OAAS_PRIV_FUNC FUNC ON FUNC.PRIVATE_ID = PRI.PRIVATE_ID AND FUNC.STATE = '10A' AND FUNC.OPEN_STATUS =1
+	                        UNION ALL
+	                        SELECT PRI.*,ATTR.MENU_ID 'MENU_ID','icon','uri',ATTR.OPEN_STATUS 'openStatus' FROM OAAS_PRIVATE PRI
+	                        JOIN OAAS_PRIV_ATTR ATTR ON ATTR.PRIVATE_ID = PRI.PRIVATE_ID AND ATTR.STATE = '10A' AND ATTR.OPEN_STATUS =1
+	                ) AS OP
+	                INNER JOIN OAAS_USER_PRIVATE AS OUP ON OUP.PRIVATE_ID = OP.PRIVATE_ID
+	                WHERE OP.STATE = '10A'
+			</if>
+		) RES
+        LEFT JOIN OAAS_USER OU1  ON  OU1.USER_ID = res.CREATE_USER_ID
+		LEFT JOIN OAAS_USER OU2  ON  OU2.USER_ID = res.MODIFY_USER_ID
+        <where>
+            RES.state = '10A'
+            <if test="whereSql!=null">
+                AND ${whereSql}
+            </if>
+        </where>
+        <if test="orderBySql!=null">
+            ORDER BY ${orderBySql}
+        </if>
+        <if test="orderBySql==null">
+            ORDER BY RES.PRIVATE_ID DESC
+        </if>
+    </select>
+  
+  
+</mapper>

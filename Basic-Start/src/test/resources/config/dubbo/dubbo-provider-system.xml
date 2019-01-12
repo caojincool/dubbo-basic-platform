@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+		">
+
+	
+	<!-- 系统设置 -->
+	<dubbo:service ref="excelExportTmpService" interface="com.basic.system.service.ExcelExportTmpService" group="platform"/>
+	<dubbo:service ref="excelImportTmpService" interface="com.basic.system.service.ExcelImportTmpService" group="platform"/>
+	<dubbo:service ref="fileConfigService" interface="com.basic.system.service.FileConfigService" group="platform"/>
+	<dubbo:service ref="fileInfoService" interface="com.basic.system.service.FileInfoService" group="platform"/>
+	<dubbo:service ref="tableDictService" interface="com.basic.system.service.TableDictService" group="platform"/>
+	<dubbo:service ref="gidServerService" interface="com.basic.system.service.GidServerService" group="platform"/>
+</beans>

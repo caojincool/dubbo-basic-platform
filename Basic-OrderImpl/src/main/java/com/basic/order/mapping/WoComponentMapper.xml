@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.order.dao.WoComponentMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.order.model.WoComponent" >
+    <id column="COMPONENT_ID" property="componentId" jdbcType="DECIMAL" />
+    <result column="TACHE_ID" property="tacheId" jdbcType="DECIMAL" />
+    
+    <result column="TACHE_NAME" property="tacheName" jdbcType="VARCHAR" />
+    
+    <result column="COMPONENT_CODE" property="componentCode" jdbcType="VARCHAR" />
+    <result column="COMPONENT_NAME" property="componentName" jdbcType="VARCHAR" />
+    <result column="EXEC_INDEX" property="execIndex" jdbcType="DECIMAL" />
+    <result column="COMPONENT_STATE" property="componentState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COMPONENT_ID, TACHE_ID, COMPONENT_CODE, COMPONENT_NAME, EXEC_INDEX, COMPONENT_STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from PF_WO_COMPONENT
+    where COMPONENT_ID = #{componentId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from PF_WO_COMPONENT
+    where COMPONENT_ID = #{componentId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.order.model.WoComponent" >
+    insert into PF_WO_COMPONENT (COMPONENT_ID, TACHE_ID, COMPONENT_CODE, 
+      COMPONENT_NAME, EXEC_INDEX, COMPONENT_STATE
+      )
+    values (#{componentId,jdbcType=DECIMAL}, #{tacheId,jdbcType=DECIMAL}, #{componentCode,jdbcType=VARCHAR}, 
+      #{componentName,jdbcType=VARCHAR}, #{execIndex,jdbcType=DECIMAL}, #{componentState,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.order.model.WoComponent" >
+    insert into PF_WO_COMPONENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="componentId != null" >
+        COMPONENT_ID,
+      </if>
+      <if test="tacheId != null" >
+        TACHE_ID,
+      </if>
+      <if test="componentCode != null" >
+        COMPONENT_CODE,
+      </if>
+      <if test="componentName != null" >
+        COMPONENT_NAME,
+      </if>
+      <if test="execIndex != null" >
+        EXEC_INDEX,
+      </if>
+      <if test="componentState != null" >
+        COMPONENT_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="componentId != null" >
+        #{componentId,jdbcType=BIGINT},
+      </if>
+      <if test="tacheId != null" >
+        #{tacheId,jdbcType=BIGINT},
+      </if>
+      <if test="componentCode != null" >
+        #{componentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="componentName != null" >
+        #{componentName,jdbcType=VARCHAR},
+      </if>
+      <if test="execIndex != null" >
+        #{execIndex,jdbcType=INTEGER},
+      </if>
+      <if test="componentState != null" >
+        #{componentState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.order.model.WoComponent" >
+    update PF_WO_COMPONENT
+    <set >
+      <if test="tacheId != null" >
+        TACHE_ID = #{tacheId,jdbcType=BIGINT},
+      </if>
+      <if test="componentCode != null" >
+        COMPONENT_CODE = #{componentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="componentName != null" >
+        COMPONENT_NAME = #{componentName,jdbcType=VARCHAR},
+      </if>
+      <if test="execIndex != null" >
+        EXEC_INDEX = #{execIndex,jdbcType=INTEGER},
+      </if>
+      <if test="componentState != null" >
+        COMPONENT_STATE = #{componentState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COMPONENT_ID = #{componentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.order.model.WoComponent" >
+    update PF_WO_COMPONENT
+    set TACHE_ID = #{tacheId,jdbcType=DECIMAL},
+      COMPONENT_CODE = #{componentCode,jdbcType=VARCHAR},
+      COMPONENT_NAME = #{componentName,jdbcType=VARCHAR},
+      EXEC_INDEX = #{execIndex,jdbcType=DECIMAL},
+      COMPONENT_STATE = #{componentState,jdbcType=VARCHAR}
+    where COMPONENT_ID = #{componentId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="selectByTacheId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PF_WO_COMPONENT
+    WHERE TACHE_ID = #{tacheId,jdbcType=BIGINT}
+	AND COMPONENT_STATE = '10A'
+	ORDER BY EXEC_INDEX ASC
+  </select>
+  <!-- 根据参数查询 -->
+	<select id="selectComponentList" resultMap="BaseResultMap"
+		parameterType="com.basic.order.bean.OrderComponetIbean">
+		SELECT
+		PWO.*, PT.TACHE_NAME
+		FROM PF_WO_COMPONENT PWO
+		JOIN PF_TACHE PT ON PT.TACHE_ID = PWO.TACHE_ID AND PT.STATE = '10A'
+		<where>
+			PWO.COMPONENT_STATE = '10A'
+			<if test="componentName != null and componentName != '' ">
+				<![CDATA[
+				AND INSTR(PWO.COMPONENT_NAME, #{componentName,jdbcType=VARCHAR}) > 0
+				 ]]>
+			</if>
+			<if test="componentCode != null and componentCode != '' ">
+        		AND PWO.COMPONENT_CODE = #{componentCode,jdbcType=VARCHAR}
+			</if>
+		</where>
+		<if test="start != null and limit != null and limit > 0">
+			LIMIT #{start}, #{limit}
+		</if>
+	</select>
+	<!-- 根据参数查询的总数 -->
+	<select id="selectComponentListCount" resultType="java.lang.Long"
+		parameterType="com.basic.order.bean.OrderComponetIbean">
+		SELECT
+		COUNT(0)
+		FROM PF_WO_COMPONENT PWO
+		JOIN PF_TACHE PT ON PT.TACHE_ID = PWO.TACHE_ID AND PT.STATE = '10A'
+		<where>
+			PWO.COMPONENT_STATE = '10A'
+			<if test="componentName != null and componentName != '' ">
+				<![CDATA[
+				AND INSTR(PWO.COMPONENT_NAME, #{componentName,jdbcType=VARCHAR}) > 0
+				 ]]>
+			</if>
+			<if test="componentCode != null and componentCode != '' ">
+        		AND PWO.COMPONENT_CODE = #{componentCode,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 批量修改状态 -->
+	<update id="updateBatchStateByCompoentId" parameterType="com.basic.order.model.WoComponent">
+		UPDATE PF_WO_COMPONENT
+		<set>
+			<if test="componentState != null and componentState!= '' ">
+				COMPONENT_STATE = #{componentState,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE COMPONENT_ID IN
+		<foreach collection="componentIds" item="componentId"
+			index="index" open="(" close=")" separator=",">
+			#{componentId,jdbcType=BIGINT}
+		</foreach>
+	</update>
+</mapper>

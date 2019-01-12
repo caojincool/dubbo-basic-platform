@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basic.log.dao.SystemLogMapper" >
+  <resultMap id="BaseResultMap" type="com.basic.log.model.SystemLog" >
+    <id column="LOG_ID" property="logId" jdbcType="DECIMAL" />
+    <result column="REQUEST_URL" property="requestUrl" jdbcType="VARCHAR" />
+    <result column="REQUEST_CONTENT" property="requestContent" jdbcType="VARCHAR" />
+    <result column="LOG_TYPE" property="logType" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="USER_TEXT" property="userText" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LOG_ID, REQUEST_URL, REQUEST_CONTENT, LOG_TYPE, USER_ID, CREATE_TIME, CUST_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from PUB_SYSTEM_LOG
+    where LOG_ID = #{logId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from PUB_SYSTEM_LOG
+    where LOG_ID = #{logId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.basic.log.model.SystemLog" >
+    insert into PUB_SYSTEM_LOG (LOG_ID, REQUEST_URL, REQUEST_CONTENT, 
+      LOG_TYPE, USER_ID, CREATE_TIME, 
+      CUST_ID)
+    values (#{logId,jdbcType=DECIMAL}, #{requestUrl,jdbcType=VARCHAR}, #{requestContent,jdbcType=VARCHAR}, 
+      #{logType,jdbcType=VARCHAR}, #{userId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{custId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.basic.log.model.SystemLog" >
+    insert into PUB_SYSTEM_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        LOG_ID,
+      </if>
+      <if test="requestUrl != null" >
+        REQUEST_URL,
+      </if>
+      <if test="requestContent != null" >
+        REQUEST_CONTENT,
+      </if>
+      <if test="logType != null" >
+        LOG_TYPE,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="custId != null" >
+        CUST_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=DECIMAL},
+      </if>
+      <if test="requestUrl != null" >
+        #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="requestContent != null" >
+        #{requestContent,jdbcType=VARCHAR},
+      </if>
+      <if test="logType != null" >
+        #{logType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.basic.log.model.SystemLog" >
+    update PUB_SYSTEM_LOG
+    <set >
+      <if test="requestUrl != null" >
+        REQUEST_URL = #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="requestContent != null" >
+        REQUEST_CONTENT = #{requestContent,jdbcType=VARCHAR},
+      </if>
+      <if test="logType != null" >
+        LOG_TYPE = #{logType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custId != null" >
+        CUST_ID = #{custId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOG_ID = #{logId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.basic.log.model.SystemLog" >
+    update PUB_SYSTEM_LOG
+    set REQUEST_URL = #{requestUrl,jdbcType=VARCHAR},
+      REQUEST_CONTENT = #{requestContent,jdbcType=VARCHAR},
+      LOG_TYPE = #{logType,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CUST_ID = #{custId,jdbcType=VARCHAR}
+    where LOG_ID = #{logId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 根据参数查询 -->
+  <select id="selectSystemLogList" resultMap="BaseResultMap" parameterType="com.basic.log.bean.SystemLogIbean" >
+    SELECT 
+    PSL.*,
+    OU.USER_TEXT
+    FROM PUB_SYSTEM_LOG PSL
+    JOIN OAAS_USER OU ON OU.USER_ID = PSL.USER_ID
+      <where>
+      <if test="requestUrl != null and requestUrl != ''" >
+        <![CDATA[
+        AND INSTR(PSL.REQUEST_URL, #{requestUrl,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>  
+      <if test="logType != null and logType != ''" >
+        AND PSL.LOG_TYPE = #{logType,jdbcType=VARCHAR}
+      </if>
+      <if test="beginTime != null" >
+      	<![CDATA[
+        AND PSL.CREATE_TIME >= #{beginTime,jdbcType=TIMESTAMP}
+        ]]>
+      </if>
+      <if test="endTime != null" >
+      	<![CDATA[
+        AND PSL.CREATE_TIME <= #{endTime,jdbcType=TIMESTAMP}
+        ]]>
+      </if>
+      <if test="userText != null and userText != ''" >
+        <![CDATA[
+        AND INSTR(OU.USER_TEXT, #{userText,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if> 
+	  </where>
+      <if test="start != null and limit != null and limit > 0">
+      LIMIT #{start}, #{limit}
+      </if>
+  </select>
+  
+  <!-- 根据参数查询的总数 -->
+  <select id="selectSystemLogListCount" resultType="java.lang.Long" parameterType="com.basic.log.bean.SystemLogIbean" >
+    SELECT 
+	COUNT(0)
+    FROM PUB_SYSTEM_LOG PSL
+    JOIN OAAS_USER OU ON OU.USER_ID = PSL.USER_ID
+      <where>
+      <if test="requestUrl != null and requestUrl != ''" >
+        <![CDATA[
+        AND INSTR(PSL.REQUEST_URL, #{requestUrl,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if>  
+      <if test="logType != null and logType != ''" >
+        AND PSL.LOG_TYPE = #{logType,jdbcType=VARCHAR}
+      </if>
+      <if test="beginTime != null" >
+      	<![CDATA[
+        AND PSL.CREATE_TIME >= #{beginTime,jdbcType=TIMESTAMP}
+        ]]>
+      </if>
+      <if test="endTime != null" >
+      	<![CDATA[
+        AND PSL.CREATE_TIME <= #{endTime,jdbcType=TIMESTAMP}
+        ]]>
+      </if>
+      <if test="userText != null and userText != ''" >
+        <![CDATA[
+        AND INSTR(OU.USER_TEXT, #{userText,jdbcType=VARCHAR}) > 0
+        ]]>
+      </if> 
+	  </where>
+  </select> 
+  
+</mapper>
