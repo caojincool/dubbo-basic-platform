@@ -13,9 +13,6 @@
 	<modules>
 		<module>Basic-Cache</module>
 		<module>Basic-Common</module>
-		<module>Basic-DbPT</module>
-		<module>Basic-Election</module>
-		<module>Basic-FrameConsole</module>
 		<module>Basic-GidClient</module>
 		<module>Basic-GidServer</module>
 		<module>Basic-JettyServer</module>

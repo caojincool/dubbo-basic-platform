@@ -2,6 +2,7 @@ package com.basic.framework.messagequeue.dao;
 
 import java.util.Date;
 
+import com.basic.framework.common.utils.IdUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,8 @@ public class MsgInfoProducerDao {
 	 */
 	public int createMsgInfoProducer(MsgInfoProducer msgInfoProducer){
 		logger.debug("createMsgInfoProducer MsgInfoProducer:{}", JSON_UTILS.objectToJson(msgInfoProducer));
-		String sql = "INSERT INTO MSG_INFO_PRODUCER (PRODUCER_ID, KEY, MESSAGE, QUEUE_CODE, IS_CACHE, IS_PERSISTENCE, PERSISTENCE_TYPE, CREATE_TIME) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-		Long id = GidClientUtils.getInstance().getGidValue("MSG_INFO_PRODUCER_SEQ");
+		String sql = "INSERT INTO PUB_MSG_INFO_PRODUCER (PRODUCER_ID, `KEY`, MESSAGE, QUEUE_CODE, IS_CACHE, IS_PERSISTENCE, PERSISTENCE_TYPE, CREATE_TIME) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		Long id=IdUtil.next();
 		if(null == id){
 			throw new NullPointerException("id can not be null!!!");
 		}

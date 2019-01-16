@@ -29,11 +29,11 @@
 			<version>${basic.version}</version>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>com.basic.framework</groupId>
 			<artifactId>basic-gidclient</artifactId>
 			<version>${basic.version}</version>
-		</dependency>
+		</dependency>-->
 
 
 		<!-- Apache -->

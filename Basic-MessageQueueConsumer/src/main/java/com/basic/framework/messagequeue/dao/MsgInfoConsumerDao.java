@@ -2,6 +2,7 @@ package com.basic.framework.messagequeue.dao;
 
 import java.util.Date;
 
+import com.basic.framework.common.utils.IdUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.basic.framework.common.utils.datatype.JsonUtils;
-import com.basic.framework.gid.utils.sequence.GidClientUtils;
 import com.basic.framework.messagequeue.modal.MsgInfoConsumer;
 
 /**
@@ -45,8 +45,8 @@ public class MsgInfoConsumerDao {
 	 */
 	public int createMsgInfoConsumer(MsgInfoConsumer msgInfoConsumer){
 		logger.debug("createMsgInfoConsumer MsgInfoConsumer:{}", JSON_UTILS.objectToJson(msgInfoConsumer));
-		String sql = "INSERT INTO MSG_INFO_CONSUMER (CONSUMER_ID, KEY, QUEUE_CODE, IS_CACHE, IS_PERSISTENCE, CREATE_TIME) VALUES (?, ?, ?, ?, ?, ?)";
-		Long id = GidClientUtils.getInstance().getGidValue("MSG_INFO_CONSUMER_SEQ");
+		String sql = "INSERT INTO PUB_MSG_INFO_CONSUMER (CONSUMER_ID, `KEY`, QUEUE_CODE, IS_CACHE, IS_PERSISTENCE, CREATE_TIME) VALUES (?, ?, ?, ?, ?, ?)";
+		Long id=IdUtil.next();
 		if(null == id){
 			throw new NullPointerException("id can not be null!!!");
 		}
