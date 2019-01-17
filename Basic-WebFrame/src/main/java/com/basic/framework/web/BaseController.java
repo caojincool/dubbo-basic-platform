@@ -16,11 +16,7 @@ import com.basic.framework.common.mybatis.support.DefaultPage;
 import com.basic.framework.common.utils.BeanUtils;
 import com.basic.framework.common.utils.StringUtil;
 import com.basic.framework.common.utils.datatype.JsonUtils;
-import com.basic.framework.web.api.UserDetailService;
-import com.basic.framework.web.api.UserPrivateService;
-import com.basic.oaas.model.UserDetail;
 
-//import com.basic.oaas.service.UserPrivateService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -223,47 +219,7 @@ public abstract class BaseController implements ApplicationContextAware{
 
 	}
 	
-	/**
-	 * 获取session
-	 * @param request
-	 * @param
-	 * @param
-	 * @return
-	 */
-	protected UserDetail getSession(HttpServletRequest request) {
 
-		UserDetailService userDetailService = applicationContext.getBean("userDetailService", UserDetailService.class);
-		//UserDetail userDetail = userDetailService.qryUserDetailByRequest(request);
-		return null;
-
-//		logger.debug("getSession sessionKey:{}",SecurityCommon.SESSION_USER_KEY);
-//		HttpSession session = request.getSession();
-//
-//		//userSession的信息在用户登录成功后获取并加入HttpSession
-//		Object sessionObj = session.getAttribute(SecurityCommon.SESSION_USER_KEY);
-//		if(logger.isDebugEnabled()){
-//			logger.debug("getSession sessionKey:{},sessionObj:{}",SecurityCommon.SESSION_USER_KEY,JSON_UTILS.objectToJson(sessionObj));
-//		}
-//		if(null == sessionObj){//这种情况应该是免登录的情况
-//
-//			logger.debug("重新设置自定义session");
-//
-//			SecurityContext springSecurityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-//			SessionUser sessionUser = null;
-//			if(springSecurityContext != null){
-//				MyUserDetail  userDetail  = (MyUserDetail) springSecurityContext.getAuthentication().getPrincipal();
-//				OaasUser user  = userDetail.getUser();
-//				sessionUser = userSessionService.getUserSession(user.getUserId());
-//				request.getSession().setAttribute(SecurityCommon.SESSION_USER_KEY,sessionUser);
-//			}
-//
-//			return sessionUser;
-//		}else{
-//			return (SessionUser)sessionObj;
-//		}
-
-
-	}
 
 	
 //	/**
@@ -297,7 +253,7 @@ public abstract class BaseController implements ApplicationContextAware{
 	
 	/**
 	 * 从session中获取用户得到其所有权限信息，然后构建sidebar
-	 * 
+	 *
 	 * @param model
 	 * @param
 	 */
@@ -307,7 +263,7 @@ public abstract class BaseController implements ApplicationContextAware{
 	//	userPrivateService.appendUserMenuData(request, model);
 //		String currentPageUrl = request.getRequestURI();
 //		this.appendMenuData(currentPageUrl, request, model);
-		
+
 //		logger.debug("拼装功能权限");
 //		this.appendFuncData(currentPageUrl, request, model);
 	}

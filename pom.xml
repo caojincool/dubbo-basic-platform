@@ -23,26 +23,16 @@
 		<module>Basic-MessageQueueConsumer</module>
 		<module>Basic-MessageQueueProducer</module>
 		<module>Basic-MessageQueuePT</module>
-		<!-- <module>Basic-NoticeApi</module>
-		<module>Basic-NoticeImpl</module>
-		<module>Basic-NoticeWeb</module> -->
-		<module>Basic-OaasApi</module>
-		<module>Basic-OaasImpl</module>
-		<module>Basic-OaasWeb</module>
 		<module>Basic-OrderApi</module>
 		<module>Basic-OrderImpl</module>
 		<module>Basic-OrderWeb</module>
-		<module>Basic-ProcessFrame</module>
 		<!-- <module>Basic-Quartz</module> -->
 		<module>Basic-Start</module>
-		<module>Basic-StateEngine</module>
 		<module>Basic-SystemApi</module>
 		<module>Basic-SystemImpl</module>
 		<module>Basic-SystemWeb</module>
-		<module>Basic-ThreadFrame</module>
 		<module>Basic-Web</module>
 		<module>Basic-WebFrame</module>
-		<module>Basic-WebSecurity</module>
 		<module>Basic-WorkflowEngine</module>
 		<module>Basic-WorkflowEngineApi</module>
 		<module>Basic-WorkflowEngineClient</module>

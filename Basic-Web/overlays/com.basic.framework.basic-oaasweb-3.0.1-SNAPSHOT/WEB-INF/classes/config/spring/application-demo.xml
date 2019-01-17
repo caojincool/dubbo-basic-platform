@@ -1,0 +1,39 @@
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd ">
+
+	<!-- 用户详情 -->  
+	<bean id="commonController" class="com.basic.framework.web.CommonController">
+		<property name="userDetailService" ref="userDetailService"/>
+		<property name="gidService" ref="gidService"/>
+		<property name="verifyService" ref="verifyService"/>
+	</bean>
+	
+	<bean id="demoZTreeController" class="com.basic.framework.demo.controller.DemoZTreeController">
+		<property name="demoOrgService" ref="demoOrgService"/>
+	</bean>
+	
+<!--<bean id="baseController" class="com.basic.framework.web.BaseController" abstract="true">
+		<property name="userPrivateService" ref="userPrivateService"/>
+	</bean> -->
+	
+	<bean id = "userDetailService" class="com.basic.framework.demo.service.UserDetailServiceImpl"/>
+	<bean id = "gidService" class="com.basic.framework.demo.service.GidServiceImpl"/>
+	<bean id = "demoOrgService" class="com.basic.framework.demo.service.DemoOrgServiceImpl"/>
+	<bean id = "verifyService" class="com.basic.framework.demo.service.VerifyServiceImpl"/>
+	
+	<bean id = "userPrivateServiceWeb" class="com.basic.framework.demo.service.UserPrivateServiceImpl"/>
+	
+</beans>

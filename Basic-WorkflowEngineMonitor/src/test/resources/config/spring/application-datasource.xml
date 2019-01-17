@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
 		http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-4.0.xsd
@@ -16,13 +16,13 @@
 	<bean id="dataSourceSer" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<!-- 数据库驱动 -->
-		<property name="driverClassName" value="${datasourceser.driverClassName}" />
+		<property name="driverClassName" value="${datasource.driverClassName}" />
 		<!-- 连接URL串 -->
-		<property name="url" value="${datasourceser.url}" />
+		<property name="url" value="${datasource.url}" />
 		<!-- 连接用户名 -->
-		<property name="username" value="${datasourceser.username}" />
+		<property name="username" value="${datasource.username}" />
 		<!-- 连接密码 -->
-		<property name="password" value="${datasourceser.password}" />
+		<property name="password" value="${datasource.password}" />
 
 		<property name="initialSize" value="1" />
 		<property name="maxActive" value="32" />
@@ -44,13 +44,13 @@
 	<bean id="dataSourceCli" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<!-- 数据库驱动 -->
-		<property name="driverClassName" value="${datasourcecli.driverClassName}" />
+		<property name="driverClassName" value="${datasource.driverClassName}" />
 		<!-- 连接URL串 -->
-		<property name="url" value="${datasourcecli.url}" />
+		<property name="url" value="${datasource.url}" />
 		<!-- 连接用户名 -->
-		<property name="username" value="${datasourcecli.username}" />
+		<property name="username" value="${datasource.username}" />
 		<!-- 连接密码 -->
-		<property name="password" value="${datasourcecli.password}" />
+		<property name="password" value="${datasource.password}" />
 
 		<property name="initialSize" value="1" />
 		<property name="maxActive" value="32" />

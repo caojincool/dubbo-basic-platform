@@ -22,25 +22,13 @@
 			<artifactId>basic-common</artifactId>
 			<version>${basic.framework.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.basic.framework</groupId>
-			<artifactId>basic-oaasapi</artifactId>
-			<version>${basic.framework.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.basic.framework</groupId>
 			<artifactId>basic-systemapi</artifactId>
 			<version>${basic.framework.version}</version>
 		</dependency>
-		<!--
-		<dependency>
-			<groupId>com.basic.framework</groupId>
-			<artifactId>basic-gidclient</artifactId>
-			<version>${basicframework.version}</version>
-		</dependency>
-		-->
 
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
 		    <groupId>org.json</groupId>
 		    <artifactId>json</artifactId>

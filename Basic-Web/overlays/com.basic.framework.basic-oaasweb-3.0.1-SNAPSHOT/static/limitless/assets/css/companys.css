@@ -1,0 +1,37 @@
+
+#navbar-mobile{
+	text-decoration:none;
+}
+#navbar-mobile ul li{
+	position: relative;
+}
+#navbar-mobile ul li ul{
+	position: absolute;
+}
+
+#navbar-mobile  > ul > li > ul > li  a:hover {
+        color: #a4f;
+        background-color: #cdf;
+}
+#companysTab ul li a{
+        line-height: 36px;
+        color: #456;
+        text-align: center;
+        display: block;
+        text-decoration:none;
+} 
+#companyTab{
+	   margin-left:-201px;
+	   margin-top:-36px;
+	   background:white;
+	   width:200px;
+	   padding:0px;
+	   border: 1px solid #ddd;
+	   display:none;
+}
+#companyTab li{
+	width:200px;
+	padding:0px;
+	margin:0px;
+}
+

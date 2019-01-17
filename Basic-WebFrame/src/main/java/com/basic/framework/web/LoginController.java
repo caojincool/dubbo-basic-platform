@@ -3,9 +3,6 @@
  */
 package com.basic.framework.web;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.basic.framework.common.utils.datatype.JsonUtils;
 import com.basic.framework.common.utils.result.HttpEntity;
 import com.basic.framework.common.utils.result.HttpStatus;
-import com.basic.oaas.model.UserDetail;
 
 /**
  * @author YeRunhua
@@ -41,8 +37,8 @@ public class LoginController extends BaseController {
 		ModelAndView page = new ModelAndView("/login");
 //		if(this.hasCookie(request)) {//已登录
 		//单点登录情况下，不为空
-		UserDetail userDetail = this.getSession(request);
-		if(userDetail!=null){
+		//UserDetail userDetail = this.getSession(request);
+		/*if(userDetail!=null){
 			logger.debug("display redirect:/index.do");
 			page = new ModelAndView("redirect:/index.do");
 		} else {//未登录
@@ -55,7 +51,7 @@ public class LoginController extends BaseController {
 			} catch (UnsupportedEncodingException e) {
 				logger.error("转码异常：" + e.getLocalizedMessage(), e);
 			}
-		}
+		}*/
 		
 //		try {
 //			Object obj = request.getParameter("message");
@@ -73,12 +69,12 @@ public class LoginController extends BaseController {
 	@ResponseBody
 	public HttpEntity testLogin(HttpServletRequest request, HttpServletResponse response) {
 		//单点登录情况下，不为空
-		UserDetail userDetail = this.getSession(request);
-		if(userDetail!=null){
-			return new HttpEntity(HttpStatus.OK,true,"请求成功",userDetail);
-		} else {//未登录
+		//UserDetail userDetail = this.getSession(request);
+		//if(userDetail!=null){
+			//return new HttpEntity(HttpStatus.OK,true,"请求成功",userDetail);
+		//} else {//未登录
 			return new HttpEntity(HttpStatus.OK,false,"请求成功","去登陆页面登陆吧");
-		}
+		//}
 		
 	}
 	

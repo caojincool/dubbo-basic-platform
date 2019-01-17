@@ -18,7 +18,7 @@
 		<property name="typeAliasesPackage" value="com.basic.framework.workflowser.model" />
 		<!-- 配置扫描Mapper XML的位置 -->
 		<property name="mapperLocations"
-			value="classpath*:com/basic.framework/workflowser/mapping/*.xml" />
+			value="classpath*:com/basic/framework/workflowser/mapping/*.xml" />
 		<!-- 对应configuration的settings配置 -->
 		<property name="configurationProperties">
 			<props>
@@ -42,7 +42,7 @@
 		<property name="typeAliasesPackage" value="com.basic.framework.workflowcli.model" />
 		<!-- 配置扫描Mapper XML的位置 -->
 		<property name="mapperLocations"
-			value="classpath*:com/basic.framework/workflowcli/mapping/*.xml" />
+			value="classpath*:com/basic/framework/workflowcli/mapping/*.xml" />
 		<!-- 对应configuration的settings配置 -->
 		<property name="configurationProperties">
 			<props>

@@ -36,6 +36,7 @@
 	
 	<!-- 工作流引擎 -->
 	<import resource="./application-workflow-engine.xml" />
+
 	
 	
 	<!-- 自动扫描，匹配service，repository层 -->

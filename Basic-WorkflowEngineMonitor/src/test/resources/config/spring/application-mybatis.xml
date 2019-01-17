@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd 
 		http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd 
@@ -18,7 +18,7 @@
 		<property name="typeAliasesPackage" value="com.basic.framework.workflowser.model" />
 		<!-- 配置扫描Mapper XML的位置 -->
 		<property name="mapperLocations"
-			value="classpath*:com/basic.framework/workflowser/mapping/*.xml" />
+			value="classpath*:com/basic/framework/workflowser/mapping/*.xml" />
 		<!-- 对应configuration的settings配置 -->
 		<property name="configurationProperties">
 			<props>
@@ -33,8 +33,8 @@
 		<property name="basePackage" value="com.basic.framework.workflowser.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactorySer" />
 	</bean>
-	
-	
+
+
 	<!-- MyBatis配置 -->
 	<bean id="sqlSessionFactoryCli" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSourceCli" />
@@ -42,7 +42,7 @@
 		<property name="typeAliasesPackage" value="com.basic.framework.workflowcli.model" />
 		<!-- 配置扫描Mapper XML的位置 -->
 		<property name="mapperLocations"
-			value="classpath*:com/basic.framework/workflowcli/mapping/*.xml" />
+			value="classpath*:com/basic/framework/workflowcli/mapping/*.xml" />
 		<!-- 对应configuration的settings配置 -->
 		<property name="configurationProperties">
 			<props>
@@ -62,7 +62,7 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSourceSer" />
 	</bean>
-	
+
 	<bean id="transactionManagerCli"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSourceCli" />
@@ -100,14 +100,14 @@
 				rollback-for="java.lang.Exception" />
 		</tx:attributes>
 	</tx:advice>
-	
+
 	<aop:config>
 		<!-- 配置切点为service层 -->
 		<aop:pointcut id="pointCutSer"
 			expression="execution(public * com.basic.framework.*.service.*.*(..))" />
 		<aop:advisor pointcut-ref="pointCutSer" advice-ref="txAdviceSer" />
 	</aop:config>
-	
+
 	<aop:config>
 		<!-- 配置切点为service层 -->
 		<aop:pointcut id="pointCutCli"

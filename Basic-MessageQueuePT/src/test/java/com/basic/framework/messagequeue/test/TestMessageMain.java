@@ -16,6 +16,14 @@ import com.basic.framework.messagequeue.impl.MessageSenderActiveMQ;
  * 
  * @Description: 测试消息队列的压力和稳定性
  *
+ *
+ * 在消息发送过程中消息丢失的话该怎么解决(包括网络原因):
+ * 解决思路：
+ *
+ * 可以把消息唯一ID，存到表里面，当消息接受端可以获取到这个ID，就给服务端一个回复
+ * IF，消息发送出去，没有回复，THEN一直循环发送
+ * 让消息发送端，知道接受到消息了，把表中唯一ID删了，停止发送
+ *
  */
 public class TestMessageMain {
 	

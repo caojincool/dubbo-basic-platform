@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.basic.framework.common.utils.datatype.JsonUtils;
-import com.basic.oaas.model.UserDetail;
 
 
 /**
@@ -28,7 +27,6 @@ public class IndexController  extends BaseController {
 	
 	/**
 	 * 主页
-	 * @param ibean
 	 * @param request
 	 * @param response
 	 * @param model
@@ -66,12 +64,7 @@ public class IndexController  extends BaseController {
 //			pageView = new ModelAndView("redirect:/login.do");
 //		}
 		
-		UserDetail userDetail = this.getSession(request);
-		if(userDetail!=null){
-			pageView.addObject("mySessionUser", JSON_UTILS.objectToJson(userDetail));
-		}else{
-			pageView = new ModelAndView("redirect:/login.do");
-		}
+
 		
 		//业务逻辑结束
 		this.doAfterMenuPageAction(request, response, model, null);

@@ -68,8 +68,8 @@ public class WorkflowEngineMonitorController extends BaseController{
 	private SerWorkflowNoticeService serWorkflowNoticeService;
 	@Autowired
 	private ProcessEngine processEngine;
-	@Autowired
-	private MessageSenderActiveMQ messageSenderActiveMQ;
+/*	@Autowired
+	private MessageSenderActiveMQ messageSenderActiveMQ;*/
 
 	/**
 	 * 
@@ -334,7 +334,7 @@ public class WorkflowEngineMonitorController extends BaseController{
 //            throw new Exception("ERROR?????????????");
             String key = bean.getCommandType();
             String message = JSON_UTILS.objectToJson(bean);
-            messageSenderActiveMQ.sendMessage(key, CommandQueueCode.WORKFLOW_COMMAND_SENDCOMMAND_QUEUE.getCode(), message);
+          //  messageSenderActiveMQ.sendMessage(key, CommandQueueCode.WORKFLOW_COMMAND_SENDCOMMAND_QUEUE.getCode(), message);
             
 			dealResult.setReturnCode(DealResult.SUCCESS);
 			dealResult.setReturnMsg(null);
@@ -399,7 +399,7 @@ public class WorkflowEngineMonitorController extends BaseController{
             
             String key = bean.getBusiOrderId().toString();
             String message = JSON_UTILS.objectToJson(bean);
-            messageSenderActiveMQ.sendMessage(key, NoticeQueueCode.WORKFLOW_NOTICE_SENDNOTICE_QUEUE.getCode(), message);
+           // messageSenderActiveMQ.sendMessage(key, NoticeQueueCode.WORKFLOW_NOTICE_SENDNOTICE_QUEUE.getCode(), message);
             
 			dealResult.setReturnCode(DealResult.SUCCESS);
 			dealResult.setReturnMsg(null);

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>我的工作台</title>
+	<!-- 本页面js -->
+	
+	</head>
+<body>
+<div class="workbench">
+    <!--<div class="row">-->
+        <!--<div class="col-md-3 workbench-top">-->
+            <!--<div class="workbench-top-1 row">-->
+                <!--<div class="col-md-6">-->
+                    <!--<p class="workbench-top-title"><a href="">客商</a></p>-->
+                    <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+                <!--</div>-->
+                <!--<div class="col-md-6">-->
+                    <!--<p class="workbench-top-ms"><span id="index-clientCount"></span>个</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-3 workbench-top">-->
+            <!--<div class="workbench-top-2 row">-->
+                <!--<div class="col-md-6">-->
+                    <!--<p class="workbench-top-title"><a href="">待处理</a></p>-->
+                    <!--<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>-->
+                <!--</div>-->
+                <!--<div class="col-md-6">-->
+                    <!--<p class="workbench-top-ms"><span id="index-pending"></span>个</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-3 workbench-top">-->
+            <!--<div class="workbench-top-3 row">-->
+                <!--<div class="col-md-6">-->
+                    <!--<p class="workbench-top-title"><a href="">未完成申请</a></p>-->
+                    <!--<span class="glyphicon glyphicon-th" aria-hidden="true"></span>-->
+                <!--</div>-->
+                <!--<div class="col-md-6">-->
+                    <!--<p class="workbench-top-ms"><span id="index-myOrder"></span>个</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-3 workbench-top">-->
+            <!--<div class="workbench-top-3 row">-->
+                <!--<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=2&num=2" width="400" height="90"-->
+                        <!--frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="row">
+        <div class="col-md-9" style="padding-left: 0;">
+            <div class="row workbench-top-box">
+                <!--<div class="col-md-4 workbench-top">-->
+                    <!--<div class="workbench-top-1 row">-->
+                        <!--<div class="col-md-6">-->
+                            <!--<p class="workbench-top-title"><a href="">客商</a></p>-->
+                            <!--&lt;!&ndash;<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<p class="workbench-top-ms"><span id="index-clientCount"></span>个</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-4 workbench-top">-->
+                    <!--<div class="workbench-top-2 row">-->
+                        <!--<div class="col-md-6">-->
+                            <!--<p class="workbench-top-title"><a href="">待处理</a></p>-->
+                            <!--<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<p class="workbench-top-ms"><span id="index-pending"></span>个</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-4 workbench-top">-->
+                    <!--<div class="workbench-top-3 row">-->
+                        <!--<div class="col-md-6">-->
+                            <!--<p class="workbench-top-title"><a href="">未完成申请</a></p>-->
+                            <!--<span class="glyphicon glyphicon-th" aria-hidden="true"></span>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<p class="workbench-top-ms"><span id="index-myOrder"></span>个</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="workbench-top-item">
+                    <div class="workbench-top-item--icon icon-1"></div>
+                    <span class="workbench-top-item--num" id="index-clientCount"></span>
+                    <span class="workbench-top-item--span">客商数</span>
+                </div>
+                <div class="workbench-top-item">
+                    <div class="workbench-top-item--icon icon-2"></div>
+                    <span class="workbench-top-item--num" id="index-pending"></span>
+                    <span class="workbench-top-item--span">待处理</span>
+                </div>
+                <div class="workbench-top-item">
+                    <div class="workbench-top-item--icon icon-3"></div>
+                    <span class="workbench-top-item--num" id="index-myOrder"></span>
+                    <span class="workbench-top-item--span">尚未完成</span>
+                </div>
+            </div>
+            <div class="row workbench-bottom">
+                <div class="workbench-bottom-1">
+                    <div class="row  workbench-bottom-top">
+                        <div class="col-md-10"><p><span class="icon-wodeshenqing"
+                                                        aria-hidden="true"></span>我的申请
+                        </p></div>
+                        <div class="clickthis col-md-2"><p men_co="individualBillOfLading" class="">
+                            <span style="display: none;">我的申请</span><i class="icon-menu"></i></p></div>
+                    </div>
+                    <div>
+                        <table id="index-myOrder-grid" height="200"
+                               onItemClick="ruizhi.includes.myWorkBench.myOrderOnItemClick" idPropertyName="orderId"
+                               rowNum="" pagerid="">
+                            <tr>
+                                <td display="false" displayName="流程Id" width="120" propertyName="orderId"
+                                    sortType="text"
+                                    align="center">&nbsp;
+                                </td>
+                                <td display="false" displayName="服务编码" width="200" propertyName="serviceCode"
+                                    sortType="text" align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="&nbsp;&nbsp;名称" width="200" propertyName="orderTitle"
+                                    sortType="text" align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="类型" width="150" propertyName="serviceName"
+                                    sortType="text"
+                                    align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="审批人" width="150" propertyName="tacheName"
+                                    sortType="text"
+                                    align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="申请日期" width="180" propertyName="createTime"
+                                    sortType="text"
+                                    align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="操作" width="150" propertyName="" sortType="text"
+                                    align="center" formatter="ruizhi.includes.myWorkBench.myOrderStyle">&nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row workbench-bottom">
+                <div class="workbench-bottom-1">
+                    <div class="row  workbench-bottom-top">
+                        <div class="col-md-10"><p><span class="icon-shenpi" aria-hidden="true"></span>我的审批
+                        </p>
+                        </div>
+                        <div class="clickthis col-md-2"><p men_co="traskListByOrderManager" class="">
+                            <span style="display: none;">我的审批</span><i class="icon-menu"></i></p></div>
+                    </div>
+                    <div>
+                        <table id="index-myApprove-grid" height="200"
+                               onItemClick="ruizhi.includes.myWorkBench.myApproveOnItemClick" idPropertyName="orderId"
+                               rowNum="" pagerid="">
+                            <tr>
+                                <td display="false" displayName="流程Id" width="120" propertyName="orderId"
+                                    sortType="text"
+                                    align="center">&nbsp;
+                                </td>
+                                <td display="false" displayName="服务编码" width="200" propertyName="serviceCode"
+                                    sortType="text" align="center">&nbsp;
+                                </td>
+                                <td display="false" displayName="环节编码" width="200" propertyName="tacheCode"
+                                    sortType="text"
+                                    align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="申请人" width="200" propertyName="createUserText"
+                                    sortType="text"
+                                    align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="任务名称" width="200" propertyName="orderTitle"
+                                    sortType="text"
+                                    align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="任务类型" width="100" propertyName="serviceName"
+                                    sortType="text"
+                                    align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="申请日期" width="180" propertyName="createTime"
+                                    sortType="text"
+                                    align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="操作" width="150" propertyName="" sortType="text"
+                                    align="center" formatter="ruizhi.includes.myWorkBench.myApproveStyle">&nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row workbench-bottom">
+                <div class="workbench-bottom-1">
+                    <div class="row  workbench-bottom-top">
+                        <div class="col-md-10"><p><span class="glyphicon glyphicon-user" aria-hidden="true"></span>客商
+                        </p>
+                        </div>
+                        <div class="clickthis col-md-2"><p men_co="groupClientTotal" class="">
+                            <span style="display: none;">客商</span><i class="icon-menu"></i></p></div>
+
+                    </div>
+                    <div>
+                        <table id="index-groupClientTotal-grid" height="200"
+                               onItemClick="ruizhi.includes.myWorkBench.groupClientTotalOnItemClick"
+                               idPropertyName="clientId"
+                               rowNum="" pagerid="">
+                            <tr>
+                                <td display="false" displayName="客商Id" width="" propertyName="clientId" sortType="text"
+                                    align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="客商类别" width="100px" propertyName="clientTypeName"
+                                    sortType="text" align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="客商名称" width="180px" propertyName="clientName"
+                                    sortType="text" align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="授信等级" width="80px" propertyName="creditGradeName"
+                                    sortType="text" align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="单位类型" width="80px" propertyName="unitsTypeName"
+                                    sortType="text" align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="企业类型" width="80px" propertyName="companyTypeName"
+                                    sortType="text" align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="录入时间" width="150px" propertyName="createTime"
+                                    sortType="text" align="center">&nbsp;
+                                </td>
+                                <td display="true" displayName="操作" width="150" propertyName="" sortType="text"
+                                    align="center" formatter="ruizhi.includes.myWorkBench.groupClientTotalStyle">&nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row workbench-bottom" style="margin-top: 0;">
+                <div class="workbench-bottom-1">
+                    <div id="table-reportList">
+                      
+                        <div class="reportList">
+                            <div class="row workbench-bottom-top">
+                            
+                                <div class="col-md-10"><p><span class="icon-xiaoshoubaobiao" aria-hidden="true"></span>报表</p>
+                                </div>
+                                <div class="clickthis col-md-2"><p class="">
+                                    <a href="javascript:ruizhi.includes.myWorkBench.moreReport()" class="icon-menu">
+                                    <span style="display: none;">统计分析</span></a></p></div>
+                            </div>
+                            <a href="javascript:ruizhi.includes.myWorkBench.reportClick('销售明细表','saleListReport','reportManager/saleListReport.do')"
+                            ><i class="icon-xiaoshoubaobiao"></i>
+                                <span>销售明细表</span>
+                            </a>
+                            <a href="javascript:ruizhi.includes.myWorkBench.reportClick('新增客户销量统计表','newClientTotalReport','reportManager/newClientTotalReport.do')"
+                            ><i class="icon-xiaoshoubaobiao"></i>
+                                <span>新增客户销量统计表</span>
+                            </a>
+                            <a href="javascript:ruizhi.includes.myWorkBench.reportClick('销售未出库明细表','saleNotOutListReport','reportManager/saleNotOutListReport.do')"
+                            ><i class="icon-xiaoshoubaobiao"></i>
+                                <span>销售未出库明细表</span>
+                            </a>
+                            <a href="javascript:ruizhi.includes.myWorkBench.reportClick('销售待开票明细计表','saleWaitReceiptReport','reportManager/saleWaitReceiptReport.do	')"
+                            ><i class="icon-xiaoshoubaobiao"></i>
+                                <span>销售待开票明细计表</span>
+                            </a>
+                        </div>
+                        <div class="reportList">
+                            <div class="row workbench-bottom-top">
+                                <div class="col-md-10"><p><span class="icon-ribaobiao" aria-hidden="true"></span>报表</p>
+                                </div>
+                                <!--<div class="clickthis col-md-2"><p class="">-->
+                                    <!--<a href="javascript:ruizhi.includes.myWorkBench.moreReport()" class="icon-menu">-->
+                                        <!--<span style="display: none;">销售类报表</span></a></p></div>-->
+                            </div>
+                            <a href="javascript:ruizhi.includes.myWorkBench.reportClick('采购待收发票统计表','purWaitReceiptReport','reportManager/purWaitReceiptReport.do')"
+                            ><i class="icon-caigoumingxi"></i>
+                                <span>采购待收发票统计表</span>
+                            </a>
+                            <a href="javascript:ruizhi.includes.myWorkBench.reportClick('采购明细表','purListReport','reportManager/purListReport.do')"
+                            ><i class="icon-caigoumingxi"></i>
+                                <span>采购明细表</span>
+                            </a>
+                            <a href="javascript:ruizhi.includes.myWorkBench.reportClick('采购未入库明细表','purNotInListReport','reportManager/purNotInListReport.do')"
+                            ><i class="icon-caigoumingxi"></i>
+                                <span>采购未入库明细表</span>
+                            </a>
+                            <a href="javascript:ruizhi.includes.myWorkBench.reportClick('采购已点未提','purValenceNotStor','reportManager/purValenceNotStorReport.do')"
+                            ><i class="icon-caigoumingxi"></i>
+                                <span>采购已点未提</span>
+                            </a>
+                            <a href="javascript:ruizhi.includes.myWorkBench.reportClick('采购点价情况','purValenceCont','reportManager/purValenceContReport.do')"
+                            ><i class="icon-caigoumingxi"></i>
+                                <span>采购点价情况</span>
+                            </a>
+                            <a href="javascript:ruizhi.includes.myWorkBench.reportClick('现货库存明细表','stockNumberDataReport','reportManager/stockNumberReport.do')"
+                            ><i class="icon-caigoumingxi"></i>
+                                <span>现货库存明细表</span>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row">-->
+    <!--<div class="col-md-12 workbench-bottom-top"></div>-->
+    <!--</div>-->
+    <div class="row">
+
+    </div>
+</div>
+</body>
+
+</html>

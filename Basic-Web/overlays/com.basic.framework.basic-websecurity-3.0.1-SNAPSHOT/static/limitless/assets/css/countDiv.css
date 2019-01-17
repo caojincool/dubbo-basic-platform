@@ -1,0 +1,51 @@
+.countDiv{
+	height:32px;
+	padding:0;
+	margin:0;
+}
+.sum_table{
+	border-collapse:collapse; 
+	border-bottom:1px solid #DDD;
+	border-right:1px solid #DDD;
+	align:left;
+	table-layout:fixed;
+	padding:0;
+	margin:0;
+	white-space:nowrap;
+}
+.dot{  
+    overflow: hidden;     
+    white-space: nowrap;     
+    text-overflow: ellipsis;   
+} 
+.sum_table td{
+	font-weight: normal;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 30px;
+    /* padding: 1px 10px 1px 12px; */
+    border-bottom-width: 1px;
+    border-bottom-color: inherit;
+    border-bottom-style: solid;
+    border-left: 1px solid #DDD;
+    color:red;
+    text-overflow:ellipsis;
+}
+/* .sum_table td:first-child{
+	 border-right: 0 none; 
+} */
+
+.input-contract{
+	width:910px;
+	overflow-y:scroll;
+	resize:none;
+}
+
+.module{
+	float:left;
+	position: absolute;
+}
+.modal-title{
+	font-weight:bold;
+}
+
