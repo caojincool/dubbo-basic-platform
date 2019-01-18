@@ -21,7 +21,6 @@
 				<value>classpath:config/properties/datasource.properties</value>
 				<value>classpath:config/properties/activemq-producer.properties</value>
 				<value>classpath:config/properties/activemq-consumer.properties</value>
-				<value>classpath:config/properties/redis.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -75,7 +74,5 @@
 	<import resource="./application-mq-provider-notice.xml" />
 	<!-- mq消费者-指令 -->
 	<import resource="./application-mq-consumer-command.xml" />
-	<!-- redis -->
-	<import resource="./application-redis.xml" />
 	
 </beans>
