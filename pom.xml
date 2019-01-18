@@ -13,6 +13,7 @@
 	<modules>
 		<module>Basic-Cache</module>
 		<module>Basic-Common</module>
+		<module>Basic-DataSource</module>
 		<module>Basic-GidClient</module>
 		<module>Basic-GidServer</module>
 		<module>Basic-JettyServer</module>
