@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- dubbo 消费者的配置文件 -->
+	
+	<dubbo:reference interface="com.lsmy.b2c.ic.common.service.GoodsService" id="goodsService" check="false" timeout="3000"/>
+	<dubbo:reference interface="com.lsmy.b2c.ic.common.service.GdClassifyService" id="gdClassifyService" check="false" timeout="1000"/>
+	<dubbo:reference interface="com.lsmy.b2c.cmt.common.service.QuestionService" id="questionService" check="false" timeout="3000"/>
+	<dubbo:reference interface="com.lsmy.b2c.cmt.common.service.CommentService" id="commentService" check="false" timeout="3000"/>
+	<dubbo:reference interface="com.lsmy.b2c.ic.common.service.RecomRulesService" id="recomRulesService" check="false" timeout="1000"/>
+	<dubbo:reference interface="com.lsmy.b2c.ic.common.service.O2oK3skuService" id="o2oK3skuService" check="false" timeout="8000"/>
+	<dubbo:reference interface="com.lsmy.b2c.o2o.common.service.O2oK3AdvanceService" id="o2oK3AdvanceService" check="false" timeout="15000"/>
+	<dubbo:reference interface="com.lsmy.b2c.ic.common.service.O2oK3Service" id="o2oK3Service" check="false" timeout="15000"/>
+
+</beans>

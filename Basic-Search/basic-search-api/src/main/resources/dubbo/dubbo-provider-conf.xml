@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- dubbo 生产者的配置文件 -->
+
+	<dubbo:protocol name="dubbo" port="${dubbo.port}" host="${dubbo.host}" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.service.DefaultWordService" ref="defaultWordService" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.service.HotwordService" ref="hotwordService" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.service.KeywordService" ref="keywordService" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.service.NonresultRecommendService" ref="nonresultRecommendService" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.service.TopInfoService" ref="topInfoService" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.index.GoodsIndexWriter" ref="goodsIndexWriter" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.index.TipIndexWriter" ref="tipIndexWriter" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.index.GoodsQuestionIndexWriter" ref="goodsQuestionIndexWriter" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.index.ClassifyIndexWriter" ref="classifyIndexWriter" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.search.GoodsSearcher" ref="goodsSearcher" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.search.TipSearcher" ref="tipSearcher" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.search.ClassifySearcher" ref="classifySearcher" />
+	<dubbo:service interface="com.lsmy.b2c.search.common.search.GoodsQuestionSearcher" ref="goodsQuestionSearcher" />
+	
+	<dubbo:service interface="com.lsmy.b2c.search.common.search.O2oK3GoodsSearcher" ref="o2oK3GoodsSearcher" />
+	
+</beans>

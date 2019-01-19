@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                http://www.springframework.org/schema/mvc
+                http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<!-- 配置ONS消息生产者 -->
+	<bean id="orderProducer" class="com.aliyun.openservices.ons.api.bean.ProducerBean" init-method="start" destroy-method="shutdown">
+		<property name="properties"> <!--生产者配置信息 -->
+			<props>
+				<prop key="ProducerId">${search.producerId}${ons.suffix}</prop>
+				<prop key="AccessKey">${accessKey}</prop>
+				<prop key="SecretKey">${secretKey}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--Listener配置-->
+	<bean id="searchIndexWriterMessageListener" class="com.lsmy.b2c.search.api.listener.SearchIndexWriterMessageListener"></bean>
+	<!--Listener配置
+	<bean id="o2oK3GoodsChangeMessageListener" class="com.lsmy.b2c.search.api.listener.O2oK3GoodsChangeMessageListener"></bean>
+	-->
+	 <!--消费者配置信息-->
+    <bean id="consumer" class="com.aliyun.openservices.ons.api.bean.ConsumerBean" init-method="start" destroy-method="shutdown">
+        <property name="properties" >
+            <props>
+                <prop key="ConsumerId">${search.consumerId}${ons.suffix}</prop>
+                <prop key="AccessKey">${accessKey}</prop>
+                <prop key="SecretKey">${secretKey}</prop>
+                <prop key="ConsumeThreadNums">${consumeThreadNums}</prop>
+            </props>
+        </property>
+        <property name="subscriptionTable">
+            <map>
+                <entry value-ref="searchIndexWriterMessageListener">
+                    <key>
+                        <bean class="com.aliyun.openservices.ons.api.bean.Subscription">
+                            <property name="topic" value="${search.topic}${ons.suffix}"/>
+                            <property name="expression" value="*"/>
+                        </bean>
+                    </key>
+                </entry>
+                <!--
+                <entry value-ref="o2oK3GoodsChangeMessageListener">
+                    <key>
+                        <bean class="com.aliyun.openservices.ons.api.bean.Subscription">
+                            <property name="topic" value="${search.topic}${ons.suffix}"/>
+                            <property name="expression" value="updateO2oK3Sku||deleteO2oK3Sku"/>
+                        </bean>
+                    </key>
+                </entry>
+                -->
+            </map>
+        </property>
+    </bean>
+
+</beans>

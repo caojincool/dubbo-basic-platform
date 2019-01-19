@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:monitor protocol="registry" />
+	<dubbo:application name="b2c-search-api" logger="slf4j"/>
+	<dubbo:registry protocol="zookeeper" address="zookeeper://${zookeeper.server}" file="/home/.dubbo/dubbo-registry-search-api.cache" check="false" subscribe="true" register="true" />
+
+	<!-- dubbo 消费者服务接口文件 -->
+	<import resource="dubbo/dubbo-consumer-conf.xml" />
+	
+	<!-- dubbo 生产者服务配置接口文件 -->
+	<import resource="dubbo/dubbo-provider-conf.xml" />
+
+</beans>

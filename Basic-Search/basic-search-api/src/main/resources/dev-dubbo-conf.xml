@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:monitor protocol="registry" />
+	<dubbo:application name="b2c_search_api" />
+	<dubbo:registry address="N/A" />
+	<dubbo:protocol name="dubbo" port="${dubbo.port}"></dubbo:protocol>
+	<!-- 
+	<dubbo:service
+		interface="com.lsmy.b2c.tc.common.service.order.OrderFlowActionService"
+		ref="orderFlowActionService" />
+	 -->
+<dubbo:reference interface="com.lsmy.b2c.ic.common.service.GoodsService" id="goodsService"/>
+<!-- 	<dubbo:reference interface="com.lsmy.b2c.ic.common.service.GdAttrValueService" id="goodsAttrStrvice"/> -->
+<!-- 	<dubbo:reference interface="com.lsmy.b2c.ic.common.service.GoodsSkuPriceService" id="goodsSkuPriceService"/> -->
+
+
+</beans>
